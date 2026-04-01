@@ -1,0 +1,13 @@
+About: smart_shoes_pi		September 2020
+
+This folder contains codes for running the smart shoes
+
+Codes For the Edison:
+	- edison_code.py = this code runs on the edison and streams the data.
+	- sendp.capnp = this code should be in the edison and on the PC as well, on the same folder as the edison_code.py; This code sets the structure message that will be sent and encoded. The encryption key should on this file should be the same as the file on the PC.
+	- SF_ADC.py = this is the libraries/codes for the ADC converter in the smart shoes.
+
+Codes for the PC Receiving the Data:
+	- test_shoes.py = this is the main code that runs on the PC. This code receives the data from the smart should and performs calculations to determine stance phase and also applies operation of valves for inflation/deflation.
+- sendp.capnp = this code should be in the the PC as well, on the same folder as the test_shoes.py; This code decodes the structure message that will be received from the smart shoes. The encryption key should on this file should be the same as the file on the edison.
+	- record.capnp = I think this code sends a message from the test_shoes.py code output.

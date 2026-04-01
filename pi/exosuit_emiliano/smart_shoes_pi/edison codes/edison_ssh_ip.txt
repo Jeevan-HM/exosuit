@@ -1,0 +1,1 @@
+sudo ssh edison@192.168.42.10

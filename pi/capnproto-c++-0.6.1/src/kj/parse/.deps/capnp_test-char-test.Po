@@ -1,0 +1,94 @@
+src/kj/parse/capnp_test-char-test.o: src/kj/parse/char-test.c++ \
+ /usr/include/stdc-predef.h src/kj/parse/char.h src/kj/parse/common.h \
+ src/kj/parse/../common.h \
+ /usr/lib/gcc/arm-linux-gnueabihf/6/include/stddef.h \
+ /usr/include/c++/6/initializer_list \
+ /usr/include/arm-linux-gnueabihf/c++/6/bits/c++config.h \
+ /usr/include/arm-linux-gnueabihf/c++/6/bits/os_defines.h \
+ /usr/include/features.h /usr/include/arm-linux-gnueabihf/sys/cdefs.h \
+ /usr/include/arm-linux-gnueabihf/bits/wordsize.h \
+ /usr/include/arm-linux-gnueabihf/gnu/stubs.h \
+ /usr/include/arm-linux-gnueabihf/gnu/stubs-hard.h \
+ /usr/include/arm-linux-gnueabihf/c++/6/bits/cpu_defines.h \
+ src/kj/parse/../memory.h src/kj/parse/../common.h \
+ src/kj/parse/../array.h /usr/include/string.h /usr/include/xlocale.h \
+ src/kj/parse/../tuple.h src/kj/parse/../vector.h src/kj/parse/../array.h \
+ src/kj/parse/../string.h /usr/include/inttypes.h \
+ /usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h \
+ /usr/include/stdint.h /usr/include/arm-linux-gnueabihf/bits/wchar.h \
+ src/kj/compat/gtest.h src/kj/compat/../test.h src/kj/compat/../debug.h \
+ src/kj/compat/../string.h src/kj/compat/../exception.h \
+ src/kj/compat/../memory.h src/kj/compat/../array.h \
+ src/kj/compat/../vector.h src/kj/compat/../function.h
+
+/usr/include/stdc-predef.h:
+
+src/kj/parse/char.h:
+
+src/kj/parse/common.h:
+
+src/kj/parse/../common.h:
+
+/usr/lib/gcc/arm-linux-gnueabihf/6/include/stddef.h:
+
+/usr/include/c++/6/initializer_list:
+
+/usr/include/arm-linux-gnueabihf/c++/6/bits/c++config.h:
+
+/usr/include/arm-linux-gnueabihf/c++/6/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/arm-linux-gnueabihf/sys/cdefs.h:
+
+/usr/include/arm-linux-gnueabihf/bits/wordsize.h:
+
+/usr/include/arm-linux-gnueabihf/gnu/stubs.h:
+
+/usr/include/arm-linux-gnueabihf/gnu/stubs-hard.h:
+
+/usr/include/arm-linux-gnueabihf/c++/6/bits/cpu_defines.h:
+
+src/kj/parse/../memory.h:
+
+src/kj/parse/../common.h:
+
+src/kj/parse/../array.h:
+
+/usr/include/string.h:
+
+/usr/include/xlocale.h:
+
+src/kj/parse/../tuple.h:
+
+src/kj/parse/../vector.h:
+
+src/kj/parse/../array.h:
+
+src/kj/parse/../string.h:
+
+/usr/include/inttypes.h:
+
+/usr/lib/gcc/arm-linux-gnueabihf/6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/arm-linux-gnueabihf/bits/wchar.h:
+
+src/kj/compat/gtest.h:
+
+src/kj/compat/../test.h:
+
+src/kj/compat/../debug.h:
+
+src/kj/compat/../string.h:
+
+src/kj/compat/../exception.h:
+
+src/kj/compat/../memory.h:
+
+src/kj/compat/../array.h:
+
+src/kj/compat/../vector.h:
+
+src/kj/compat/../function.h:

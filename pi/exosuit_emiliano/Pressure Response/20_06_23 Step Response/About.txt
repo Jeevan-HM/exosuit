@@ -1,0 +1,22 @@
+About: Pressure Response Data
+June 2020
+
+Pressure Response, inflation / deflation of actuators
+IAC=composite Actuator. IFB = Inflatable Beam actuator
+
+Data Files:
+
+Composite (IAC) Actuator Tests:
+
+	- data_step_HighPressure.txt: preliminary pressure response with IAC (composite) and with a high pressure source inlet. The code used valves to shut inlet air. (June 23)
+	- data_def_1port.txt: pressure deflation response with 1 outlet port. The inlet pressure was the same as the actuator settle pressure (no high pressure source). (June 24)
+	- data_def_2port.txt: pressure deflation response with 2 outlet port. The inlet pressure was the same as the actuator settle pressure (no high pressure source). (June 24)
+	- data_inf_1port.txt: Inflation response, with high source pressure. Using 1 port for air inlet. (June 25)
+	- data_inf_2port.txt: Inflation response, with high source pressure. Using 2 individual ports for air inlet. (June 26)
+	- data_def_vacuum.txt: pressure deflation response with 1 vacuum deflation port. The inlet pressure was the same as the actuator settle pressure (no high pressure source). (July 9)
+
+
+
+Inflatable Beam Actuator Tests:
+	- data_IFB_1port.txt: 1 outlet port for each. Inlet pressure same as actuator settle pressure.(June 24)
+	- data_IFB_HighPressure.txt: The inlet source pressure was set at a very high pressure. The code used valves to shut inlet air. (June 24)

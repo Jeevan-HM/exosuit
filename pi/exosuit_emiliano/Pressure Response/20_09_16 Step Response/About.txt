@@ -1,0 +1,20 @@
+About: step_response 20_09_16		September 16, 2020
+
+This folder contains the codes and data utilized for unit step response tests of inflation and deflation of the HIP IAC (composite).
+
+1st column on .txtx data file is time [sec]. 2nd column is pressure [psi]
+
+
+INFLATION:
+Source pressure at 60 psi. Desired pressure to reach is 30 psi. 8mm diameter tubing was used; tubing length from inflation valve to actuator was varied.
+Data Files for Inflation:
+	- data_inf_1.txt --> data_inf_5.txt = inflation trials 1-5. 1 meter long tube.
+	- data_inf2m_1.txt --> data_inf2m_5.txt = 5 inflation trials using 2 meter long tubing from the valve to the actuator.
+
+
+DEFLATION:
+Source and set pressure = 30 psi. 8mm diameter tubing was used. Tubing length from deflation valve to actuator was varied.
+Data Files for Deflation: 
+	- data_def_1.txt --> data_def_5.txt= no vacuum was used. 1 meter long tube. 5 trials
+	- data_vac1m_1.txt --> data_vac1m_5.txt = vacuum was used. 1 meter long tube. 5 trials
+	- data_vac2m_1.txt --> data_vac2m_5.txt = vacuum was used. 2 meter long tube. 5 trials

@@ -1,0 +1,10 @@
+About: IMU Sample codes 		September 7, 2020
+
+IMU Sample Codes, provided by George
+
+
+Description of the Codes:
+	- calibration.py = will be used for calibrating the IMU sensors and you can also find some YOUTUBE videos about the process. The calibration process only requires one time if you only test in MOCAP LAB. 
+	- bno7.py = runs at the Edison stack just like the smart shoe gait1.py.
+	- imuKneeAngle.py = is part of the code Sai and I used in BNI Tests for calculating knee joint angle.
+	- You also need to start modifying the main code to subscribe to the data from the IMU sensors 

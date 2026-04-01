@@ -1,0 +1,57 @@
+About: Square Response 20_10_22  	October 22nd, 2020
+
+Folder from Raspberry Pi. 
+Last Modified: October 22nd, 2020
+
+			SQUARE WAVE PRESSURE RESPONSE
+
+This folder contains the codes and data collected for a square wave pressure input.The desired pressure for the top of the square wave was changed between trials, and controlled with valves. The source pressure for inflation was set to 40psi for all tests. Each actuator had one port for inflation and one port for deflation to the vacuum. The pressure sensor was placed on the inlet pressure line. Note: this introduced some noise in the inflation presssure reading.
+
+The main purpose of this data collection was to compare long tubing to the vacuum vs short tubing to the vacuum. 
+
+The data has the following structure for each column:
+	 [ time    pressure    binary_signal_inflation    binary_signal deflation ]
+
+
+Conditions Tested
+	1 Knee with Short Tubing (L = 0.6 m)
+	1 Knee with Long Tubing (L = 2.3 m)
+	2 Knee with Short Tubing (L = 0.6 m)
+	2 Knee with Long Tubing (L = 2.3 m)
+	Hip with Short Tubing (L = 0.6 m)
+	Hip with Long Tubing (L = 2.3 m)
+		Pressures for each condition: 15, 20, 25 psi	
+
+
+		DATA FILES COLLECTED:
+
+1 Knee with Short Tubing (L = 0.6 m)
+	-Knee-s0.6m-15.txt = 15 psi
+	-Knee-s0.6m-20.txt = 20 psi
+	-Knee-s0.6m-25.txt = 25 psi
+
+
+1 Knee with Long Tubing (L = 2.3 m)
+	-Knee-L2.3m-15 = 15 psi
+	-Knee-L2.3m-20 = 20 psi
+	-Knee-L2.3m-25 = 25 psi
+
+2 Knee with Short Tubing (L = 0.6 m)
+	-BothKnee-s0.6m-15.txt = 15 psi
+	-BothKnee-s0.6m-20.txt = 20 psi
+	-BothKnee-s0.6m-25.txt = 25 psi
+
+2 Knee with Long Tubing (L = 2.3 m)
+	-BothKnee-L2.3m-15 = 15 psi
+	-BothKnee-L2.3m-20 = 20 psi
+	-BothKnee-L2.3m-25 = 25 psi
+
+Hip with Short Tubing (L = 0.6 m)
+	-Hip-s0.6m-15.txt = 15 psi
+	-Hip-s0.6m-20.txt = 20 psi
+	-Hip-s0.6m-25.txt = 25 psi
+
+Hip with Long Tubing (L = 2.3 m)
+	-Hip-L2.3m-15 = 15 psi
+	-Hip-L2.3m-20 = 20 psi
+	-Hip-L2.3m-25 = 25 psi
