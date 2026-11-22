@@ -1,0 +1,33 @@
+{
+  "reason": "Separate OpenSim, MuJoCo, SOFA and legacy browser simulations",
+  "moved": [
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/build.py",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/build.py"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/model.js",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/model.js"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/test-model.js",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/test-model.js"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/test-browser.js",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/test-browser.js"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/knee-exosuit.html",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/knee-exosuit.html"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/knee-exosuit.template.html",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/knee-exosuit.template.html"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/LEGACY_CONCEPTUAL_README.md",
+      "to": "/Users/g1/Developer/exosuite/legacy_browser_simulation/LEGACY_CONCEPTUAL_README.md"
+    }
+  ]
+}

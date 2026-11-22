@@ -1,0 +1,301 @@
+<div id="knee-assistance-lab">
+  <style>
+    #knee-assistance-lab { color:var(--foreground); --flex:var(--viz-series-1); --ext:var(--viz-series-2); }
+    #knee-assistance-lab .lab-header { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 18px; padding-right:90px; }
+    #knee-assistance-lab h2,#knee-assistance-lab h3 { margin:0; }
+    #knee-assistance-lab .toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:16px 0; }
+    #knee-assistance-lab .main-grid { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr); gap:24px; align-items:start; }
+    #knee-assistance-lab .control { display:block; margin-bottom:16px; min-width:0; }
+    #knee-assistance-lab .control-head { display:flex; justify-content:space-between; gap:12px; margin-bottom:6px; }
+    #knee-assistance-lab .control-head output { white-space:nowrap; font-variant-numeric:tabular-nums; }
+    #knee-assistance-lab .readouts { display:flex; flex-wrap:wrap; gap:10px 24px; margin:8px 0 12px; }
+    #knee-assistance-lab .readouts span { display:block; }
+    #knee-assistance-lab .readouts output { font-weight:500; font-variant-numeric:tabular-nums; }
+    #knee-assistance-lab .device { width:100%; display:block; overflow:visible; }
+    #knee-assistance-lab .device text { fill:var(--foreground); font-size:12px; }
+    #knee-assistance-lab .meters { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:6px; }
+    #knee-assistance-lab .meter-head { display:flex; justify-content:space-between; gap:6px; margin-bottom:6px; }
+    #knee-assistance-lab .meter-track { height:6px; background:var(--muted); overflow:hidden; }
+    #knee-assistance-lab .meter-fill { height:100%; }
+    #knee-assistance-lab .flex-fill { background:var(--flex); }
+    #knee-assistance-lab .ext-fill { background:var(--ext); }
+    #knee-assistance-lab .key { display:inline-block; width:14px; height:3px; vertical-align:middle; margin-right:5px; }
+    #knee-assistance-lab .flex-key { background:var(--flex); }
+    #knee-assistance-lab .ext-key { background:var(--ext); }
+    #knee-assistance-lab .hintline { min-height:24px; margin-top:12px; }
+    #knee-assistance-lab details { margin-top:12px; }
+    #knee-assistance-lab summary { margin-bottom:16px; }
+    #knee-assistance-lab .assumptions { display:grid; grid-template-columns:1fr; gap:0 22px; margin-top:12px; }
+    #knee-assistance-lab .plots { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; }
+    #knee-assistance-lab .plot-wrap { min-width:0; position:relative; }
+    #knee-assistance-lab .plot { width:100%; display:block; touch-action:pan-y; }
+    #knee-assistance-lab .plot text { fill:var(--foreground); font-size:12px; }
+    #knee-assistance-lab .legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; margin-top:8px; }
+    #knee-assistance-lab .legend button { appearance:none; background:transparent; border:0; border-radius:0; color:var(--foreground); padding:4px 0; font:inherit; display:inline-flex; align-items:center; gap:6px; }
+    #knee-assistance-lab .legend button[aria-pressed="false"] { opacity:0.45; }
+    #knee-assistance-lab .legend-line { display:inline-block; width:18px; height:0; border-top:2px solid var(--viz-series-1); }
+    #knee-assistance-lab .legend-line.target { border-top:2px dashed var(--muted-foreground); }
+    #knee-assistance-lab .legend-line.human { border-top-color:var(--viz-series-3); }
+    #knee-assistance-lab .tooltip { position:absolute; z-index:3; pointer-events:none; background:var(--popover); color:var(--popover-foreground); padding:10px 12px; border:1px solid var(--border); max-width:230px; }
+    #knee-assistance-lab .tooltip div { display:flex; gap:18px; justify-content:space-between; }
+    #knee-assistance-lab .footnote { margin-top:12px; }
+    #knee-assistance-lab [hidden] { display:none !important; }
+    @media(max-width:700px) {
+      #knee-assistance-lab .main-grid,#knee-assistance-lab .plots { grid-template-columns:1fr; }
+      #knee-assistance-lab .main-grid { gap:18px; }
+      #knee-assistance-lab .controls { display:grid; grid-template-columns:1fr 1fr; gap:0 20px; }
+      #knee-assistance-lab .controls details { grid-column:1/-1; }
+      #knee-assistance-lab .assumptions { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:400px) {
+      #knee-assistance-lab .controls,#knee-assistance-lab .assumptions { grid-template-columns:1fr; }
+      #knee-assistance-lab .meters { grid-template-columns:1fr; gap:12px; }
+      #knee-assistance-lab .lab-header { padding-right:60px; }
+    }
+  </style>
+  <div class="lab-header"><h2>Knee assistance lab</h2><span class="text-small text-muted">Seated motion · conceptual model</span></div>
+  <div class="toolbar">
+    <button type="button" class="btn btn-primary" data-action="play" aria-pressed="false">Run simulation</button>
+    <label class="form-label">Experiment
+      <select class="form-select" data-param="mode" aria-label="Experiment">
+        <option value="cycle">Flexion / extension cycle</option><option value="hold">Hold an angle</option><option value="manual">Manual pressure · relaxed leg</option>
+      </select>
+    </label>
+    <label class="form-check form-switch"><input class="form-check-input" type="checkbox" data-param="assist" checked><span class="form-check-label">Pneumatic assistance</span></label>
+  </div>
+  <div class="main-grid">
+    <div>
+      <div class="readouts" aria-label="Live simulation values">
+        <div><span class="text-small text-muted">Knee angle</span><output data-live="angle">10.0°</output></div>
+        <div><span class="text-small text-muted">Suit torque</span><output data-live="robot">0.0 N·m</output></div>
+        <div><span class="text-small text-muted">Wearer torque</span><output data-live="human">0.0 N·m</output></div>
+      </div>
+      <svg class="device" role="img" aria-label="Schematic of the knee sleeve, adjustable cuffs, side hinge, and two pneumatic assistance banks"></svg>
+      <div class="meters">
+        <div><div class="meter-head text-small"><span><i class="key flex-key"></i>Flexion bank</span><output class="tabular-nums" data-live="pf">0 kPa</output></div><div class="meter-track" role="meter" aria-label="Flexion pressure" aria-valuemin="0" aria-valuemax="250" aria-valuenow="0" data-meter="pf"><div class="meter-fill flex-fill"></div></div></div>
+        <div><div class="meter-head text-small"><span><i class="key ext-key"></i>Extension bank</span><output class="tabular-nums" data-live="pe">0 kPa</output></div><div class="meter-track" role="meter" aria-label="Extension pressure" aria-valuemin="0" aria-valuemax="250" aria-valuenow="0" data-meter="pe"><div class="meter-fill ext-fill"></div></div></div>
+      </div>
+      <div class="hintline text-small" data-live="status" aria-live="polite">Paused · thigh fixed horizontally</div>
+    </div>
+    <div class="controls">
+      <label class="control form-label"><span class="control-head"><span>Supply pressure</span><output data-value="supply"></output></span><input class="form-range" data-param="supply" type="range" min="0" max="250" step="5" value="120"></label>
+      <label class="control form-label" data-mode="cycle hold"><span class="control-head"><span>Assistance share</span><output data-value="share"></output></span><input class="form-range" data-param="share" type="range" min="0" max="1" step="0.05" value="0.65"></label>
+      <label class="control form-label" data-mode="cycle"><span class="control-head"><span>Cycle duration</span><output data-value="period"></output></span><input class="form-range" data-param="period" type="range" min="3" max="12" step="0.5" value="6"></label>
+      <label class="control form-label" data-mode="hold"><span class="control-head"><span>Target flexion</span><output data-value="target"></output></span><input class="form-range" data-param="target" type="range" min="0" max="110" step="1" value="55"></label>
+      <label class="control form-label" data-mode="manual"><span class="control-head"><span>Flexion command</span><output data-value="manualFlex"></output></span><input class="form-range" data-param="manualFlex" type="range" min="0" max="250" step="5" value="0"></label>
+      <label class="control form-label" data-mode="manual"><span class="control-head"><span>Extension command</span><output data-value="manualExt"></output></span><input class="form-range" data-param="manualExt" type="range" min="0" max="250" step="5" value="0"></label>
+      <details><summary class="cursor-interaction">Adjust model assumptions</summary><div class="assumptions">
+        <label class="control form-label"><span class="control-head"><span>Bank torque gain</span><output data-value="gain"></output></span><input class="form-range" data-param="gain" type="range" min="0.02" max="0.3" step="0.01" value="0.12"></label>
+        <label class="control form-label"><span class="control-head"><span>Pressure lag</span><output data-value="lag"></output></span><input class="form-range" data-param="lag" type="range" min="0.05" max="1" step="0.05" value="0.25"></label>
+        <label class="control form-label"><span class="control-head"><span>Distal mass</span><output data-value="mass"></output></span><input class="form-range" data-param="mass" type="range" min="1" max="8" step="0.25" value="4"></label>
+        <label class="control form-label"><span class="control-head"><span>Segment length</span><output data-value="length"></output></span><input class="form-range" data-param="length" type="range" min="0.25" max="0.6" step="0.01" value="0.43"></label>
+        <label class="control form-label"><span class="control-head"><span>Joint damping</span><output data-value="damping"></output></span><input class="form-range" data-param="damping" type="range" min="0.1" max="3" step="0.1" value="0.7"></label>
+      </div></details>
+    </div>
+  </div>
+  <div class="plots">
+    <div class="plot-wrap"><h3>Motion</h3><svg class="plot" data-plot="angle" role="img" aria-label="Knee angle and target against simulation time"></svg><div class="legend"><button type="button" class="cursor-interaction" data-series="q" aria-pressed="true"><i class="legend-line"></i>Knee</button><button type="button" class="cursor-interaction" data-series="target" aria-pressed="true"><i class="legend-line target"></i>Target</button></div></div>
+    <div class="plot-wrap"><h3>Applied torque</h3><svg class="plot" data-plot="torque" role="img" aria-label="Suit and wearer torque against simulation time, positive flexion and negative extension"></svg><div class="legend"><button type="button" class="cursor-interaction" data-series="robot" aria-pressed="true"><i class="legend-line"></i>Suit</button><button type="button" class="cursor-interaction" data-series="human" aria-pressed="true"><i class="legend-line human"></i>Wearer</button></div></div>
+  </div>
+  <div class="tooltip text-small" role="tooltip" hidden></div>
+  <div class="footnote text-small text-muted">0° = straight · positive torque = flexion · negative torque = extension · all parameters assumed</div>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script id="knee-model-source">
+  /*__MODEL_SOURCE__*/
+  </script>
+  <script>
+  (() => {
+    const root = document.getElementById('knee-assistance-lab');
+    const $ = s => root.querySelector(s), $$ = s => [...root.querySelectorAll(s)];
+    const M = KneeModel, fmt = (n,d=1) => Number(n).toFixed(d);
+    let p = {...M.defaults}, state, history = [], running = false, last = null, accumulator = 0, paint = 0;
+    let visibility = {q:true,target:true,robot:true,human:true};
+    let hover = null, lastAnnounce = '', sampleAt = 0;
+    const readSaved = saved => {
+      const obj = saved?.modelContent?.parameters;
+      if (obj && saved.modelContent.version === 1) {
+        $$('[data-param]').forEach(el => {
+          const k=el.dataset.param, v=obj[k];
+          if(el.type==='checkbox' && typeof v==='boolean') p[k]=v;
+          else if(el.tagName==='SELECT' && [...el.options].some(o=>o.value===v)) p[k]=v;
+          else if(el.type==='range' && typeof v==='number' && Number.isFinite(v)) p[k]=M.clamp(v,+el.min,+el.max);
+        });
+      }
+      const vis = saved?.privateContent?.visibility;
+      if(vis) Object.keys(visibility).forEach(k=>{ if(typeof vis[k]==='boolean') visibility[k]=vis[k]; });
+    };
+    readSaved(window.openai?.widgetState);
+    const save = () => {
+      if(window.openai?.setWidgetState) window.openai.setWidgetState({modelContent:{version:1,parameters:{...p}},privateContent:{visibility}}).catch(()=>{});
+    };
+    const formats = {
+      supply:v=>`${fmt(v,0)} kPa`,share:v=>`${fmt(v*100,0)}%`,period:v=>`${fmt(v)} s`,target:v=>`${fmt(v,0)}°`,
+      manualFlex:v=>`${fmt(Math.min(v,p.supply),0)} kPa`,manualExt:v=>`${fmt(Math.min(v,p.supply),0)} kPa`,
+      gain:v=>`${fmt(v,2)} N·m/kPa`,lag:v=>`${fmt(v,2)} s`,mass:v=>`${fmt(v,2)} kg`,length:v=>`${fmt(v*100,0)} cm`,damping:v=>`${fmt(v)} N·m·s/rad`
+    };
+    function syncControls() {
+      $$('[data-param]').forEach(el=>{const k=el.dataset.param;if(el.type==='checkbox')el.checked=p[k];else el.value=p[k];});
+      $$('[data-value]').forEach(el=>el.textContent=formats[el.dataset.value](p[el.dataset.value]));
+      $$('[data-mode]').forEach(el=>el.hidden=!el.dataset.mode.split(' ').includes(p.mode));
+      $$('[data-series]').forEach(el=>el.setAttribute('aria-pressed',String(visibility[el.dataset.series])));
+      $('[data-series="target"]').hidden=p.mode==='manual';
+      $('[data-series="human"]').hidden=p.mode==='manual';
+      $('[data-action="play"]').textContent=running?'Pause':'Run simulation';
+      $('[data-action="play"]').setAttribute('aria-pressed',String(running));
+    }
+    function sample() {
+      history.push({t:state.t,q:state.q/M.rad,target:state.target,robot:state.robot,human:state.human});
+      while(history.length>1 && history[0].t<state.t-12)history.shift();
+    }
+    function restart() { state=M.create(p);history=[];sampleAt=0;accumulator=0;hover=null;sample();syncControls();draw(); }
+    $$('[data-param]').forEach(el=>{
+      el.addEventListener('input',()=>{
+        const k=el.dataset.param, old=p[k];p[k]=el.type==='checkbox'?el.checked:el.tagName==='SELECT'?el.value:+el.value;
+        if(k==='mode'&&old!==p[k])restart();else{syncControls();draw();}
+      });
+      el.addEventListener('change',save);
+    });
+    $('[data-action="play"]').addEventListener('click',()=>{running=!running;last=null;syncControls();draw();});
+    $$('[data-series]').forEach(el=>el.addEventListener('click',()=>{visibility[el.dataset.series]=!visibility[el.dataset.series];syncControls();drawCharts();save();}));
+    window.addEventListener('openai:set_globals',e=>{
+      if(e.detail?.globals?.widgetState){
+        const before=JSON.stringify({p,visibility});
+        readSaved(e.detail.globals.widgetState);
+        if(JSON.stringify({p,visibility})!==before)restart();
+      }
+    });
+    document.addEventListener('visibilitychange',()=>{last=null;accumulator=0;});
+
+    function drawDevice() {
+      const svg=$('.device'), width=svg.getBoundingClientRect().width || 500, scale=width/620;
+      const height=340*scale+28, cx=290*scale, cy=90*scale+14;
+      svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.height=`${height}px`;
+      const a=state.q, deg=a/M.rad, n={x:Math.sin(a/2),y:-Math.cos(a/2)};
+      const tip={x:Math.cos(a)*230,y:Math.sin(a)*230};
+      const bank=(side,pressure,color)=>{
+        const start={x:-95,y:side*36},end={x:95*Math.cos(a)-side*36*Math.sin(a),y:95*Math.sin(a)+side*36*Math.cos(a)};
+        const inflate=M.clamp(pressure/250,0,1),out=side*(35+24*inflate);
+        const ctrl={x:(start.x+end.x)/2-n.x*out,y:(start.y+end.y)/2-n.y*out};
+        let bags='';
+        for(let i=0;i<7;i++){
+          const t=(i+.5)/7,u=1-t;
+          const x=u*u*start.x+2*u*t*ctrl.x+t*t*end.x,y=u*u*start.y+2*u*t*ctrl.y+t*t*end.y;
+          const tx=2*u*(ctrl.x-start.x)+2*t*(end.x-ctrl.x),ty=2*u*(ctrl.y-start.y)+2*t*(end.y-ctrl.y);
+          const rotation=Math.atan2(ty,tx)/M.rad;
+          bags+=`<ellipse cx="0" cy="0" rx="16" ry="${11+10*inflate}" transform="translate(${x} ${y}) rotate(${rotation})" fill="var(--foreground)" opacity="0.11"/><ellipse cx="0" cy="0" rx="14" ry="${9+9*inflate}" transform="translate(${x} ${y}) rotate(${rotation})" fill="${color}" opacity="${.16+.65*inflate}"/>`;
+        }
+        return `<path d="M -208 ${side*67} C -160 ${side*98}, -120 ${side*85}, ${start.x} ${start.y}" fill="none" stroke="${color}" stroke-width="2" opacity="0.7"/><path d="M ${start.x} ${start.y} Q ${ctrl.x} ${ctrl.y} ${end.x} ${end.y}" fill="none" stroke="var(--foreground)" stroke-opacity="0.55" stroke-width="23" stroke-linecap="round"/>${bags}`;
+      };
+      const cuffs=(isLower)=>[72,165].map(x=>{
+        const px=isLower?x:-x;
+        return `<g transform="translate(${px} 0)"><rect x="-12" y="-45" width="24" height="90" rx="9" fill="var(--blue)" opacity="0.8"/><rect x="-17" y="-9" width="34" height="24" rx="3" fill="var(--orange)"/><circle cy="3" r="12" fill="var(--blue)"/><circle cy="3" r="3" fill="var(--card)"/></g>`;
+      }).join('');
+      const arcR=51,arcEnd={x:arcR*Math.cos(a),y:arcR*Math.sin(a)};
+      svg.innerHTML=`<title>Seated knee soft exosuit</title><desc>Fixed thigh on left; shank rotates down through ${fmt(deg)} degrees. Fabric chambers and air lines are schematic.</desc>
+        <g transform="translate(${cx} ${cy}) scale(${scale})">
+        <path d="M -250 -27 L -30 -27 Q 8 -24 10 0 Q 8 24 -30 27 L -250 27" fill="var(--muted)"/>
+        <g transform="rotate(${deg})"><path d="M 8 -24 L 215 -20 Q 242 -10 242 5 Q 240 25 215 26 L 8 24" fill="var(--muted)"/><path d="M 227 -12 L 264 -8 Q 277 -7 279 6 L 240 16" fill="var(--muted)"/>${cuffs(true)}<path d="M 0 4 L 197 4" stroke="var(--foreground)" stroke-width="12" stroke-opacity="0.55"/><path d="M 0 4 L 197 4" stroke="var(--border)" stroke-width="3"/></g>
+        ${cuffs(false)}<path d="M -198 4 L 0 4" stroke="var(--foreground)" stroke-width="12" stroke-opacity="0.55"/><path d="M -198 4 L 0 4" stroke="var(--border)" stroke-width="3"/>
+        ${bank(-1,state.pe,'var(--ext)')}${bank(1,state.pf,'var(--flex)')}
+        <ellipse cx="0" cy="4" rx="31" ry="23" fill="var(--card)" stroke="var(--foreground)" stroke-width="2"/><circle cx="-14" cy="4" r="4" fill="var(--muted-foreground)"/><circle cx="14" cy="4" r="4" fill="var(--muted-foreground)"/>
+        <path d="M 35 0 L 60 0" stroke="var(--muted-foreground)" stroke-width="1"/><path d="M ${arcR} 0 A ${arcR} ${arcR} 0 0 1 ${arcEnd.x} ${arcEnd.y}" stroke="var(--muted-foreground)" stroke-width="1.5" fill="none"/>
+        <circle cx="-239" cy="0" r="5" fill="var(--muted-foreground)"/>
+        </g>
+        <text x="${14}" y="${height-7}">Fixed thigh</text><text x="${width-14}" y="${height-7}" text-anchor="end">${fmt(deg)}° flexion</text>`;
+    }
+    const definitions={
+      angle:{unit:'°',title:'Knee angle (°)',series:[{key:'q',label:'Knee',color:'var(--viz-series-1)'},{key:'target',label:'Target',color:'var(--muted-foreground)',dash:'5 4'}]},
+      torque:{unit:'N·m',title:'Torque (N·m)',series:[{key:'robot',label:'Suit',color:'var(--viz-series-1)'},{key:'human',label:'Wearer',color:'var(--viz-series-3)'}]}
+    };
+    const tooltip=$('.tooltip'), chartState={};
+    const scale=(dom,range)=> window.d3?window.d3.scaleLinear().domain(dom).range(range):Object.assign(x=>range[0]+(x-dom[0])/(dom[1]-dom[0])*(range[1]-range[0]),{invert:x=>dom[0]+(x-range[0])/(range[1]-range[0])*(dom[1]-dom[0])});
+    const ticks=(lo,hi,n)=>window.d3?window.d3.ticks(lo,hi,n):Array.from({length:n},(_,i)=>lo+(hi-lo)*i/(n-1));
+    function drawCharts() {
+      $$('.plot').forEach(svg=>{
+        const name=svg.dataset.plot, def=definitions[name], width=svg.getBoundingClientRect().width||400,height=210;
+        const left=64,right=width-12,top=30,bottom=166;
+        const end=Math.max(.1,state.t),start=Math.max(0,end-12),x=scale([start,end],[left,right]);
+        const values=history.flatMap(d=>def.series.map(s=>d[s.key])).filter(v=>typeof v==='number'&&Number.isFinite(v));
+        values.push(0);if(name==='angle')values.push(120);else values.push(-1,1);
+        const extent=window.d3?window.d3.extent(values):[Math.min(...values),Math.max(...values)];
+        const pad=Math.max(.1,(extent[1]-extent[0])*.08),y=scale([extent[0]-pad,extent[1]+pad],[bottom,top]);
+        chartState[name]={x,y,left,right,top,bottom,width,height,def};
+        let parts=`<title>${def.title} against simulation time</title><defs><clipPath id="knee-clip-${name}"><rect x="${left}" y="${top}" width="${right-left}" height="${bottom-top}"/></clipPath></defs>`;
+        ticks(extent[0],extent[1],4).forEach(v=>{const py=y(v);parts+=`<line x1="${left}" x2="${right}" y1="${py}" y2="${py}" stroke="var(--border)" stroke-width="0.6"/><text x="${left-9}" y="${py+4}" text-anchor="end">${Math.abs(v)<.01?'0':fmt(v,Math.abs(v)<5?1:0)}</text>`;});
+        ticks(start,end,width<380?3:4).forEach(v=>{const px=x(v);parts+=`<text data-optional-tick x="${px}" y="${bottom+19}" text-anchor="${px<left+12?'start':px>right-12?'end':'middle'}">${fmt(v,end-start<1?2:1)}</text>`;});
+        parts+=`<rect data-chart-frame x="${left}" y="${top}" width="${right-left}" height="${bottom-top}" fill="none" stroke="var(--border)" stroke-width="1"/><text class="axis-title" data-axis="y" x="${left}" y="17">${def.title}</text><text class="axis-title" data-axis="x" x="${right}" y="204" text-anchor="end">Time (s)</text>`;
+        def.series.filter(s=>visibility[s.key] && !(p.mode==='manual'&&['target','human'].includes(s.key))).forEach(series=>{
+          const data=history.filter(d=>d.t>=start&&d[series.key]!==null);
+          const path=window.d3?window.d3.line().x(d=>x(d.t)).y(d=>y(d[series.key]))(data):data.map((d,i)=>`${i?'L':'M'}${x(d.t)},${y(d[series.key])}`).join(' ');
+          if(path)parts+=`<path d="${path}" fill="none" stroke="${series.color}" stroke-width="2" ${series.dash?`stroke-dasharray="${series.dash}"`:''} clip-path="url(#knee-clip-${name})"/>`;
+        });
+        parts+=`<g data-hover-content></g><rect data-chart-hit data-chart-hover-overlay="cross-series" x="${left}" y="${top}" width="${right-left}" height="${bottom-top}" fill="transparent"/>`;
+        svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.height=`${height}px`;svg.innerHTML=parts;
+        const kept=[];
+        [...svg.querySelectorAll('text')].sort((a,b)=>Number(a.hasAttribute('data-optional-tick'))-Number(b.hasAttribute('data-optional-tick'))).forEach(label=>{
+          const box=label.getBBox();
+          const collision=kept.some(b=>box.x<b.x+b.width+4&&box.x+box.width+4>b.x&&box.y<b.y+b.height+4&&box.y+box.height+4>b.y);
+          if(collision&&label.hasAttribute('data-optional-tick'))label.remove();else kept.push(box);
+        });
+      });
+      showHover();
+    }
+    function interpolate(t,key) {
+      let idx=window.d3?window.d3.bisector(d=>d.t).center(history,t):history.findIndex(d=>d.t>=t);
+      if(idx<0)idx=history.length-1;
+      let a=history[idx],b=a;
+      if(a.t>t&&idx>0){b=a;a=history[idx-1];}else if(a.t<t&&idx<history.length-1)b=history[idx+1];
+      if(a[key]===null||b[key]===null)return null;
+      return a[key]+(b[key]-a[key])*(a.t===b.t?0:(t-a.t)/(b.t-a.t));
+    }
+    function showHover() {
+      $$('[data-hover-content]').forEach(el=>el.innerHTML='');
+      if(!hover){tooltip.hidden=true;return;}
+      const info=chartState[hover.name],svg=$(`[data-plot="${hover.name}"]`);
+      if(!info)return;
+      const px=M.clamp(hover.x,info.left,info.right), t=info.x.invert(px);
+      let marks=`<line data-chart-hover-guide x1="${px}" x2="${px}" y1="${info.top}" y2="${info.bottom}" stroke="var(--muted-foreground)" stroke-width="1"/>`, rows='';
+      info.def.series.filter(s=>visibility[s.key] && !(p.mode==='manual'&&['target','human'].includes(s.key))).forEach(series=>{
+        const value=interpolate(t,series.key);if(value===null)return;
+        marks+=`<circle data-chart-hover-marker cx="${px}" cy="${info.y(value)}" r="3.5" fill="${series.color}"/>`;
+        rows+=`<div><span>${series.label}</span><span class="tabular-nums">${fmt(value)} ${info.def.unit}</span></div>`;
+      });
+      svg.querySelector('[data-hover-content]').innerHTML=marks;
+      tooltip.innerHTML=`<div><span>Time</span><span class="tabular-nums">${fmt(t,2)} s</span></div>${rows}`;tooltip.hidden=false;
+      const bounds=root.getBoundingClientRect(),r=svg.getBoundingClientRect();
+      tooltip.style.left=`${M.clamp(r.left-bounds.left+px+10,0,bounds.width-tooltip.offsetWidth)}px`;
+      tooltip.style.top=`${r.top-bounds.top+info.top+5}px`;
+    }
+    root.style.position='relative';
+    $$('.plot').forEach(svg=>{
+      const position=e=>{const r=svg.getBoundingClientRect();return e.clientX-r.left;};
+      svg.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||hover?.pinned)return;const x=position(e),c=chartState[svg.dataset.plot];hover=x>=c.left&&x<=c.right?{name:svg.dataset.plot,x,pinned:false}:null;showHover();});
+      svg.addEventListener('pointerleave',()=>{if(!hover?.pinned){hover=null;showHover();}});
+      svg.addEventListener('pointerdown',e=>{const name=svg.dataset.plot,c=chartState[name],x=position(e);if(x<c.left||x>c.right)return;hover=hover?.pinned&&hover.name===name?null:{name,x,pinned:true};showHover();});
+    });
+    function draw() {
+      drawDevice();
+      $('[data-live="angle"]').textContent=`${fmt(state.q/M.rad)}°`;
+      $('[data-live="robot"]').textContent=`${fmt(state.robot)} N·m`;
+      $('[data-live="human"]').textContent=`${fmt(state.human)} N·m`;
+      ['pf','pe'].forEach(k=>{const v=state[k];$(`[data-live="${k}"]`).textContent=`${fmt(v,0)} kPa`;$(`[data-meter="${k}"]`).setAttribute('aria-valuenow',fmt(v,1));$(`[data-meter="${k}"] .meter-fill`).style.width=`${v/250*100}%`;});
+      const direction=Math.abs(state.v)<.04?'Holding':state.v>0?'Flexing':'Extending';
+      const status=`${running?direction:'Paused'} · ${p.mode==='manual'?'wearer relaxed':'thigh fixed horizontally'}${Math.abs(state.stop)>.01?' · joint stop reached':''}`;
+      if(status!==lastAnnounce){$('[data-live="status"]').textContent=status;lastAnnounce=status;}
+      drawCharts();
+    }
+    const resize=new ResizeObserver(()=>draw());resize.observe(root);
+    function frame(now) {
+      if(!root.isConnected){resize.disconnect();return;}
+      if(running&&!document.hidden){
+        if(last!==null)accumulator+=Math.min((now-last)/1000,.1);
+        while(accumulator>=1/240){M.step(state,p);accumulator-=1/240;if(state.t>=sampleAt){sample();sampleAt=state.t+.05;}}
+      }
+      last=now;
+      if(now-paint>70){draw();paint=now;}
+      requestAnimationFrame(frame);
+    }
+    restart();requestAnimationFrame(frame);
+  })();
+  </script>
+</div>
