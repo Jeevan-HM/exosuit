@@ -1,0 +1,62 @@
+{
+  "repository": "https://github.com/opensim-org/opensim-models",
+  "commit": "d9b05d470b1a481c222372c85b75772faf8f7792",
+  "retrieved_date": "2026-11-04",
+  "files": [
+    {
+      "path": "normal.mot",
+      "source_path": "Tutorials/Intro_to_Musculoskeletal_Modeling/normal.mot",
+      "bytes": 5372,
+      "sha256": "3251f79bc763b79f7edefff1fd314eb5ded0848ef195b94de983c7b4b8271da3",
+      "upstream_git_blob_sha1": "e8c78759b338e000b41533d0dadd6208ff6454a4"
+    }
+  ],
+  "native_verification": {
+    "opensim_version": "version 4.6-2026-06-22-85aaf64, build date 18:11:49 Jun 22 2026",
+    "frames": 51,
+    "dependent_columns": 17,
+    "start_time_s": 0.0,
+    "end_time_s": 1.0,
+    "sample_interval_s": 0.02,
+    "inDegrees": "yes",
+    "rotational_units": "degrees",
+    "translational_units": "metres",
+    "coordinate_columns": [
+      "pelvis_list",
+      "pelvis_rotation",
+      "pelvis_tilt",
+      "hip_flexion_r",
+      "hip_adduction_r",
+      "hip_rotation_r",
+      "knee_angle_r",
+      "ankle_angle_r",
+      "hip_flexion_l",
+      "hip_adduction_l",
+      "hip_rotation_l",
+      "knee_angle_l",
+      "ankle_angle_l",
+      "pelvis_ty",
+      "lumbar_bending",
+      "lumbar_rotation",
+      "lumbar_extension"
+    ],
+    "omitted_coordinates": [
+      "mtp_angle_l",
+      "mtp_angle_r",
+      "pelvis_tx",
+      "pelvis_tz",
+      "subtalar_angle_l",
+      "subtalar_angle_r"
+    ],
+    "omitted_coordinate_defaults": {
+      "mtp_angle_l": 0.0,
+      "mtp_angle_r": 0.0,
+      "pelvis_tx": 0.0,
+      "pelvis_tz": 0.0,
+      "subtalar_angle_l": 0.0,
+      "subtalar_angle_r": 0.0
+    },
+    "all_frame_positions_realize_with_finite_mass_center": true,
+    "scope": "Recorded/tutorial kinematic playback only; no muscle excitations, GRFs, or assistance response."
+  }
+}

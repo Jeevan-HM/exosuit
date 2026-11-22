@@ -1,0 +1,40 @@
+{
+  "test": "seated mechanical fixture, not gait or rehabilitation efficacy",
+  "duration_s": 2.4,
+  "samples_per_condition": 241,
+  "muscle_forces": "disabled in diagnostic copies only",
+  "unlocked_coordinates": [
+    "knee_angle_l"
+  ],
+  "fixture_stiffness_nm_per_rad": 25.0,
+  "fixture_damping_nm_s_per_rad": 1.5,
+  "conditions": {
+    "bare": {
+      "knee_flexion_range_deg": [
+        59.99999999999999,
+        78.50035420192518
+      ],
+      "peak_active_torque_nm": 0.0,
+      "active_joint_work_j": 0.0,
+      "total_mass_kg": 75.16459999999998
+    },
+    "unpowered": {
+      "knee_flexion_range_deg": [
+        59.99999999999999,
+        78.73089109392832
+      ],
+      "peak_active_torque_nm": 0.0,
+      "active_joint_work_j": 0.0,
+      "total_mass_kg": 75.61459999999998
+    },
+    "assisted": {
+      "knee_flexion_range_deg": [
+        55.88980226376629,
+        76.99364116425097
+      ],
+      "peak_active_torque_nm": 9.179150013761012,
+      "active_joint_work_j": 3.5690409636906155,
+      "total_mass_kg": 75.61459999999998
+    }
+  }
+}

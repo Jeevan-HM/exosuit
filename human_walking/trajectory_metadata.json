@@ -1,0 +1,36 @@
+{
+  "source_motion": "OpenSim Gait2392 tutorial normal.mot",
+  "source_motion_sha256": "3251f79bc763b79f7edefff1fd314eb5ded0848ef195b94de983c7b4b8271da3",
+  "sample_count": 51,
+  "duration_s": 1.0,
+  "model": "Generic Gait2392 human only; no exosuit",
+  "model_total_mass_kg": 75.16459999999998,
+  "knee_flexion_convention": "negative of the native knee_angle_l/r columns, in degrees",
+  "plotted_knee": "right",
+  "phase_boundaries": "knee extrema, not measured contact events",
+  "landmarks": [
+    {
+      "label": "Early-stance flexion peak",
+      "sample_index": 6,
+      "time_s": 0.12,
+      "gait_cycle_percent": 12.0,
+      "knee_flexion_deg": 17.04
+    },
+    {
+      "label": "Stance extension minimum",
+      "sample_index": 20,
+      "time_s": 0.4,
+      "gait_cycle_percent": 40.0,
+      "knee_flexion_deg": 2.37
+    },
+    {
+      "label": "Swing flexion peak",
+      "sample_index": 36,
+      "time_s": 0.72,
+      "gait_cycle_percent": 72.0,
+      "knee_flexion_deg": 58.25
+    }
+  ],
+  "stance_swing_contact_events": "not available in this source file",
+  "scope": "Reference kinematic playback and plot, not autonomous or clinically validated walking"
+}

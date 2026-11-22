@@ -1,0 +1,154 @@
+{
+  "repository": "https://github.com/opensim-org/opensim-models",
+  "commit": "d9b05d470b1a481c222372c85b75772faf8f7792",
+  "retrieved_date": "2026-11-04",
+  "files": [
+    {
+      "path": "gait2392_simbody.osim",
+      "source_path": "Models/Gait2392_Simbody/gait2392_thelen2003muscle.osim",
+      "bytes": 576084,
+      "sha256": "3af1ca20aa87bc88b0b8cd54f2504331afa2aa03537cc868f1175fa1f50f3c0f",
+      "upstream_git_blob_sha1": "ffea70cc199fdba6ae4703deab6ac3430bf6fb8e"
+    },
+    {
+      "path": "Geometry/bofoot.vtp",
+      "source_path": "Geometry/bofoot.vtp",
+      "bytes": 59437,
+      "sha256": "9f7184c162d3681abb46ca58e1591493cbf97b029d55622905db14b6b3e414ad",
+      "upstream_git_blob_sha1": "b900d999079bd0743a39f68ede516fca9714881e"
+    },
+    {
+      "path": "Geometry/femur_l.vtp",
+      "source_path": "Geometry/femur_l.vtp",
+      "bytes": 36860,
+      "sha256": "dd8bbb1a796b224778334eee384eb787c18361298b6bf0cbeba18cbe7588f2d8",
+      "upstream_git_blob_sha1": "b4f1c76cb7fb09ed70c476cad00602f0d1b27787"
+    },
+    {
+      "path": "Geometry/femur_r.vtp",
+      "source_path": "Geometry/femur_r.vtp",
+      "bytes": 36860,
+      "sha256": "2bf9d3edb7861f6b392f0ef547ad912b186a56ccaf262df3a6b7b45910791a57",
+      "upstream_git_blob_sha1": "8178515e6fee343d61ded7257dc936ec21075b95"
+    },
+    {
+      "path": "Geometry/fibula.vtp",
+      "source_path": "Geometry/fibula.vtp",
+      "bytes": 7514,
+      "sha256": "640f87b7e3ecdc8c8efd092b571fea40a01e24b645d6c5036cd89086dbc56ed5",
+      "upstream_git_blob_sha1": "98b14bbf5046477de29518a57a9b0202b58a92fe"
+    },
+    {
+      "path": "Geometry/foot.vtp",
+      "source_path": "Geometry/foot.vtp",
+      "bytes": 68331,
+      "sha256": "7a8768387702064d85375e9902b6181575d2cfe69f41a7170824039ea83c20c8",
+      "upstream_git_blob_sha1": "502282a8b13e666c629608995cc14042b1ea67ba"
+    },
+    {
+      "path": "Geometry/hat_jaw.vtp",
+      "source_path": "Geometry/hat_jaw.vtp",
+      "bytes": 95346,
+      "sha256": "ccce7bf1756dd6eeb5cd54dfdceaf86d5acc9db4229ea08c502357d92d11de95",
+      "upstream_git_blob_sha1": "cc3ec2d4f77d5e5de2bb5b4b3a9d6ce4a18386fe"
+    },
+    {
+      "path": "Geometry/hat_ribs.vtp",
+      "source_path": "Geometry/hat_ribs.vtp",
+      "bytes": 231334,
+      "sha256": "c455e84225c570ab733fe3bbbf910926ce282a8991a7eda6990d8c3c4569bae6",
+      "upstream_git_blob_sha1": "42ade2fc2f897e14a21d664dae71ad59a56903cb"
+    },
+    {
+      "path": "Geometry/hat_skull.vtp",
+      "source_path": "Geometry/hat_skull.vtp",
+      "bytes": 217710,
+      "sha256": "4c29f62d830085be1ff6a5a3441e3214a2fbee027da46ad8d74b4699052a390e",
+      "upstream_git_blob_sha1": "5dd145cd3d9e4688e461afba276e5fe79280c575"
+    },
+    {
+      "path": "Geometry/hat_spine.vtp",
+      "source_path": "Geometry/hat_spine.vtp",
+      "bytes": 440834,
+      "sha256": "e5497b482a344917d2de8f1df4c8efc4ff86aa52812f4ce4c8127c98f0f5b584",
+      "upstream_git_blob_sha1": "c429ce4c253c46ccfc14ad85bcded3f20e98a01b"
+    },
+    {
+      "path": "Geometry/l_bofoot.vtp",
+      "source_path": "Geometry/l_bofoot.vtp",
+      "bytes": 60105,
+      "sha256": "73bbc7054bd28aa1570c0eec739d1d0e4661815dbcb37b5929157bca999e3b9b",
+      "upstream_git_blob_sha1": "a4a34dbff55b69cdfe79880f17a4ac9a70053d7d"
+    },
+    {
+      "path": "Geometry/l_fibula.vtp",
+      "source_path": "Geometry/l_fibula.vtp",
+      "bytes": 7636,
+      "sha256": "21cdc2c3638ecf498ce29fc4d2af9bedab92f10cb536cd9c72c3de6aacb9cb92",
+      "upstream_git_blob_sha1": "ebba5d00ab5f4df5fde7d026dc05ef4fe472a69c"
+    },
+    {
+      "path": "Geometry/l_foot.vtp",
+      "source_path": "Geometry/l_foot.vtp",
+      "bytes": 68391,
+      "sha256": "3fe52ebe9b889f1597e9139b29f0bf770e35861a2b462c7ed95e5178f539fe44",
+      "upstream_git_blob_sha1": "a2926a7ed19b33870bc984ca57f32f471000ea75"
+    },
+    {
+      "path": "Geometry/l_pelvis.vtp",
+      "source_path": "Geometry/l_pelvis.vtp",
+      "bytes": 9684,
+      "sha256": "221ff377284b3d4607286de7b66b6e30c449b2328db577f308065022d3e8dbec",
+      "upstream_git_blob_sha1": "6a34d8aa29383b4f2a196109aaeb14199466225b"
+    },
+    {
+      "path": "Geometry/l_talus.vtp",
+      "source_path": "Geometry/l_talus.vtp",
+      "bytes": 7578,
+      "sha256": "fd829c17c14c6b319105ac458123b989add482988012d79279a5b97830e4d9b5",
+      "upstream_git_blob_sha1": "04adc88daedf37935f7993dc43d088e811a713f8"
+    },
+    {
+      "path": "Geometry/pelvis.vtp",
+      "source_path": "Geometry/pelvis.vtp",
+      "bytes": 9561,
+      "sha256": "302c81039c0b16a1f04dd3f393897dc006ed74efd923cc7761a9d3b7f86266ca",
+      "upstream_git_blob_sha1": "849430342610459d77405e48e54a086d9cdfb147"
+    },
+    {
+      "path": "Geometry/sacrum.vtp",
+      "source_path": "Geometry/sacrum.vtp",
+      "bytes": 11946,
+      "sha256": "ec82986d7d7f45ad98e9e158c7f583bca2a48b0d59b38207de83ad9dee015e45",
+      "upstream_git_blob_sha1": "5a0b356575233ce170f57ed6050df01c8bd55c23"
+    },
+    {
+      "path": "Geometry/talus.vtp",
+      "source_path": "Geometry/talus.vtp",
+      "bytes": 7581,
+      "sha256": "9a24dff87d3bbeb523fc813acde53dbdb44ebf48f8f92ee1250afe267fd48008",
+      "upstream_git_blob_sha1": "006d3a3cf067ea23bb9cbb7e65acc1719c7397cc"
+    },
+    {
+      "path": "Geometry/tibia_l.vtp",
+      "source_path": "Geometry/tibia_l.vtp",
+      "bytes": 11406,
+      "sha256": "70a0430e129861adec9aefe0ebf1137352c67076eeabf4202d38878ead7ea042",
+      "upstream_git_blob_sha1": "e8e203a8060865b4cc25e4b93897b02c25cf8f41"
+    },
+    {
+      "path": "Geometry/tibia_r.vtp",
+      "source_path": "Geometry/tibia_r.vtp",
+      "bytes": 11402,
+      "sha256": "b6659ff17e79f85493047499d218bbb3677b0e80ca259953d74a332457779fd4",
+      "upstream_git_blob_sha1": "d46e7e5d20908fdd3ded7d458825f949690a23b5"
+    },
+    {
+      "path": "Geometry/treadmill.vtp",
+      "source_path": "Geometry/treadmill.vtp",
+      "bytes": 1857,
+      "sha256": "7cf8cee23156a39dad918d7b48bf2a001452f25fe2b8456390939feb2b437ac1",
+      "upstream_git_blob_sha1": "3857cf94e263f8910beb1f794945f30b6581de0a"
+    }
+  ]
+}

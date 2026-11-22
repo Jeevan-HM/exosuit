@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "model": {
+    "side": "l",
+    "knee_coordinate": "knee_angle_l",
+    "flexion_sign": -1
+  },
+  "assistance": {
+    "stance_psi": 25.0,
+    "swing_psi": 20.0,
+    "torque_gain_nm_per_psi": 0.4,
+    "maximum_torque_nm": 15.0,
+    "direction": "extension",
+    "command_rate_hz": 100.0
+  },
+  "exosuit": {
+    "mechanics": {
+      "thigh_mass_kg": 0.25,
+      "shank_mass_kg": 0.2,
+      "thigh_cuff_radius_m": 0.075,
+      "shank_cuff_radius_m": 0.06,
+      "thigh_assembly_length_m": 0.22,
+      "shank_assembly_length_m": 0.22,
+      "thigh_center_distal_m": 0.22,
+      "shank_center_distal_m": 0.18,
+      "passive_knee_damping_nm_s_per_rad": 0.03
+    },
+    "pneumatics": {
+      "max_pressure_psi": 30.0,
+      "rise_time_constant_s": 0.08,
+      "exhaust_time_constant_s": 0.12
+    }
+  },
+  "schedule": {
+    "stride_duration_s": 1.2,
+    "timings_s": [
+      0.12,
+      0.2,
+      0.7,
+      0.15
+    ]
+  },
+  "demo": {
+    "duration_s": 2.4,
+    "sample_interval_s": 0.01,
+    "initial_knee_flexion_deg": 60.0,
+    "hip_flexion_deg": 90.0
+  },
+  "parameter_status": "Generic research prototype. Mass, inertia, pressure limits, pressure lag and torque gain are inherited simulation assumptions, not hardware ratings or patient calibration. The timed profile is illustrative, not detected gait."
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Human walking · OpenSim reference gait</title>
+<style>
+:root{color-scheme:light;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172b3e;background:#f3f6f8;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,select{min-height:42px;border:1px solid #c5d1da;border-radius:9px;background:#fff;color:#20384c}button{padding:0 16px;cursor:pointer;font-weight:600}button:hover,select:hover{border-color:#607f94}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #62a7d2;outline-offset:3px}button.primary{background:#173f5b;border-color:#173f5b;color:#fff;min-width:103px}button.primary:hover{background:#245673}select{padding:0 31px 0 11px;cursor:pointer}input[type=checkbox]{width:17px;height:17px;accent-color:#23658b}input[type=range]{accent-color:#23658b;min-height:24px;cursor:pointer}main{max-width:1320px;padding:35px 30px 23px;margin:0 auto}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:750;color:#526f83;margin:0 0 8px}h1{font-size:clamp(28px,3.3vw,38px);letter-spacing:-.045em;line-height:1.1;margin:0 0 9px;font-weight:720}.intro{color:#526679;font-size:15px;margin:0;line-height:1.5}.topline{display:flex;justify-content:space-between;gap:20px;align-items:center}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid #d5e2e9;border-radius:30px;background:#fff;padding:8px 12px;font-size:12px;font-weight:650;white-space:nowrap;color:#34566b}.badge i{width:7px;height:7px;border-radius:50%;background:#427f67}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:11px;margin:25px 0 20px}.field{display:flex;align-items:center;gap:8px;color:#425d71;font-size:13px;font-weight:600}.field.speed{margin-left:9px}.check{margin-left:auto;display:flex;align-items:center;gap:7px;cursor:pointer;color:#425d71;font-size:13px}.layout{display:grid;grid-template-columns:minmax(350px,.93fr) minmax(420px,1.07fr);gap:20px;align-items:stretch}.card{background:#fff;border:1px solid #dce4e9;border-radius:17px;box-shadow:0 3px 14px #18384e04;overflow:hidden}.anatomy{display:flex;flex-direction:column}.card-head{padding:21px 23px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}h2{font-size:17px;font-weight:700;letter-spacing:-.025em;margin:0}.small{color:#657a8a;font-size:12px;line-height:1.45}.scene{position:relative;flex:1;min-height:500px;background:linear-gradient(#fff,#f7fafb)}#human{display:block;width:100%;height:100%;position:absolute;inset:0}.scene-tag{position:absolute;left:23px;bottom:16px;font-size:11px;color:#6d7f8b;pointer-events:none}.scene-error{position:absolute;inset:25%;font-size:14px;line-height:1.6;color:#6a4b38;text-align:center}.scrubber{border-top:1px solid #e8edf1;padding:17px 22px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.scrubber label{font-size:12px;color:#536d7f}.scrubber output{font-size:12px;min-width:69px;text-align:right;color:#405a6d;font-variant-numeric:tabular-nums}.plotcard{padding:22px 23px 17px}.plotcard .card-head{padding:0}.live-label{display:flex;align-items:center;gap:6px;font-size:11px;color:#426f83;font-weight:650}.live-label i{width:6px;height:6px;background:#3e8097;border-radius:50%}.stats{display:grid;grid-template-columns:1.25fr 1fr 1fr;margin:24px 0 15px;gap:16px}.stat-label{font-size:11px;color:#6c7e8b;margin-bottom:6px}.stat-number{font-size:30px;line-height:1;letter-spacing:-.045em;font-weight:650;font-variant-numeric:tabular-nums}.stat-number small{font-size:13px;letter-spacing:0;font-weight:500;color:#6a7f8f;margin-left:3px}.stat:not(:first-child){border-left:1px solid #e5ebef;padding-left:19px}.stat:not(:first-child) .stat-number{font-size:24px;padding-top:5px}.chart-title{margin:18px 0 3px;font-size:12px;color:#3d5b70;font-weight:650}.chart-title span{font-weight:400;color:#788995;margin-left:5px}.chart{width:100%;height:211px;display:block}.rolling{height:166px}.divider{height:1px;background:#e8edf1;margin:12px 0 0}.legend{display:flex;align-items:center;gap:6px;color:#617989;font-size:11px;margin-top:6px}.legend i{width:18px;height:3px;background:#31799e;border-radius:3px}.legend .point{width:7px;height:7px;background:#163d58;border-radius:50%;margin-left:10px}.footer{display:flex;justify-content:space-between;gap:16px;margin-top:19px;color:#697f8e;font-size:11px;line-height:1.6}.footer p{margin:0}.footer p:last-child{text-align:right}.noscript{padding:24px;color:#8b3629}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:940px){.layout{grid-template-columns:1fr}.scene{min-height:500px}.footer{display:block}.footer p:last-child{text-align:left;margin-top:4px}.check{margin-left:9px}.plotcard{padding-bottom:22px}}@media(max-width:500px){main{padding:23px 14px 18px}.topline{align-items:flex-start;gap:10px}.badge{font-size:10px;padding:7px 9px;margin-top:5px}h1{font-size:30px}.intro{font-size:13px;max-width:250px}.toolbar{gap:8px;margin:20px 0 15px}.field.speed{margin-left:0}.field{font-size:12px;gap:5px}.check{margin-left:0;flex-basis:100%;margin-top:3px}.toolbar button{padding:0 12px}select{padding-right:25px}.card-head{padding:18px 18px 0}.scene{min-height:410px}.scene-tag{left:18px;font-size:10px}.plotcard{padding:19px 15px}.stats{gap:9px;margin-top:21px}.stat:not(:first-child){padding-left:11px}.stat-number{font-size:27px}.stat:not(:first-child) .stat-number{font-size:21px}.stat-label{font-size:10px}.chart{height:207px}.rolling{height:163px}.scrubber{padding:14px 16px;gap:8px}.scrubber output{font-size:11px}.small{font-size:10px}.layout{gap:15px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="topline"><div><p class="eyebrow">OPENSIM · REFERENCE GAIT</p><h1>Human walking</h1><p class="intro">A continuous gait cycle with a synchronized knee-angle trace.</p></div><span class="badge"><i></i>Human only</span></header>
+  <div class="toolbar" aria-label="Playback controls">
+    <button class="primary" id="play" type="button">Pause</button><button id="reset" type="button">Restart</button>
+    <label class="field speed">Speed<select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+    <label class="field">Knee<select id="knee"><option value="r">Right</option><option value="l">Left</option></select></label>
+    <label class="check"><input id="muscles" type="checkbox" checked>Show anatomical muscle paths</label>
+  </div>
+  <div class="layout">
+    <section class="card anatomy" aria-labelledby="human-title">
+      <div class="card-head"><h2 id="human-title">Bare human</h2><span class="small">Gait2392 anatomy</span></div>
+      <div class="scene"><canvas id="human" role="img" aria-label="Animated bare human skeleton following the OpenSim reference walking motion"></canvas><div id="scene-error" class="scene-error" hidden></div><div class="scene-tag">Bone geometry + anatomical muscle paths</div></div>
+      <div class="scrubber"><label for="timeline">Cycle</label><input id="timeline" type="range" min="0" max="1" step="0.001" value="0" aria-label="Position in reference gait cycle, in seconds"><output id="timeline-value" for="timeline">0.00 / 1 s</output></div>
+    </section>
+    <section class="card plotcard" aria-labelledby="knee-title">
+      <div class="card-head"><h2 id="knee-title">Right knee flexion</h2><span class="live-label"><i></i><span id="play-status">Playing</span></span></div>
+      <div class="stats"><div><div class="stat-label">Current angle</div><div class="stat-number"><span id="angle">0.0</span><small>°</small></div></div><div class="stat"><div class="stat-label">Cycle position</div><div class="stat-number"><span id="cycle">0</span><small>%</small></div></div><div class="stat"><div class="stat-label">Reference time</div><div class="stat-number"><span id="time">0.00</span><small>s</small></div></div></div>
+      <p class="chart-title">One reference gait cycle <span>Flexion positive</span></p><canvas class="chart" id="cycle-plot" role="img" aria-label="Knee flexion in degrees over one gait cycle; the dot is synchronized with the human"></canvas>
+      <div class="legend"><i></i>Reference trajectory<span class="point"></span>Current position</div>
+      <div class="divider"></div><p class="chart-title">Live angle trajectory <span>Last 5 reference seconds</span></p><canvas class="chart rolling" id="rolling-plot" role="img" aria-label="Rolling knee flexion trajectory over the last five reference seconds"></canvas>
+    </section>
+  </div>
+  <footer class="footer"><p>Reference gait playback · Actual OpenSim geometry and recorded joint coordinates.<br>Muscle lines show anatomical paths, not muscle activity.</p><p id="source-note">OpenSim Gait2392 · One reference cycle<br>Works offline · No exosuit</p></footer>
+  <noscript><p class="noscript">Enable JavaScript to play the walking motion and synchronized plots.</p></noscript>
+</main>
+<script id="gait-data" type="application/json">__LIVE_DATA_JSON__</script>
+<script>
+"use strict";
+(() => {
+const data=JSON.parse(document.getElementById("gait-data").textContent);
+const $=id=>document.getElementById(id), duration=Number(data.duration_s), times=data.times;
+if(!(duration>0)||!Array.isArray(times)||times.length<2)throw new Error("Invalid reference gait data");
+const reduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+let playing=!reduced, speed=1, knee="r", showMuscles=true, elapsed=0, endpoint=false, lastFrame=null, dirty=true, renderCount=0;
+let history=[], glReady=false;
+const mod=(a,b)=>((a%b)+b)%b, clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const currentTime=()=>endpoint?duration:mod(elapsed,duration);
+function sample(time){
+  if(time>=times[times.length-1])return {i:times.length-2,j:times.length-1,u:1};
+  let lo=0,hi=times.length-1;
+  while(hi-lo>1){const mid=(lo+hi)>>1;if(times[mid]<=time)lo=mid;else hi=mid;}
+  return {i:lo,j:hi,u:clamp((time-times[lo])/(times[hi]-times[lo]),0,1)};
+}
+function angleAt(s,side){const a=data.knee_flexion_deg[side];return a[s.i]+(a[s.j]-a[s.i])*s.u;}
+function snapshot(){const t=currentTime(),s=sample(t);return {playing,time_s:t,elapsed_s:elapsed,speed,knee,angle_deg:angleAt(s,knee),cycle_percent:100*t/duration,sample_index:s.i,sample_blend:s.u,history_count:history.length,webgl_ready:glReady,render_count:renderCount,muscles_visible:showMuscles};}
+function controls(){
+  $("play").textContent=playing?"Pause":"Play";$("play").setAttribute("aria-label",playing?"Pause walking playback":"Play walking playback");
+  $("play-status").textContent=playing?"Playing":"Paused";$("speed").value=String(speed);$("knee").value=knee;
+  $("knee-title").textContent=(knee==="r"?"Right":"Left")+" knee flexion";dirty=true;
+}
+function play(){playing=true;lastFrame=null;controls();}
+function pause(){playing=false;lastFrame=null;controls();}
+function reset(){elapsed=0;endpoint=false;history=[];lastFrame=null;recordHistory();controls();}
+function setKnee(side){if(side!=="r"&&side!=="l")throw new Error("Knee must be r or l");knee=side;controls();}
+function setSpeed(value){value=Number(value);if(![.5,1,1.5,2].includes(value))throw new Error("Unsupported playback speed");speed=value;controls();}
+function seek(seconds){seconds=Number(seconds);if(!Number.isFinite(seconds))throw new Error("Invalid seek time");elapsed=clamp(seconds,0,duration);endpoint=elapsed===duration;history=[];lastFrame=null;recordHistory();dirty=true;}
+$("play").addEventListener("click",()=>playing?pause():play());$("reset").addEventListener("click",reset);
+$("speed").addEventListener("change",e=>setSpeed(e.target.value));$("knee").addEventListener("change",e=>setKnee(e.target.value));
+$("muscles").addEventListener("change",e=>{showMuscles=e.target.checked;dirty=true;});
+$("timeline").max=String(duration);$("timeline").addEventListener("input",e=>seek(e.target.value));
+document.addEventListener("visibilitychange",()=>{lastFrame=null;});
+$("source-note").innerHTML="OpenSim Gait2392 · "+duration.toFixed(2)+" s reference cycle<br>Works offline · No exosuit";
+window.gaitViewer={state:snapshot,play,pause,reset,setKnee,setSpeed,seek};
+
+// Column-major matrices and normalized shortest-arc quaternion interpolation.
+function multiply(a,b){const out=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++){let v=0;for(let k=0;k<4;k++)v+=a[k*4+r]*b[c*4+k];out[c*4+r]=v;}return out;}
+function perspective(fov,aspect,near,far){const f=1/Math.tan(fov/2),nf=1/(near-far);return new Float32Array([f/aspect,0,0,0,0,f,0,0,0,0,(far+near)*nf,-1,0,0,2*far*near*nf,0]);}
+function normalize(v){const length=Math.hypot(...v)||1;return v.map(x=>x/length);}
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const dot=(a,b)=>a.reduce((sum,x,i)=>sum+x*b[i],0);
+function lookAt(eye,target){const z=normalize(eye.map((x,i)=>x-target[i])),x=normalize(cross([0,1,0],z)),y=cross(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1]);}
+function slerp(a,b,u){a=normalize(a);b=normalize(b);let d=dot(a,b);if(d<0){b=b.map(x=>-x);d=-d;}d=clamp(d,-1,1);if(d>.9995)return normalize(a.map((x,i)=>x+u*(b[i]-x)));const theta=Math.acos(d),sn=Math.sin(theta),wa=Math.sin((1-u)*theta)/sn,wb=Math.sin(u*theta)/sn;return normalize(a.map((x,i)=>wa*x+wb*b[i]));}
+function poseMatrix(a,b,offset,u){const p=[0,1,2].map(i=>a[offset+i]+u*(b[offset+i]-a[offset+i]));const q=slerp(a.slice(offset+3,offset+7),b.slice(offset+3,offset+7),u),[x,y,z,w]=q;return new Float32Array([1-2*(y*y+z*z),2*(x*y+w*z),2*(x*z-w*y),0,2*(x*y-w*z),1-2*(x*x+z*z),2*(y*z+w*x),0,2*(x*z+w*y),2*(y*z-w*x),1-2*(x*x+y*y),0,...p,1]);}
+const identity=new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
+
+let drawHuman=()=>{};
+try{
+  const canvas=$("human"),gl=canvas.getContext("webgl",{alpha:false,antialias:true,preserveDrawingBuffer:true});if(!gl)throw new Error("WebGL unavailable");
+  function shader(type,text){const s=gl.createShader(type);gl.shaderSource(s,text);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
+  const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,"attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uModel;uniform mat4 uVP;varying vec3 vNormal;void main(){vNormal=mat3(uModel)*aNormal;gl_Position=uVP*uModel*vec4(aPosition,1.0);}"));
+  gl.attachShader(program,shader(gl.FRAGMENT_SHADER,"precision mediump float;varying vec3 vNormal;uniform vec4 uColor;uniform float uLit;void main(){float l=.51+.49*max(dot(normalize(vNormal),normalize(vec3(.35,.8,1.0))),0.0);gl_FragColor=vec4(uColor.rgb*mix(1.0,l,uLit),uColor.a);}"));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));gl.useProgram(program);
+  const position=gl.getAttribLocation(program,"aPosition"),normal=gl.getAttribLocation(program,"aNormal"),uModel=gl.getUniformLocation(program,"uModel"),uVP=gl.getUniformLocation(program,"uVP"),uColor=gl.getUniformLocation(program,"uColor"),uLit=gl.getUniformLocation(program,"uLit");
+  function buffer(target,values){const b=gl.createBuffer();gl.bindBuffer(target,b);gl.bufferData(target,values,gl.STATIC_DRAW);return b;}
+  const uintExtension=gl.getExtension("OES_element_index_uint");
+  const meshes=data.meshes.map(m=>{const max=m.indices.reduce((a,b)=>Math.max(a,b),0),wide=max>65535;if(wide&&!uintExtension)throw new Error("Mesh index format unavailable");return {frame:m.frame_index,p:buffer(gl.ARRAY_BUFFER,new Float32Array(m.positions)),n:buffer(gl.ARRAY_BUFFER,new Float32Array(m.normals)),i:buffer(gl.ELEMENT_ARRAY_BUFFER,wide?new Uint32Array(m.indices):new Uint16Array(m.indices)),count:m.indices.length,type:wide?gl.UNSIGNED_INT:gl.UNSIGNED_SHORT};});
+  const muscleBuffer=gl.createBuffer();
+  const bounds=data.bounds,center=bounds.min.map((v,i)=>(v+bounds.max[i])/2),height=bounds.max[1]-bounds.min[1],width=bounds.max[0]-bounds.min[0],depth=bounds.max[2]-bounds.min[2];
+  const floorY=bounds.min[1]-.025,grid=[];for(let i=-4;i<=4;i++){const v=i*.25;grid.push(center[0]-1,floorY,center[2]+v,center[0]+1,floorY,center[2]+v);grid.push(center[0]+v,floorY,center[2]-1,center[0]+v,floorY,center[2]+1);}const gridBuffer=buffer(gl.ARRAY_BUFFER,new Float32Array(grid));
+  function positions(b){gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.enableVertexAttribArray(position);gl.vertexAttribPointer(position,3,gl.FLOAT,false,0,0);}
+  function lines(b,count,color){positions(b);gl.disableVertexAttribArray(normal);gl.vertexAttrib3f(normal,0,1,0);gl.uniformMatrix4fv(uModel,false,identity);gl.uniform4fv(uColor,color);gl.uniform1f(uLit,0);gl.drawArrays(gl.LINES,0,count);}
+  drawHuman=s=>{
+    const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}gl.viewport(0,0,w,h);gl.clearColor(.971,.982,.988,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);
+    const aspect=w/h,fov=.60,distance=Math.max(height*.57/Math.tan(fov/2),(width*.53+depth*.4)/Math.tan(fov/2)/aspect)+depth*.8;
+    const eye=[center[0]+distance*.29,center[1]+distance*.075,center[2]+distance*.957];gl.uniformMatrix4fv(uVP,false,multiply(perspective(fov,aspect,.01,30),lookAt(eye,center)));
+    lines(gridBuffer,grid.length/3,[.86,.90,.92,1]);
+    gl.uniform1f(uLit,1);gl.uniform4fv(uColor,[.87,.82,.70,1]);
+    const a=data.poses[s.i],b=data.poses[s.j],matrices=data.frame_names.map((_,i)=>poseMatrix(a,b,i*7,s.u));
+    for(const m of meshes){positions(m.p);gl.bindBuffer(gl.ARRAY_BUFFER,m.n);gl.enableVertexAttribArray(normal);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,m.i);gl.uniformMatrix4fv(uModel,false,matrices[m.frame]);gl.drawElements(gl.TRIANGLES,m.count,m.type,0);}
+    // Wrapping changes the number of path points, so flat muscle arrays have
+    // no stable point correspondence. Use the nearest original path sample
+    // (within 10 ms), rather than blending unrelated endpoints or hiding them.
+    if(showMuscles&&data.muscles&&data.muscles.length){const values=new Float32Array(data.muscles[s.u<.5?s.i:s.j]);gl.bindBuffer(gl.ARRAY_BUFFER,muscleBuffer);gl.bufferData(gl.ARRAY_BUFFER,values,gl.DYNAMIC_DRAW);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);lines(muscleBuffer,values.length/3,[.63,.22,.25,.82]);gl.depthMask(true);gl.disable(gl.BLEND);}
+  };glReady=true;
+}catch(error){const notice=$("scene-error");notice.hidden=false;notice.textContent="The 3D view could not start in this browser. The synchronized knee plots remain available.";console.error(error);}
+
+const allAngles=[...data.knee_flexion_deg.r,...data.knee_flexion_deg.l];
+const yMin=Math.min(0,Math.floor(Math.min(...allAngles)/10)*10),yMax=Math.max(10,Math.ceil(Math.max(...allAngles)/10)*10);
+function plotCanvas(id){const canvas=$(id),r=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2),w=Math.max(1,r.width),h=Math.max(1,r.height);if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}const ctx=canvas.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);return {canvas,ctx,w,h};}
+function axes(id,xMin,xMax,rolling){const c=plotCanvas(id),{ctx,w,h}=c,left=42,right=14,top=15,bottom=31;
+  const x=v=>left+(v-xMin)/(xMax-xMin)*(w-left-right),y=v=>h-bottom-(v-yMin)/(yMax-yMin)*(h-top-bottom);ctx.lineWidth=1;ctx.font="12px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif";ctx.fillStyle="#718594";ctx.textAlign="right";ctx.textBaseline="middle";
+  const step=yMax-yMin>90?20:20;for(let v=Math.ceil(yMin/step)*step;v<=yMax;v+=step){ctx.strokeStyle="#e8eef2";ctx.beginPath();ctx.moveTo(left,y(v));ctx.lineTo(w-right,y(v));ctx.stroke();ctx.fillText(String(v)+"°",left-8,y(v));}
+  ctx.textBaseline="top";const ticks=rolling?(w<400?3:5):4;for(let i=0;i<=ticks;i++){const v=xMin+(xMax-xMin)*i/ticks;ctx.textAlign=i===0?"left":i===ticks?"right":"center";ctx.fillText(rolling?v.toFixed(0)+" s":Math.round(v)+"%",x(v),h-bottom+12);}return {...c,x,y,left,right,top,bottom};}
+function path(ctx,points,x,y,color,width=2){if(!points.length)return;ctx.beginPath();points.forEach((p,i)=>{if(i)ctx.lineTo(x(p[0]),y(p[1]));else ctx.moveTo(x(p[0]),y(p[1]));});ctx.lineJoin="round";ctx.lineCap="round";ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
+function drawPlots(s,time){
+  const cycle=axes("cycle-plot",0,100,false),angle=angleAt(s,knee),cx=cycle.x(time/duration*100),cy=cycle.y(angle),ctx=cycle.ctx;
+  const points=times.map((t,i)=>[100*t/duration,data.knee_flexion_deg[knee][i]]);
+  ctx.save();ctx.beginPath();ctx.rect(cycle.left,cycle.top,cycle.w-cycle.left-cycle.right,cycle.h-cycle.top-cycle.bottom);ctx.clip();
+  ctx.fillStyle="#f1f7fa";ctx.beginPath();ctx.moveTo(cycle.x(0),cycle.y(yMin));for(const p of points)ctx.lineTo(cycle.x(p[0]),cycle.y(p[1]));ctx.lineTo(cycle.x(100),cycle.y(yMin));ctx.closePath();ctx.fill();path(ctx,points,cycle.x,cycle.y,"#4e8cab",2.5);
+  ctx.strokeStyle="#7094aa";ctx.lineWidth=1;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(cx,cycle.top);ctx.lineTo(cx,cycle.h-cycle.bottom);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle="#173f5b";ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();ctx.restore();
+  const end=Math.max(5,elapsed),start=end-5,rolling=axes("rolling-plot",start,end,true),rc=rolling.ctx,trace=history.filter(p=>p.t>=start).map(p=>[p.t,p[knee]]);
+  rc.save();rc.beginPath();rc.rect(rolling.left,rolling.top,rolling.w-rolling.left-rolling.right,rolling.h-rolling.top-rolling.bottom);rc.clip();path(rc,trace,rolling.x,rolling.y,"#31799e",2.1);if(trace.length){const p=trace[trace.length-1];rc.fillStyle="#173f5b";rc.beginPath();rc.arc(rolling.x(p[0]),rolling.y(p[1]),3.5,0,Math.PI*2);rc.fill();}rc.restore();
+}
+function recordHistory(){const s=sample(currentTime());if(!history.length||elapsed>history[history.length-1].t+1/120)history.push({t:elapsed,r:angleAt(s,"r"),l:angleAt(s,"l")});while(history.length>900||(history.length&&history[0].t<elapsed-5.1))history.shift();}
+function render(){const time=currentTime(),s=sample(time);drawHuman(s);drawPlots(s,time);$("angle").textContent=angleAt(s,knee).toFixed(1);$("cycle").textContent=(100*time/duration).toFixed(0);$("time").textContent=time.toFixed(2);$("timeline").value=String(time);$("timeline").setAttribute("aria-valuetext",time.toFixed(2)+" seconds into the reference gait cycle");$("timeline-value").textContent=time.toFixed(2)+" / "+duration.toFixed(0)+" s";renderCount++;dirty=false;}
+function tick(now){if(lastFrame!==null&&playing&&!document.hidden){const dt=clamp((now-lastFrame)/1000,0,.1);elapsed+=dt*speed;endpoint=false;recordHistory();dirty=true;}lastFrame=now;if(dirty)render();requestAnimationFrame(tick);}
+if(window.ResizeObserver)new ResizeObserver(()=>{dirty=true;}).observe(document.querySelector(".layout"));window.addEventListener("resize",()=>{dirty=true;});
+recordHistory();controls();render();requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

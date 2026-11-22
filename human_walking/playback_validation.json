@@ -1,0 +1,59 @@
+{
+  "native_manager_integrated_until_s": 20.25,
+  "validation_sample_count": 82,
+  "pelvis_height_range_m": [
+    0.9599999999999987,
+    0.9600000000000012
+  ],
+  "maximum_prescribed_coordinate_error_native_units": 3.1290013212392775e-07,
+  "all_23_coordinates_prescribed": true,
+  "all_92_muscle_forces_disabled": true,
+  "original_model_sha256_unchanged": "eb103646609c6fb68fa606e82ded2ae66c776a05597fd560faf9c86d9e92271a",
+  "native_model_roundtrip_load": "passed",
+  "reference_50_sample_match": "passed",
+  "final_pose_hold_derivative": "below 1e-12 in native units per second",
+  "gravity_m_s2": [
+    0.0,
+    -9.80665,
+    0.0
+  ],
+  "model_file": "human_walking_playback.osim",
+  "scope": "KINEMATIC REFERENCE PLAYBACK ONLY",
+  "repeat_period_s": 1,
+  "repeat_until_s": 119.0,
+  "smooth_stop_cycle_s": [
+    119.0,
+    120.0
+  ],
+  "constant_spline_tail_until_s": 122.0,
+  "missing_source_coordinates_held_at_defaults": [
+    "pelvis_tx",
+    "pelvis_tz",
+    "subtalar_angle_r",
+    "mtp_angle_r",
+    "subtalar_angle_l",
+    "mtp_angle_l"
+  ],
+  "source_endpoint_difference_native_units": {
+    "pelvis_tilt": -0.000349065850398865,
+    "pelvis_list": 0.008552113334772215,
+    "pelvis_rotation": -0.028797932657906443,
+    "pelvis_ty": 0.0,
+    "hip_flexion_r": 0.0015707963267949099,
+    "hip_adduction_r": 0.0015707963267948925,
+    "hip_rotation_r": 0.002443460952792062,
+    "knee_angle_r": -0.003490658503988664,
+    "ankle_angle_r": 0.020943951023931956,
+    "hip_flexion_l": 0.011868238913561424,
+    "hip_adduction_l": 0.010122909661567106,
+    "hip_rotation_l": -0.00575958653158129,
+    "knee_angle_l": 0.04136430327226559,
+    "ankle_angle_l": 0.01274090353955859,
+    "lumbar_extension": 0.000349065850398865,
+    "lumbar_bending": -0.008552113334772215,
+    "lumbar_rotation": 0.028797932657906443
+  },
+  "loop_seam": "Fourier interpolation uses the first fifty samples, excludes the duplicate cycle endpoint; no measured contact events",
+  "function_choice": "Native SimmSpline supports second derivatives; ExpressionBasedFunction in OpenSim 4.6 supports first derivatives only",
+  "run_instruction": "Open human_walking_playback.osim, keep its adjacent Geometry folder, then press native Run. No motion-file import required."
+}

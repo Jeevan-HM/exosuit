@@ -1,0 +1,28 @@
+{
+  "scope": "Actual supported torque-driven OpenSim forward dynamics",
+  "duration_s": 29.99999999999945,
+  "output_samples": 1500,
+  "all_23_coordinates_unlocked_unprescribed": true,
+  "muscle_forces": "disabled; all92 anatomical paths retained",
+  "normal_gravity": true,
+  "foot_ground_contact": false,
+  "support": "Finite virtual pelvis position/velocity feedback forces and torques",
+  "reference_use": "Controller target only; actual q/u integrated by native Manager",
+  "pelvis_height_range_m": [
+    0.9471517450040328,
+    0.9730804064682816
+  ],
+  "right_knee_tracking_rmse_deg": 5.599064160069212,
+  "five_nm_disturbance_maximum_knee_difference_deg": 2.305867101227147,
+  "solver_wall_time_s": 6.271534317986152,
+  "parameters": {
+    "control_dt_s": 0.02,
+    "integrator_accuracy": 0.0001,
+    "integrator_max_step_s": 0.005,
+    "knee_kp_nm_per_rad": 120.0,
+    "knee_kd_nm_s_per_rad": 6.0,
+    "knee_torque_limit_nm": 120.0,
+    "knee_disturbance_nm": 0.0,
+    "knee_disturbance_side": "r"
+  }
+}

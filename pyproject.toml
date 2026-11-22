@@ -1,0 +1,15 @@
+[project]
+name = "opensim-simulation"
+version = "0.1.0"
+description = "OpenSim human walking, live knee trajectories and knee-exosuit models"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "opensim==4.6",
+    "numpy==2.5.4",
+    "matplotlib==3.11.2",
+    "pillow==13.0.0",
+]
+
+[tool.uv]
+package = false

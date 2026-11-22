@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Live OpenSim human dynamics</title><style>
+:root{color-scheme:light;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172b3e;background:#f3f6f8;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,select{min-height:42px;border:1px solid #c5d1da;border-radius:9px;background:#fff;color:#20384c}button{padding:0 16px;cursor:pointer;font-weight:600}button:hover,select:hover{border-color:#607f94}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #62a7d2;outline-offset:3px}button.primary{background:#173f5b;border-color:#173f5b;color:#fff;min-width:103px}button.primary:hover{background:#245673}select{padding:0 31px 0 11px;cursor:pointer}input[type=checkbox]{width:17px;height:17px;accent-color:#23658b}input[type=range]{accent-color:#23658b;min-height:24px;cursor:pointer}main{max-width:1320px;padding:35px 30px 23px;margin:0 auto}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:750;color:#526f83;margin:0 0 8px}h1{font-size:clamp(28px,3.3vw,38px);letter-spacing:-.045em;line-height:1.1;margin:0 0 9px;font-weight:720}.intro{color:#526679;font-size:15px;margin:0;line-height:1.5}.topline{display:flex;justify-content:space-between;gap:20px;align-items:center}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid #d5e2e9;border-radius:30px;background:#fff;padding:8px 12px;font-size:12px;font-weight:650;white-space:nowrap;color:#34566b}.badge i{width:7px;height:7px;border-radius:50%;background:#427f67}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:11px;margin:25px 0 20px}.field{display:flex;align-items:center;gap:8px;color:#425d71;font-size:13px;font-weight:600}.field.speed{margin-left:9px}.check{margin-left:auto;display:flex;align-items:center;gap:7px;cursor:pointer;color:#425d71;font-size:13px}.layout{display:grid;grid-template-columns:minmax(350px,.93fr) minmax(420px,1.07fr);gap:20px;align-items:stretch}.card{background:#fff;border:1px solid #dce4e9;border-radius:17px;box-shadow:0 3px 14px #18384e04;overflow:hidden}.anatomy{display:flex;flex-direction:column}.card-head{padding:21px 23px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}h2{font-size:17px;font-weight:700;letter-spacing:-.025em;margin:0}.small{color:#657a8a;font-size:12px;line-height:1.45}.scene{position:relative;flex:1;min-height:500px;background:linear-gradient(#fff,#f7fafb)}#human{display:block;width:100%;height:100%;position:absolute;inset:0}.scene-tag{position:absolute;left:23px;bottom:16px;font-size:11px;color:#6d7f8b;pointer-events:none}.scene-error{position:absolute;inset:25%;font-size:14px;line-height:1.6;color:#6a4b38;text-align:center}.scrubber{border-top:1px solid #e8edf1;padding:17px 22px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.scrubber label{font-size:12px;color:#536d7f}.scrubber output{font-size:12px;min-width:69px;text-align:right;color:#405a6d;font-variant-numeric:tabular-nums}.plotcard{padding:22px 23px 17px}.plotcard .card-head{padding:0}.live-label{display:flex;align-items:center;gap:6px;font-size:11px;color:#426f83;font-weight:650}.live-label i{width:6px;height:6px;background:#3e8097;border-radius:50%}.stats{display:grid;grid-template-columns:1.25fr 1fr 1fr;margin:24px 0 15px;gap:16px}.stat-label{font-size:11px;color:#6c7e8b;margin-bottom:6px}.stat-number{font-size:30px;line-height:1;letter-spacing:-.045em;font-weight:650;font-variant-numeric:tabular-nums}.stat-number small{font-size:13px;letter-spacing:0;font-weight:500;color:#6a7f8f;margin-left:3px}.stat:not(:first-child){border-left:1px solid #e5ebef;padding-left:19px}.stat:not(:first-child) .stat-number{font-size:24px;padding-top:5px}.chart-title{margin:18px 0 3px;font-size:12px;color:#3d5b70;font-weight:650}.chart-title span{font-weight:400;color:#788995;margin-left:5px}.chart{width:100%;height:211px;display:block}.rolling{height:166px}.divider{height:1px;background:#e8edf1;margin:12px 0 0}.legend{display:flex;align-items:center;gap:6px;color:#617989;font-size:11px;margin-top:6px}.legend i{width:18px;height:3px;background:#31799e;border-radius:3px}.legend .point{width:7px;height:7px;background:#163d58;border-radius:50%;margin-left:10px}.footer{display:flex;justify-content:space-between;gap:16px;margin-top:19px;color:#697f8e;font-size:11px;line-height:1.6}.footer p{margin:0}.footer p:last-child{text-align:right}.noscript{padding:24px;color:#8b3629}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:940px){.layout{grid-template-columns:1fr}.scene{min-height:500px}.footer{display:block}.footer p:last-child{text-align:left;margin-top:4px}.check{margin-left:9px}.plotcard{padding-bottom:22px}}@media(max-width:500px){main{padding:23px 14px 18px}.topline{align-items:flex-start;gap:10px}.badge{font-size:10px;padding:7px 9px;margin-top:5px}h1{font-size:30px}.intro{font-size:13px;max-width:250px}.toolbar{gap:8px;margin:20px 0 15px}.field.speed{margin-left:0}.field{font-size:12px;gap:5px}.check{margin-left:0;flex-basis:100%;margin-top:3px}.toolbar button{padding:0 12px}select{padding-right:25px}.card-head{padding:18px 18px 0}.scene{min-height:410px}.scene-tag{left:18px;font-size:10px}.plotcard{padding:19px 15px}.stats{gap:9px;margin-top:21px}.stat:not(:first-child){padding-left:11px}.stat-number{font-size:27px}.stat:not(:first-child) .stat-number{font-size:21px}.stat-label{font-size:10px}.chart{height:207px}.rolling{height:163px}.scrubber{padding:14px 16px;gap:8px}.scrubber output{font-size:11px}.small{font-size:10px}.layout{gap:15px}}
+
+.scene{min-height:465px}.chart.actual{height:305px}.status-strip{padding:15px 22px;border-top:1px solid #e8edf1;font-size:12px;color:#526d80;display:flex;align-items:center;gap:8px;min-height:48px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa9b4;flex-shrink:0}.status-dot.running{background:#3d8a69}.status-dot.paused{background:#bf9141}.plot-note{color:#6a8090;line-height:1.6;font-size:12px;margin:19px 0 0}.notice{font-size:12px;color:#8a4b31;line-height:1.5;margin:10px 0 0}.pulse{border-color:#abc3d2;color:#2f6585}.badge i{background:#9aa9b4}button:disabled{opacity:.5;cursor:default}.stat-number{min-height:31px}.empty-trace{font-size:12px;color:#738897}@media(max-width:500px){.scene{min-height:405px}.chart.actual{height:265px}.check{flex-basis:auto;max-width:100%;font-size:12px}.pulse{flex-basis:100%}.stats{gap:7px}.stat-label{font-size:10px}.stat:not(:first-child){padding-left:8px}}
+#human-fallback{display:block;width:100%;height:100%;position:absolute;inset:0}#human[hidden],#human-fallback[hidden]{display:none}
+</style></head><body><main>
+<header class="topline"><div><p class="eyebrow">OPENSIM · FORWARD DYNAMICS</p><h1>Live human dynamics</h1><p class="intro">Supported human · Torque control · Actual solver state</p></div><span class="badge"><i></i>No exosuit</span></header>
+<div class="toolbar" aria-label="Solver controls"><button class="primary" id="play" type="button">Start solver</button><button id="reset" type="button">Reset</button><label class="field speed">Speed<select id="speed"><option value="0.1">0.1×</option><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><label class="field">Knee<select id="knee"><option value="r">Right</option><option value="l">Left</option></select></label><button class="pulse" id="disturb" type="button">Right-knee torque pulse</button><label class="check"><input id="muscles" type="checkbox" checked>Show anatomical muscle paths</label></div>
+<div class="layout"><section class="card anatomy" aria-labelledby="human-title"><div class="card-head"><h2 id="human-title">Supported human</h2><span class="small" id="renderer-label">Gait2392 anatomy</span></div><div class="scene"><canvas id="human" role="img" aria-label="Actual human pose from the running OpenSim forward-dynamics solver"></canvas><canvas id="human-fallback" role="img" aria-label="Compatibility view of actual human pose from the running OpenSim forward-dynamics solver" hidden></canvas><div id="scene-error" class="scene-error" hidden></div><div class="scene-tag">Actual solver pose · Anatomical muscle paths</div></div><div class="status-strip" role="status"><span id="status-dot" class="status-dot"></span><span id="connection">Waiting for solver</span></div></section>
+<section class="card plotcard" aria-labelledby="knee-title"><div class="card-head"><h2 id="knee-title">Right knee flexion</h2><span class="live-label"><i></i><span id="play-status">Waiting</span></span></div><div class="stats"><div><div class="stat-label">Actual angle</div><div class="stat-number"><span id="angle">—</span><small>°</small></div></div><div class="stat"><div class="stat-label">Simulation time</div><div class="stat-number"><span id="time">—</span><small>s</small></div></div><div class="stat"><div class="stat-label">Solver frame</div><div class="stat-number"><span id="sequence">—</span></div></div></div><p class="chart-title">Actual knee-angle trajectory <span>Last 10 simulation seconds</span></p><canvas class="chart actual" id="actual-plot" role="img" aria-label="Actual knee flexion angle in degrees against OpenSim simulation time in seconds"></canvas><div class="legend"><i></i>Integrated joint angle<span class="point"></span>Latest solver state</div><div class="divider"></div><p class="plot-note">The human pose, angle value, and plot point all use the same incoming solver frame. Pause stops the solver; reset starts a new trace.</p><p id="notice" class="notice" role="status"></p></section></div>
+<footer class="footer"><p>Pelvis support + joint torque control. Muscle forces off.<br>No foot–floor contact model. Muscle lines show anatomical paths.</p><p>Actual OpenSim solver state · No reference-motion replay<br>Right knee: +5 N·m toward extension for 0.4 simulation seconds</p></footer><noscript><p class="noscript">Enable JavaScript to connect to the OpenSim solver.</p></noscript>
+</main><script id="gait-data" type="application/json">__LIVE_DATA_JSON__</script><script>
+"use strict";
+(() => {
+const data=JSON.parse(document.getElementById("gait-data").textContent),$=id=>document.getElementById(id);
+if(!Array.isArray(data.meshes)||!Array.isArray(data.frame_names))throw new Error("Missing static model geometry");
+let latest=null,history=[],knee="r",showMuscles=true,speed=1,connected=false,lastMessage=0,dirty=true,renderCount=0,renderedSequence=null,glReady=false,acceptedFrames=0,serverStatus="waiting",serverError="",rendererMode="starting",graphicsError="";
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+function waiting(){return !connected||!latest||(serverStatus==="running"&&Date.now()-lastMessage>3000);}
+function controls(){
+ const stalled=waiting(),starting=connected&&serverStatus==="starting",failed=connected&&serverStatus==="error",status=starting?"Starting OpenSim":failed?"Solver error":stalled?"Waiting for solver":serverStatus==="running"?"Solver running":serverStatus==="paused"?"Solver paused":"Solver stopped";
+ $("connection").textContent=status;$("play-status").textContent=starting?"Starting":failed?"Error":stalled?"Waiting":serverStatus==="running"?"Running":serverStatus==="paused"?"Paused":"Stopped";
+ $("status-dot").className="status-dot "+(!stalled&&serverStatus==="running"?"running":!stalled&&serverStatus==="paused"?"paused":"");
+ $("play").textContent=!stalled&&serverStatus==="running"?"Pause":"Start solver";$("play").setAttribute("aria-label",!stalled&&serverStatus==="running"?"Pause OpenSim integration":"Start OpenSim integration");
+ $("play").disabled=failed||starting||!connected;$("disturb").disabled=stalled||starting||failed;$("reset").disabled=!connected||failed||starting;$("speed").disabled=!connected||failed||starting;$("speed").value=String(speed);$("knee").value=knee;$("knee-title").textContent=(knee==="r"?"Right":"Left")+" knee flexion";
+}
+function state(){return {connected,connection_status:waiting()?"waiting":"connected",status:serverStatus,error:serverError,time_s:latest?latest.time_s:null,sequence:latest?latest.sequence:null,run_id:latest?latest.run_id:null,rendered_sequence:renderedSequence,knee,angle_deg:latest?latest.knee_flexion_deg[knee]:null,speed,history_count:history.length,accepted_frames:acceptedFrames,render_count:renderCount,webgl_ready:glReady,renderer_mode:rendererMode,anatomy_ready:rendererMode==="webgl"||rendererMode==="canvas",graphics_error:graphicsError,muscles_visible:showMuscles};}
+async function control(action,value){
+ $("notice").textContent="";try{const response=await fetch("/control",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(value===undefined?{action}:{action,value})});if(!response.ok)throw new Error("The solver did not accept the control request");return await response.json();}catch(error){$("notice").textContent="Control request failed. Check that the local solver is running.";throw error;}
+}
+const play=()=>control("play"),pause=()=>control("pause"),reset=()=>control("reset"),disturb=()=>control("disturb",5);
+function setKnee(side){if(side!=="r"&&side!=="l")throw new Error("Knee must be r or l");knee=side;controls();dirty=true;}
+function setSpeed(value){value=Number(value);if(![.1,.25,.5,1,2].includes(value))throw new Error("Unsupported solver speed");return control("speed",value).then(result=>{speed=value;controls();return result;});}
+$("play").addEventListener("click",()=>{const action=!waiting()&&serverStatus==="running"?pause:play;action().catch(()=>{});});$("reset").addEventListener("click",()=>reset().catch(()=>{}));$("disturb").addEventListener("click",()=>disturb().catch(()=>{}));
+$("speed").addEventListener("change",e=>setSpeed(e.target.value).catch(()=>controls()));$("knee").addEventListener("change",e=>setKnee(e.target.value));$("muscles").addEventListener("change",e=>{showMuscles=e.target.checked;dirty=true;});
+window.physicsViewer={state,play,pause,reset,disturb,setKnee,setSpeed};
+function acceptFrame(frame){
+ if(frame&&["starting","running","paused","error"].includes(frame.status)){serverStatus=frame.status;connected=true;if(frame.status==="starting"||frame.status==="error"){serverError=frame.status==="error"?String(frame.error||"OpenSim integration stopped"):"";$("notice").textContent=serverError;controls();dirty=true;return;}}
+ if(!frame||!Number.isFinite(frame.time_s)||!frame.knee_flexion_deg||![frame.knee_flexion_deg.r,frame.knee_flexion_deg.l].every(Number.isFinite)||!Array.isArray(frame.poses)||frame.poses.length!==data.frame_names.length*7||!frame.poses.every(Number.isFinite)||!Array.isArray(frame.muscles)||frame.muscles.length%6||!frame.muscles.every(Number.isFinite)){console.warn("Ignored malformed OpenSim solver frame");return;}
+ if(latest&&(frame.run_id!==latest.run_id||frame.time_s<latest.time_s||Number(frame.sequence)<Number(latest.sequence)))history=[];
+ serverError="";
+ latest=frame;connected=true;lastMessage=Date.now();acceptedFrames++;
+ const point={t:frame.time_s,r:frame.knee_flexion_deg.r,l:frame.knee_flexion_deg.l};
+ if(history.length&&Math.abs(history[history.length-1].t-point.t)<1e-10)history[history.length-1]=point;else history.push(point);
+ while(history.length>2000||(history.length&&history[0].t<frame.time_s-10.1))history.shift();
+ if(frame.speed!==undefined&&[.1,.25,.5,1,2].includes(Number(frame.speed)))speed=Number(frame.speed);
+ controls();dirty=true;
+}
+const events=new EventSource("/events");
+function receive(event){try{acceptFrame(JSON.parse(event.data));}catch(error){console.warn("Ignored unreadable solver message",error);}}
+events.onmessage=receive;events.addEventListener("frame",receive);events.onopen=()=>{connected=true;controls();dirty=true;};events.onerror=()=>{connected=false;controls();dirty=true;};
+setInterval(()=>{controls();},1000);
+
+function multiply(a,b){const out=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++){let v=0;for(let k=0;k<4;k++)v+=a[k*4+r]*b[c*4+k];out[c*4+r]=v;}return out;}
+function perspective(fov,aspect,near,far){const f=1/Math.tan(fov/2),nf=1/(near-far);return new Float32Array([f/aspect,0,0,0,0,f,0,0,0,0,(far+near)*nf,-1,0,0,2*far*near*nf,0]);}
+function normalize(v){const length=Math.hypot(...v)||1;return v.map(x=>x/length);}
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const dot=(a,b)=>a.reduce((sum,x,i)=>sum+x*b[i],0);
+function lookAt(eye,target){const z=normalize(eye.map((x,i)=>x-target[i])),x=normalize(cross([0,1,0],z)),y=cross(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1]);}
+function slerp(a,b,u){a=normalize(a);b=normalize(b);let d=dot(a,b);if(d<0){b=b.map(x=>-x);d=-d;}d=clamp(d,-1,1);if(d>.9995)return normalize(a.map((x,i)=>x+u*(b[i]-x)));const theta=Math.acos(d),sn=Math.sin(theta),wa=Math.sin((1-u)*theta)/sn,wb=Math.sin(u*theta)/sn;return normalize(a.map((x,i)=>wa*x+wb*b[i]));}
+function poseMatrix(a,b,offset,u){const p=[0,1,2].map(i=>a[offset+i]+u*(b[offset+i]-a[offset+i]));const q=slerp(a.slice(offset+3,offset+7),b.slice(offset+3,offset+7),u),[x,y,z,w]=q;return new Float32Array([1-2*(y*y+z*z),2*(x*y+w*z),2*(x*z-w*y),0,2*(x*y-w*z),1-2*(x*x+z*z),2*(y*z+w*x),0,2*(x*z+w*y),2*(y*z-w*x),1-2*(x*x+y*y),0,...p,1]);}
+const identity=new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
+
+
+// Canvas compatibility rendering projects the same native bone vertices and
+// integrated body-frame poses. It never invents a pose or advances solver time.
+function canvasRenderer(){
+ const canvas=$("human-fallback"),ctx=canvas.getContext("2d");if(!ctx)throw new Error("Canvas drawing unavailable");
+ const bounds=data.bounds,center=bounds.min.map((v,i)=>(v+bounds.max[i])/2),height=bounds.max[1]-bounds.min[1],width=bounds.max[0]-bounds.min[0],depth=bounds.max[2]-bounds.min[2];
+ const light=normalize([.35,.8,1]),colors=Array.from({length:25},(_,i)=>{const l=.51+.49*i/24;return `rgb(${Math.round(222*l)},${Math.round(209*l)},${Math.round(179*l)})`;});
+ const meshes=data.meshes.map(mesh=>({frame:mesh.frame_index,positions:mesh.positions,indices:mesh.indices,normals:mesh.normals}));
+ function transform(m,x,y,z){return [m[0]*x+m[4]*y+m[8]*z+m[12],m[1]*x+m[5]*y+m[9]*z+m[13],m[2]*x+m[6]*y+m[10]*z+m[14]];}
+ return frame=>{
+  const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(1,rect.width),h=Math.max(1,rect.height);
+  if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle="#f8fafc";ctx.fillRect(0,0,w,h);
+  const aspect=w/h,fov=.60,distance=Math.max(height*.57/Math.tan(fov/2),(width*.53+depth*.4)/Math.tan(fov/2)/aspect)+depth*.8;
+  const eye=[center[0]+distance*.29,center[1]+distance*.075,center[2]+distance*.957],vp=multiply(perspective(fov,aspect,.01,30),lookAt(eye,center));
+  function project(point){const [x,y,z]=point,v=vp[3]*x+vp[7]*y+vp[11]*z+vp[15];if(v<=.001)return null;return [(1+(vp[0]*x+vp[4]*y+vp[8]*z+vp[12])/v)*w/2,(1-(vp[1]*x+vp[5]*y+vp[9]*z+vp[13])/v)*h/2,(vp[2]*x+vp[6]*y+vp[10]*z+vp[14])/v];}
+  function line(a,b){if(!a||!b)return;ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);}
+  const floorY=bounds.min[1]-.025;ctx.strokeStyle="#dce6ec";ctx.lineWidth=1;ctx.beginPath();for(let i=-4;i<=4;i++){const v=i*.25;line(project([center[0]-1,floorY,center[2]+v]),project([center[0]+1,floorY,center[2]+v]));line(project([center[0]+v,floorY,center[2]-1]),project([center[0]+v,floorY,center[2]+1]));}ctx.stroke();
+  if(!frame)return;
+  const matrices=data.frame_names.map((_,i)=>poseMatrix(frame.poses,frame.poses,i*7,0)),primitives=[];
+  for(const mesh of meshes){
+   const m=matrices[mesh.frame],points=[];for(let i=0;i<mesh.positions.length;i+=3)points.push(project(transform(m,...mesh.positions.slice(i,i+3))));
+   for(let i=0;i<mesh.indices.length;i+=3){const ia=mesh.indices[i],ib=mesh.indices[i+1],ic=mesh.indices[i+2],a=points[ia],b=points[ib],c=points[ic];if(!a||!b||!c)continue;
+    const area=Math.abs((b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]));if(area<.12)continue;
+    const n=[0,1,2].map(axis=>(mesh.normals[ia*3+axis]+mesh.normals[ib*3+axis]+mesh.normals[ic*3+axis])/3),worldNormal=normalize([m[0]*n[0]+m[4]*n[1]+m[8]*n[2],m[1]*n[0]+m[5]*n[1]+m[9]*n[2],m[2]*n[0]+m[6]*n[1]+m[10]*n[2]]),shade=Math.round(Math.max(0,dot(worldNormal,light))*24);
+    primitives.push({a,b,c,z:(a[2]+b[2]+c[2])/3,color:colors[shade]});
+   }
+  }
+  if(showMuscles)for(let i=0;i<frame.muscles.length;i+=6){const a=project(frame.muscles.slice(i,i+3)),b=project(frame.muscles.slice(i+3,i+6));if(a&&b)primitives.push({a,b,z:(a[2]+b[2])/2});}
+  primitives.sort((a,b)=>b.z-a.z);ctx.lineWidth=1;let previousColor="";
+  for(const p of primitives){ctx.beginPath();ctx.moveTo(p.a[0],p.a[1]);ctx.lineTo(p.b[0],p.b[1]);if(p.c){ctx.lineTo(p.c[0],p.c[1]);ctx.closePath();if(previousColor!==p.color){ctx.fillStyle=p.color;previousColor=p.color;}ctx.fill();}else{ctx.strokeStyle="rgba(161,56,64,.82)";ctx.stroke();}}
+ };
+}
+let drawHuman=()=>{};
+function anatomyUnavailable(error){rendererMode="unavailable";drawHuman=()=>{};const notice=$("scene-error");notice.hidden=false;notice.textContent="The anatomy view could not start. Try reloading this page in another browser; the live knee plot is still available.";console.error(error);}
+function useCanvas(error){
+ if(rendererMode==="canvas"){anatomyUnavailable(error);return;}
+ graphicsError=String(error&&error.message||error||"");glReady=false;
+ try{drawHuman=canvasRenderer();rendererMode="canvas";$("human").hidden=true;$("human-fallback").hidden=false;$("scene-error").hidden=true;$("renderer-label").textContent="Compatibility view · Gait2392 anatomy";dirty=true;}
+ catch(failure){anatomyUnavailable(failure);}
+}
+$("human-fallback").hidden=true;
+try{
+  if(typeof window.location==="object"&&typeof URLSearchParams!=="undefined"&&new URLSearchParams(window.location.search).get("renderer")==="canvas")throw new Error("Compatibility view requested");
+  const canvas=$("human"),gl=canvas.getContext("webgl",{alpha:false,antialias:true,preserveDrawingBuffer:true});if(!gl)throw new Error("WebGL unavailable");
+  canvas.addEventListener("webglcontextlost",event=>{event.preventDefault();useCanvas(new Error("WebGL context lost"));});
+  function shader(type,text){const s=gl.createShader(type);gl.shaderSource(s,text);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
+  const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,"attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uModel;uniform mat4 uVP;varying vec3 vNormal;void main(){vNormal=mat3(uModel)*aNormal;gl_Position=uVP*uModel*vec4(aPosition,1.0);}"));
+  gl.attachShader(program,shader(gl.FRAGMENT_SHADER,"precision mediump float;varying vec3 vNormal;uniform vec4 uColor;uniform float uLit;void main(){float l=.51+.49*max(dot(normalize(vNormal),normalize(vec3(.35,.8,1.0))),0.0);gl_FragColor=vec4(uColor.rgb*mix(1.0,l,uLit),uColor.a);}"));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));gl.useProgram(program);
+  const position=gl.getAttribLocation(program,"aPosition"),normal=gl.getAttribLocation(program,"aNormal"),uModel=gl.getUniformLocation(program,"uModel"),uVP=gl.getUniformLocation(program,"uVP"),uColor=gl.getUniformLocation(program,"uColor"),uLit=gl.getUniformLocation(program,"uLit");
+  function buffer(target,values){const b=gl.createBuffer();gl.bindBuffer(target,b);gl.bufferData(target,values,gl.STATIC_DRAW);return b;}
+  const uintExtension=gl.getExtension("OES_element_index_uint");
+  const meshes=data.meshes.map(m=>{const max=m.indices.reduce((a,b)=>Math.max(a,b),0),wide=max>65535;if(wide&&!uintExtension)throw new Error("Mesh index format unavailable");return {frame:m.frame_index,p:buffer(gl.ARRAY_BUFFER,new Float32Array(m.positions)),n:buffer(gl.ARRAY_BUFFER,new Float32Array(m.normals)),i:buffer(gl.ELEMENT_ARRAY_BUFFER,wide?new Uint32Array(m.indices):new Uint16Array(m.indices)),count:m.indices.length,type:wide?gl.UNSIGNED_INT:gl.UNSIGNED_SHORT};});
+  const muscleBuffer=gl.createBuffer();
+  const bounds=data.bounds,center=bounds.min.map((v,i)=>(v+bounds.max[i])/2),height=bounds.max[1]-bounds.min[1],width=bounds.max[0]-bounds.min[0],depth=bounds.max[2]-bounds.min[2];
+  const floorY=bounds.min[1]-.025,grid=[];for(let i=-4;i<=4;i++){const v=i*.25;grid.push(center[0]-1,floorY,center[2]+v,center[0]+1,floorY,center[2]+v);grid.push(center[0]+v,floorY,center[2]-1,center[0]+v,floorY,center[2]+1);}const gridBuffer=buffer(gl.ARRAY_BUFFER,new Float32Array(grid));
+  function positions(b){gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.enableVertexAttribArray(position);gl.vertexAttribPointer(position,3,gl.FLOAT,false,0,0);}
+  function lines(b,count,color){positions(b);gl.disableVertexAttribArray(normal);gl.vertexAttrib3f(normal,0,1,0);gl.uniformMatrix4fv(uModel,false,identity);gl.uniform4fv(uColor,color);gl.uniform1f(uLit,0);gl.drawArrays(gl.LINES,0,count);}
+  drawHuman=frame=>{
+    if(gl.isContextLost())throw new Error("WebGL context lost");
+    const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}gl.viewport(0,0,w,h);gl.clearColor(.971,.982,.988,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);
+    const aspect=w/h,fov=.60,distance=Math.max(height*.57/Math.tan(fov/2),(width*.53+depth*.4)/Math.tan(fov/2)/aspect)+depth*.8;
+    const eye=[center[0]+distance*.29,center[1]+distance*.075,center[2]+distance*.957];gl.uniformMatrix4fv(uVP,false,multiply(perspective(fov,aspect,.01,30),lookAt(eye,center)));
+    lines(gridBuffer,grid.length/3,[.86,.90,.92,1]);
+    gl.uniform1f(uLit,1);gl.uniform4fv(uColor,[.87,.82,.70,1]);
+    if(!frame)return;const matrices=data.frame_names.map((_,i)=>poseMatrix(frame.poses,frame.poses,i*7,0));
+    for(const m of meshes){positions(m.p);gl.bindBuffer(gl.ARRAY_BUFFER,m.n);gl.enableVertexAttribArray(normal);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,m.i);gl.uniformMatrix4fv(uModel,false,matrices[m.frame]);gl.drawElements(gl.TRIANGLES,m.count,m.type,0);}
+    if(frame&&showMuscles&&frame.muscles&&frame.muscles.length){const values=new Float32Array(frame.muscles);gl.bindBuffer(gl.ARRAY_BUFFER,muscleBuffer);gl.bufferData(gl.ARRAY_BUFFER,values,gl.DYNAMIC_DRAW);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);lines(muscleBuffer,values.length/3,[.63,.22,.25,.82]);gl.depthMask(true);gl.disable(gl.BLEND);}
+  };glReady=true;rendererMode="webgl";
+}catch(error){useCanvas(error);}
+
+
+function drawPlot(){
+ const canvas=$("actual-plot"),rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2),w=Math.max(1,rect.width),h=Math.max(1,rect.height);
+ if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}const ctx=canvas.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+ const left=43,right=17,top=15,bottom=37,end=Math.max(10,latest?latest.time_s:0),start=end-10;
+ const values=history.map(p=>p[knee]),yMin=Math.min(-10,Math.floor(Math.min(0,...values)/20)*20),yMax=Math.max(90,Math.ceil(Math.max(0,...values)/20)*20);
+ const x=v=>left+(v-start)/10*(w-left-right),y=v=>h-bottom-(v-yMin)/(yMax-yMin)*(h-top-bottom);
+ ctx.font="12px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif";ctx.fillStyle="#718594";ctx.lineWidth=1;ctx.textBaseline="middle";ctx.textAlign="right";
+ const yStep=(yMax-yMin)>140?40:20;for(let v=Math.ceil(yMin/yStep)*yStep;v<=yMax;v+=yStep){ctx.beginPath();ctx.moveTo(left,y(v));ctx.lineTo(w-right,y(v));ctx.strokeStyle="#e7edf1";ctx.stroke();ctx.fillText(v+"°",left-8,y(v));}
+ ctx.textBaseline="top";const ticks=w<400?2:5;for(let i=0;i<=ticks;i++){const v=start+10*i/ticks;ctx.textAlign=i===0?"left":i===ticks?"right":"center";ctx.fillText(v.toFixed(0)+" s",x(v),h-bottom+13);}
+ ctx.save();ctx.beginPath();ctx.rect(left,top,w-left-right,h-top-bottom);ctx.clip();ctx.beginPath();history.forEach((p,i)=>{if(i)ctx.lineTo(x(p.t),y(p[knee]));else ctx.moveTo(x(p.t),y(p[knee]));});ctx.lineWidth=2.5;ctx.lineJoin="round";ctx.lineCap="round";ctx.strokeStyle="#31799e";ctx.stroke();
+ if(latest){ctx.beginPath();ctx.arc(x(latest.time_s),y(latest.knee_flexion_deg[knee]),5,0,Math.PI*2);ctx.fillStyle="#173f5b";ctx.fill();ctx.lineWidth=2;ctx.strokeStyle="#fff";ctx.stroke();}ctx.restore();
+ if(!history.length){ctx.fillStyle="#788d9c";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("Waiting for actual solver samples",(left+w-right)/2,h/2);}
+}
+function render(){try{drawHuman(latest);}catch(error){useCanvas(error);try{drawHuman(latest);}catch(failure){anatomyUnavailable(failure);}}drawPlot();if(latest){$("angle").textContent=latest.knee_flexion_deg[knee].toFixed(1);$("time").textContent=latest.time_s.toFixed(2);$("sequence").textContent=String(latest.sequence);renderedSequence=latest.sequence;}renderCount++;dirty=false;}
+function tick(){if(dirty)render();requestAnimationFrame(tick);}
+if(window.ResizeObserver)new ResizeObserver(()=>{dirty=true;}).observe(document.querySelector(".layout"));window.addEventListener("resize",()=>{dirty=true;});
+controls();render();requestAnimationFrame(tick);
+})();
+</script></body></html>

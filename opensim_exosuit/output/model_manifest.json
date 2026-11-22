@@ -1,0 +1,24 @@
+{
+  "opensim_version": "version 4.6-2026-06-22-85aaf64, build date 18:11:49 Jun 22 2026",
+  "base_model_sha256": "3af1ca20aa87bc88b0b8cd54f2504331afa2aa03537cc868f1175fa1f50f3c0f",
+  "models": {
+    "bare": "human_bare.osim",
+    "unpowered": "knee_exosuit_unpowered.osim",
+    "assisted": "knee_exosuit.osim"
+  },
+  "total_mass_kg": {
+    "bare": 75.16459999999998,
+    "unpowered": 75.61459999999998,
+    "assisted": 75.61459999999998
+  },
+  "human_coordinates": 23,
+  "human_muscles": 92,
+  "native_knee_coordinate": "knee_angle_l",
+  "flexion_sign": -1,
+  "actuator_control_units": "native-coordinate torque Nm; optimal_force = 1",
+  "actuator_bounds": "OpenSim optimization bounds, not a forward-dynamics clamp; external callers must clamp their input. The example profile is capped by the pneumatic helper.",
+  "pressure_state_location": "Python profile helper, not a native .osim state",
+  "full_model_controller": "none; commandable moment input with zero default control",
+  "walking_playback": "normal_walking.mot: official Gait2392 normal gait, 51 frames over 1 second; in-place kinematic playback, not a prediction of assistance effects. Six omitted coordinates retain their model defaults.",
+  "limitations": "Generic research prototype. Mass, inertia, pressure limits, pressure lag and torque gain are inherited simulation assumptions, not hardware ratings or patient calibration. The timed profile is illustrative, not detected gait."
+}
