@@ -1,7 +1,0 @@
-About: data
-
-This folder contains data for walking with the smart shoes.
-
-Data Files:
-	- data_09_23.txt: Preliminary Hip Straight Exosuit with 1 composite actuators.Data collected on September 23, 2020
-	- data_09_25_a.txt: Preliminary Hip and KNee exosuit, both with composite actuators. Hip had 1 composite actuator; knee had 2 composite actuators. Data collected on September 25, 2020. Deflation response was very slow, even that vacuum was used.

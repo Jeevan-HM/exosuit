@@ -1,9 +1,0 @@
-Data Files collected for testing controls 	December 22, 2020
-
-Data Files:
-	- data_1.txt = walking on small treadmill
-	- data_2.txt = " ". The pixhawks were oriented up-side-down
-	- data_3.txt = walking on big treadmill at 0.3 m/s
-	- data_4.txt = walking on big treadmill at 0.5 m/s
-	- data_5.txt = " " at 0.3 m/s. Quaternion data was added to the data structure.
-	- data_6.txt = " " at 0.5 m/s. Quaternion data was added to the data structure.
