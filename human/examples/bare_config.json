@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "action_profile": "v1_percent",
+  "device_enabled": false,
+  "assistance": {
+    "stance_psi": 25.0,
+    "swing_psi": 20.0,
+    "torque_gain_nm_per_psi": 0.4,
+    "maximum_torque_nm": 15.0,
+    "direction": "extension",
+    "pressure_time_constant_s": 0.0,
+    "command_rate_hz": 100.0
+  },
+  "control_dt_s": 0.01,
+  "grf_threshold_n": 100.0,
+  "target_speed_m_s": 1.25,
+  "strides_per_action": 5,
+  "discard_strides_after_action": 1,
+  "maximum_reset_time_s": 20.0,
+  "maximum_action_time_s": 20.0,
+  "maximum_episode_time_s": 120.0,
+  "reward_mode": "human_effort_proxy",
+  "speed_penalty_weight": 2.0,
+  "effort_weight": 1.0,
+  "fall_penalty": 100.0,
+  "missing_gait_penalty": 20.0,
+  "invalid_action_penalty": 20.0,
+  "emg_proxy_gain": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "notes": {
+    "torque_gain": "Uncalibrated moment surrogate. 25 PSI is a source command, not a validated joint torque.",
+    "direction": "Extension is an explicit assumption for the legacy single-channel pressure path; verify against the hardware configuration.",
+    "emg": "Muscle activation-group proxies are not measured EMG or subject-calibrated legacy EMG integrals.",
+    "adaptation": "Reflex feedback is immediate mechanical response. Long-term human learning/fatigue is not calibrated or simulated.",
+    "device_default": "reset() collects unassisted gait first. Assistance is enabled only after that baseline passes; set false for an unassisted comparison.",
+    "exosuit": "Photo-inspired rendering and assumed carried mass/inertia, joint drag, pressure lag and torque gain. No FEM, cuff slip or tissue-contact prediction. 30 PSI is a simulation clamp, not a hardware rating.",
+    "baseline": "Unpowered comparison retains the same worn device mass and damping; use bare_config.json for the bare human."
+  },
+  "exosuit": {
+    "enabled": false,
+    "mechanics": {
+      "thigh_mass_kg": 0.25,
+      "shank_mass_kg": 0.2,
+      "thigh_cuff_radius_m": 0.075,
+      "shank_cuff_radius_m": 0.06,
+      "passive_knee_damping_nm_s_per_rad": 0.03
+    },
+    "pneumatics": {
+      "max_pressure_psi": 30.0,
+      "rise_time_constant_s": 0.08,
+      "exhaust_time_constant_s": 0.12
+    },
+    "geometry": {
+      "thigh_radius_m": 0.08,
+      "shank_radius_m": 0.065,
+      "cuff_width_m": 0.028,
+      "vented_pouch_thickness_m": 0.008,
+      "inflated_pouch_thickness_m": 0.025,
+      "display_pressure_psi": 30.0
+    }
+  }
+}

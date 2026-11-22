@@ -1,0 +1,6 @@
+# Tested isolated environment for this native-musculoskeletal backend.
+mujoco==3.4.0
+numpy>=1.24,<3
+# Optional visualization plots: pip install matplotlib
+# Gymnasium/SB3 requires a Gymnasium adapter; the legacy DHDP API needs neither.
+# Runtime baseline uses the provided reflex controller, not PyTorch.

@@ -1,0 +1,41 @@
+{
+  "reason": "Separate OpenSim, MuJoCo, SOFA and legacy browser simulations",
+  "moved": [
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/human",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/human"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/human_output",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/human_output"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/.venv",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/.venv"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/pyproject.toml",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/pyproject.toml"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/uv.lock",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/uv.lock"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/.python-version",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/.python-version"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/src",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/src"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/Launch_Human_Simulation.command",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/Launch_Human_Simulation.command"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/Exosuit_Human_MuJoCo_PSI.zip",
+      "to": "/Users/g1/Developer/exosuite/mujoco_simulation/Exosuit_Human_MuJoCo_PSI.zip"
+    }
+  ]
+}

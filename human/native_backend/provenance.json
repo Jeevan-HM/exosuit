@@ -1,0 +1,344 @@
+{
+  "repositories": {
+    "myo_sim": {
+      "commit": "93b0ca8f4ec90c9899ee7f05fee561e9911da91b",
+      "url": "https://github.com/MyoHub/myo_sim"
+    },
+    "assist_sim": {
+      "commit": "8bd46c72713f8e591b09c3e1c196211344f52bbb",
+      "url": "https://github.com/neumovelab/assist_sim"
+    },
+    "myoassist": {
+      "commit": "b1baf69da59dc6728515d0977cbc8fbf00b9225a",
+      "url": "https://github.com/neumovelab/myoassist"
+    }
+  },
+  "assets": [
+    {
+      "source": "myo_sim/models/scene/myosuite_scene.png",
+      "output": "assets/myosuite_scene.png",
+      "sha256": "b14011caf35a0fcdfe32d287907149c7eae159e2e599f27c144dc97d2abc41ce"
+    },
+    {
+      "source": "myo_sim/models/scene/floor0.png",
+      "output": "assets/floor0.png",
+      "sha256": "b6480ddfc8519607574fb08f98d6ee9673e3790014b1c5239641632d24752cf1"
+    },
+    {
+      "source": "myo_sim/models/scene/myosuite_logo.png",
+      "output": "assets/myosuite_logo.png",
+      "sha256": "6587db5da73706f355155f0c49f550afbe601f51029ef7aa89bcf4e73ff09698"
+    },
+    {
+      "source": "myo_sim/models/meshes/sacrum.stl",
+      "output": "assets/sacrum.stl",
+      "sha256": "927ddbb64e811b2b03ad64eddb570cd40c0493f5b8cd5213d8d15a4502bfde10"
+    },
+    {
+      "source": "myo_sim/models/meshes/lumbar5.stl",
+      "output": "assets/lumbar5.stl",
+      "sha256": "6be51294721e971922ada46d05d63c823c6e2bae8f34ead9cd3a7b3f9937e405"
+    },
+    {
+      "source": "myo_sim/models/meshes/lumbar4.stl",
+      "output": "assets/lumbar4.stl",
+      "sha256": "7809048e49c9e6a2b64c61edc6a5fa7b8b43c8033103e483b238014b9300fe83"
+    },
+    {
+      "source": "myo_sim/models/meshes/lumbar3.stl",
+      "output": "assets/lumbar3.stl",
+      "sha256": "cb7c9731a4ee455b2ed9f3379cd3e5a7065079aa7e3004b111d3f809fa2deaed"
+    },
+    {
+      "source": "myo_sim/models/meshes/lumbar2.stl",
+      "output": "assets/lumbar2.stl",
+      "sha256": "bceb18d5b62691c28928db4279d63ee38a43c1e8e3aa512c832b4f0811a009fb"
+    },
+    {
+      "source": "myo_sim/models/meshes/lumbar1.stl",
+      "output": "assets/lumbar1.stl",
+      "sha256": "91c604e11ea1637908f005ad783c7da3dfdcc71d22dce59a3a5f7dee88c6c934"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic12_s.stl",
+      "output": "assets/thoracic12_s.stl",
+      "sha256": "bb17b3983b74f7b49ab3a46418080ca774b67fd82baf266d388216d9889b2d89"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic11_s.stl",
+      "output": "assets/thoracic11_s.stl",
+      "sha256": "5c55c414cdb03eadb6a0805318f698b6afbcec55ad57b2bc87219c91d9dd95d7"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic10_s.stl",
+      "output": "assets/thoracic10_s.stl",
+      "sha256": "0691176e6c566bfd5594170f9748856a19872a48efa8a3b3b0e3c2344e209315"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic9_s.stl",
+      "output": "assets/thoracic9_s.stl",
+      "sha256": "545976b6e139ae38e5384d21e73a0e918c44e74aec6cfd9f26c59c979477f415"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic8_s.stl",
+      "output": "assets/thoracic8_s.stl",
+      "sha256": "1d70ae9098156de03ec99fae3ce79e5b5519893e98774f16fa944ab33a0d0e5a"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic7_s.stl",
+      "output": "assets/thoracic7_s.stl",
+      "sha256": "83dcde7d23e654d3cdd5819386a7cc618ee69108457bbf9df9bdc5afeff8bdd4"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic6_s.stl",
+      "output": "assets/thoracic6_s.stl",
+      "sha256": "5a0d7e4b222db5e60a2311cd6a2ebbb297d9f1fa4b7261f6322b1e493a345ab9"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic5_s.stl",
+      "output": "assets/thoracic5_s.stl",
+      "sha256": "eaec4d5813d1856c8adbbf92e256fb2414d24fb6c95aaf8a8d2203e9599f9720"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic4_s.stl",
+      "output": "assets/thoracic4_s.stl",
+      "sha256": "1bb845d525adfec04a48f0eb87afe4d3342bb7537f46e56b0aad2002e0b81398"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic3_s.stl",
+      "output": "assets/thoracic3_s.stl",
+      "sha256": "eb4e53ec5d4882e1150dfe56cc526b4cde02902928af2776f7cae03eb9aad8c6"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic2_s.stl",
+      "output": "assets/thoracic2_s.stl",
+      "sha256": "e4cb39e17803689f168a2e335dfe8f6d0b0d1e2f73f09090243aecf1edb4142d"
+    },
+    {
+      "source": "myo_sim/models/meshes/thoracic1_s.stl",
+      "output": "assets/thoracic1_s.stl",
+      "sha256": "5ca7c8a26b4d98f5c7caefd1a6fb963322b8f425e21b60dd181e57c33cf03db2"
+    },
+    {
+      "source": "myo_sim/models/meshes/thorax.stl",
+      "output": "assets/thorax.stl",
+      "sha256": "8af304432bf2ca7d9c07de763badbb1df4fab7df7629d499329d5411fa46c212"
+    },
+    {
+      "source": "myo_sim/models/meshes/hat_cervical.stl",
+      "output": "assets/hat_cervical.stl",
+      "sha256": "1dfabded9875d6526892e937f7d47d204c40a75f03dc9948cd5f83bf41f5e7a6"
+    },
+    {
+      "source": "myo_sim/models/meshes/hat_jaw.stl",
+      "output": "assets/hat_jaw.stl",
+      "sha256": "0f3bf4a2f419a755d26bbd0e46b81e19b497a6aab87da5f270f1db370ce0fb3b"
+    },
+    {
+      "source": "myo_sim/models/meshes/hat_skull.stl",
+      "output": "assets/hat_skull.stl",
+      "sha256": "c5eacbd85c96bc84ff48e595a8b59d1ddfab6026939e008e460348a5a672554c"
+    },
+    {
+      "source": "myo_sim/models/scene/myosuite_scene_noFloor.msh",
+      "output": "assets/myosuite_scene_noFloor.msh",
+      "sha256": "1f736f37affde496d3ee35d241760b52909f01cf453b6b13989e863f9a5286f0"
+    },
+    {
+      "source": "myo_sim/models/scene/myosuite_logo.msh",
+      "output": "assets/myosuite_logo.msh",
+      "sha256": "6dc356d095d68c2fb35942aaf1835b3ea32b3f50aca51bbde703a61f57bb6f07"
+    },
+    {
+      "source": "myo_sim/models/meshes/sacrum.stl",
+      "output": "assets/sacrum.stl",
+      "sha256": "927ddbb64e811b2b03ad64eddb570cd40c0493f5b8cd5213d8d15a4502bfde10"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_pelvis.stl",
+      "output": "assets/r_pelvis.stl",
+      "sha256": "6eb7bbe904ce85566fc6afcde0935eda11ae12da341965616c7c798c9b2d7ee4"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_pelvis.stl",
+      "output": "assets/l_pelvis.stl",
+      "sha256": "6998661b30f05288f018ca3e4934ae45560b1fd62f638f339fcf4881aa16c1a4"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_femur.stl",
+      "output": "assets/r_femur.stl",
+      "sha256": "7d6e76a58e964551824169d89ae4b6142617f947bfdbc4ee0a4328040acf9f63"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_tibia.stl",
+      "output": "assets/r_tibia.stl",
+      "sha256": "7c016de88550dab6bb33d3060ba7aa42b061ca78c5224b7d92a4c766f25ca15f"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_fibula.stl",
+      "output": "assets/r_fibula.stl",
+      "sha256": "2cb0f77671c5421abdec1643aab77b41af2c2b5a8eff49845b098b2393443354"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_talus.stl",
+      "output": "assets/r_talus.stl",
+      "sha256": "96202bdab4836e8fede82d3897b4b1bbc6f1afd6fc77e87b8bb444212df2ae90"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_foot.stl",
+      "output": "assets/r_foot.stl",
+      "sha256": "e95cf6418432ea49488790364588246202b7ce54d6827bef49ac3406733d9f4f"
+    },
+    {
+      "source": "myo_sim/models/meshes/r_bofoot.stl",
+      "output": "assets/r_bofoot.stl",
+      "sha256": "39dae011e441c0018cba4a00664d4076f0bb8f86f73522567275ececf6f78db5"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_femur.stl",
+      "output": "assets/l_femur.stl",
+      "sha256": "d72e3bc4c1d0bbf76e189d50cd0594e3275169d1b2bf48370cb07d3d2a1a848d"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_tibia.stl",
+      "output": "assets/l_tibia.stl",
+      "sha256": "0b4392cf63f523dba4fa0d9fdd62cf2bf0b464eaeaad320103d33534fc9e5b60"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_fibula.stl",
+      "output": "assets/l_fibula.stl",
+      "sha256": "1b31ecc2af2935d3602f977af1787c55551a2179d38a44bb015005698a1e1bae"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_talus.stl",
+      "output": "assets/l_talus.stl",
+      "sha256": "45cff977c3cf0e2da78832366630f662f20526a5c5ad4f753c268a58b10b3a6a"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_foot.stl",
+      "output": "assets/l_foot.stl",
+      "sha256": "4cb976c3d03dc47cbee8786999a572f580044976e149c1bdeffe27666a0e42f7"
+    },
+    {
+      "source": "myo_sim/models/meshes/l_bofoot.stl",
+      "output": "assets/l_bofoot.stl",
+      "sha256": "e3cc26950da6a22ac921e937740408bba43193f1c422810716435a4dd39a0ad1"
+    }
+  ],
+  "derived_model": "human22.xml",
+  "changes": [
+    "Default: historical official model from matching MyoAssist release line; copied official matching meshes, resolved filename case, replaced flat heightfield scene with flat terrain plane; original dynamic parameters and keyframes preserved.",
+    "Optional current model: official assist_sim.load_msk export of myolegs22 with official default/contact sanitation; added plane/gravity/1ms implicitfast and portable paths.",
+    "Vendored reflex interface imports adapted to direct native_env, removed unused spline imports, isolated mutable instance dictionaries, added explicit model-path option.",
+    "No human controller gains trained or changed. External knee torque applied with native qfrc_applied; no prescribed gait or pelvis support.",
+    "2026-10-24 coupled-wearable update: backend optionally builds a temporary augmented historical model using explicit fixed thigh/shank inertias and native knee damping. Human source XML and source meshes remain unchanged; photo-inspired appearance uses nonphysical rendering geoms in parent module."
+  ],
+  "source_files": {
+    "myoassist/ctrl_optim/ctrl/reflex/reflex_ctrl.py": "83208f691a526b9ecfea55f730f6694ced2f30617a0014010088921b59e9e831",
+    "myoassist/ctrl_optim/ctrl/reflex/reflex_interface.py": "3f2b27349ef496a5cf9a86451e646403444334ef21345dca5f3f27ec2e337968",
+    "myoassist/ctrl_optim/ctrl/param_layout.py": "5e5373c19a19fe1cd1a1d9734b0ae36b08b267f6829334a6b0d60b1d8dca8e87",
+    "assist_sim/assist_sim/reduce_legs.py": "f498aa8daf28da6557ab379f06161b0dd58d38ff299d77aadc88911b2b275738"
+  },
+  "default_model": "historical/human22_historical.xml",
+  "default_parameters": "parameters/tutorial_prep.txt",
+  "historical_source": {
+    "repository": "https://github.com/neumovelab/myoassist",
+    "commit": "88e9894b47e7dd48fba279dac8227b06f387d182",
+    "model_path": "models/22muscle_2D/myoLeg22_2D_BASELINE.xml",
+    "license_lineage": "OpenSim model ancestor CC BY 3.0, preserve XML credits; NeuMove project Apache 2.0",
+    "original_model_sha256": "aa922780cba8c9f3d1a39e55cb77d4204aa5473787d3d03eaf6778c2f7873d6c"
+  },
+  "distributed_file_hashes": {
+    "LICENSE_assist_sim": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSE_myo_sim": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "LICENSE_myoassist": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "THIRD_PARTY.md": "3411d395adc80838dca3fa1ed3c6d5a392a3684aa0ecab4ef008e9bd9965943f",
+    "VALIDATION.md": "5872483ba2566858a40874896b9178d415533bb4ec1d124e67effe71c37f0768",
+    "__init__.py": "555f79167c7edb9587079c631c64aa31377394b7343381e2c49257ee58835d53",
+    "assets/floor0.png": "b6480ddfc8519607574fb08f98d6ee9673e3790014b1c5239641632d24752cf1",
+    "assets/hat_cervical.stl": "1dfabded9875d6526892e937f7d47d204c40a75f03dc9948cd5f83bf41f5e7a6",
+    "assets/hat_jaw.stl": "0f3bf4a2f419a755d26bbd0e46b81e19b497a6aab87da5f270f1db370ce0fb3b",
+    "assets/hat_skull.stl": "c5eacbd85c96bc84ff48e595a8b59d1ddfab6026939e008e460348a5a672554c",
+    "assets/l_bofoot.stl": "e3cc26950da6a22ac921e937740408bba43193f1c422810716435a4dd39a0ad1",
+    "assets/l_femur.stl": "d72e3bc4c1d0bbf76e189d50cd0594e3275169d1b2bf48370cb07d3d2a1a848d",
+    "assets/l_fibula.stl": "1b31ecc2af2935d3602f977af1787c55551a2179d38a44bb015005698a1e1bae",
+    "assets/l_foot.stl": "4cb976c3d03dc47cbee8786999a572f580044976e149c1bdeffe27666a0e42f7",
+    "assets/l_pelvis.stl": "6998661b30f05288f018ca3e4934ae45560b1fd62f638f339fcf4881aa16c1a4",
+    "assets/l_talus.stl": "45cff977c3cf0e2da78832366630f662f20526a5c5ad4f753c268a58b10b3a6a",
+    "assets/l_tibia.stl": "0b4392cf63f523dba4fa0d9fdd62cf2bf0b464eaeaad320103d33534fc9e5b60",
+    "assets/lumbar1.stl": "91c604e11ea1637908f005ad783c7da3dfdcc71d22dce59a3a5f7dee88c6c934",
+    "assets/lumbar2.stl": "bceb18d5b62691c28928db4279d63ee38a43c1e8e3aa512c832b4f0811a009fb",
+    "assets/lumbar3.stl": "cb7c9731a4ee455b2ed9f3379cd3e5a7065079aa7e3004b111d3f809fa2deaed",
+    "assets/lumbar4.stl": "7809048e49c9e6a2b64c61edc6a5fa7b8b43c8033103e483b238014b9300fe83",
+    "assets/lumbar5.stl": "6be51294721e971922ada46d05d63c823c6e2bae8f34ead9cd3a7b3f9937e405",
+    "assets/myosuite_logo.msh": "6dc356d095d68c2fb35942aaf1835b3ea32b3f50aca51bbde703a61f57bb6f07",
+    "assets/myosuite_logo.png": "6587db5da73706f355155f0c49f550afbe601f51029ef7aa89bcf4e73ff09698",
+    "assets/myosuite_scene.png": "b14011caf35a0fcdfe32d287907149c7eae159e2e599f27c144dc97d2abc41ce",
+    "assets/myosuite_scene_noFloor.msh": "1f736f37affde496d3ee35d241760b52909f01cf453b6b13989e863f9a5286f0",
+    "assets/r_bofoot.stl": "39dae011e441c0018cba4a00664d4076f0bb8f86f73522567275ececf6f78db5",
+    "assets/r_femur.stl": "7d6e76a58e964551824169d89ae4b6142617f947bfdbc4ee0a4328040acf9f63",
+    "assets/r_fibula.stl": "2cb0f77671c5421abdec1643aab77b41af2c2b5a8eff49845b098b2393443354",
+    "assets/r_foot.stl": "e95cf6418432ea49488790364588246202b7ce54d6827bef49ac3406733d9f4f",
+    "assets/r_pelvis.stl": "6eb7bbe904ce85566fc6afcde0935eda11ae12da341965616c7c798c9b2d7ee4",
+    "assets/r_talus.stl": "96202bdab4836e8fede82d3897b4b1bbc6f1afd6fc77e87b8bb444212df2ae90",
+    "assets/r_tibia.stl": "7c016de88550dab6bb33d3060ba7aa42b061ca78c5224b7d92a4c766f25ca15f",
+    "assets/sacrum.stl": "927ddbb64e811b2b03ad64eddb570cd40c0493f5b8cd5213d8d15a4502bfde10",
+    "assets/thoracic10_s.stl": "0691176e6c566bfd5594170f9748856a19872a48efa8a3b3b0e3c2344e209315",
+    "assets/thoracic11_s.stl": "5c55c414cdb03eadb6a0805318f698b6afbcec55ad57b2bc87219c91d9dd95d7",
+    "assets/thoracic12_s.stl": "bb17b3983b74f7b49ab3a46418080ca774b67fd82baf266d388216d9889b2d89",
+    "assets/thoracic1_s.stl": "5ca7c8a26b4d98f5c7caefd1a6fb963322b8f425e21b60dd181e57c33cf03db2",
+    "assets/thoracic2_s.stl": "e4cb39e17803689f168a2e335dfe8f6d0b0d1e2f73f09090243aecf1edb4142d",
+    "assets/thoracic3_s.stl": "eb4e53ec5d4882e1150dfe56cc526b4cde02902928af2776f7cae03eb9aad8c6",
+    "assets/thoracic4_s.stl": "1bb845d525adfec04a48f0eb87afe4d3342bb7537f46e56b0aad2002e0b81398",
+    "assets/thoracic5_s.stl": "eaec4d5813d1856c8adbbf92e256fb2414d24fb6c95aaf8a8d2203e9599f9720",
+    "assets/thoracic6_s.stl": "5a0d7e4b222db5e60a2311cd6a2ebbb297d9f1fa4b7261f6322b1e493a345ab9",
+    "assets/thoracic7_s.stl": "83dcde7d23e654d3cdd5819386a7cc618ee69108457bbf9df9bdc5afeff8bdd4",
+    "assets/thoracic8_s.stl": "1d70ae9098156de03ec99fae3ce79e5b5519893e98774f16fa944ab33a0d0e5a",
+    "assets/thoracic9_s.stl": "545976b6e139ae38e5384d21e73a0e918c44e74aec6cfd9f26c59c979477f415",
+    "assets/thorax.stl": "8af304432bf2ca7d9c07de763badbb1df4fab7df7629d499329d5411fa46c212",
+    "backend.py": "87e720b2dfb26533ec46a3d5ddf03ea65a49d722ac190c668c52202db2e7932b",
+    "diagnostic_results.json": "81ad6aeca3e84a28b80b6f6d7f8758ce607e958268ebbca55b7b9646368f40c3",
+    "historical/assets/hat_jaw.stl": "0f3bf4a2f419a755d26bbd0e46b81e19b497a6aab87da5f270f1db370ce0fb3b",
+    "historical/assets/hat_ribs.stl": "52b0a6d26aca77abd282019a001045f976d3cb3fbcbffcbcf0ce59e12f9ac34f",
+    "historical/assets/hat_skull.stl": "c5eacbd85c96bc84ff48e595a8b59d1ddfab6026939e008e460348a5a672554c",
+    "historical/assets/hat_spine.stl": "31b718453325e85ae56cfdbd3fa37236c1018b9358de1d08b25ba8c6c87dbcf9",
+    "historical/assets/l_bofoot.stl": "e3cc26950da6a22ac921e937740408bba43193f1c422810716435a4dd39a0ad1",
+    "historical/assets/l_clavicle.STL": "2a6374f051e02ff6f16babf0b578da0193ffab4e20c6e64d3ed6922288328285",
+    "historical/assets/l_femur.stl": "d72e3bc4c1d0bbf76e189d50cd0594e3275169d1b2bf48370cb07d3d2a1a848d",
+    "historical/assets/l_fibula.stl": "1b31ecc2af2935d3602f977af1787c55551a2179d38a44bb015005698a1e1bae",
+    "historical/assets/l_foot.stl": "4cb976c3d03dc47cbee8786999a572f580044976e149c1bdeffe27666a0e42f7",
+    "historical/assets/l_forearm.STL": "ef791b6d9fdaf684cc0e8135cbfd8c93d4ee87531c6abc28fcaf0ddb1417ca85",
+    "historical/assets/l_hand.STL": "2b712ac72945bc691a0ad700abc347748e2648884b454c99265c50112cdb5f30",
+    "historical/assets/l_humerus.stl": "9ccdfc51cd0b16c3fb5e424aceb41ecb74e306bc7ea22c587f2e2b54348700fa",
+    "historical/assets/l_pelvis.stl": "6998661b30f05288f018ca3e4934ae45560b1fd62f638f339fcf4881aa16c1a4",
+    "historical/assets/l_scapula.STL": "3413f30746b658a0be1a112d63b217fda506ce6670f08cae1af6ff77e75061dc",
+    "historical/assets/l_talus.stl": "45cff977c3cf0e2da78832366630f662f20526a5c5ad4f753c268a58b10b3a6a",
+    "historical/assets/l_tibia.stl": "0b4392cf63f523dba4fa0d9fdd62cf2bf0b464eaeaad320103d33534fc9e5b60",
+    "historical/assets/r_bofoot.stl": "39dae011e441c0018cba4a00664d4076f0bb8f86f73522567275ececf6f78db5",
+    "historical/assets/r_clavicle.STL": "ddbcf0d6dc30c0b95e0e49e45eece1d134c1b225a41bbb04871932a3451e8591",
+    "historical/assets/r_femur.stl": "7d6e76a58e964551824169d89ae4b6142617f947bfdbc4ee0a4328040acf9f63",
+    "historical/assets/r_fibula.stl": "2cb0f77671c5421abdec1643aab77b41af2c2b5a8eff49845b098b2393443354",
+    "historical/assets/r_foot.stl": "e95cf6418432ea49488790364588246202b7ce54d6827bef49ac3406733d9f4f",
+    "historical/assets/r_forearm.STL": "829ea5ff59b5c1be1b84dfc159fe7abd3dfc138614e36d1c9674e2719943bb84",
+    "historical/assets/r_hand.STL": "67943b25578a83ced11d40139891ebb043ec3b97d8e6ea234ffa323f970e1701",
+    "historical/assets/r_humerus.stl": "134bfdf8f9bf255033068daab778f957067dadb09a3a962fa49faf5ba8d92f0b",
+    "historical/assets/r_pelvis.stl": "6eb7bbe904ce85566fc6afcde0935eda11ae12da341965616c7c798c9b2d7ee4",
+    "historical/assets/r_scapula.STL": "7cc71520939134b7e33157061d7572e1b47877b252a125e8c2d9e5d4593bc981",
+    "historical/assets/r_talus.stl": "96202bdab4836e8fede82d3897b4b1bbc6f1afd6fc77e87b8bb444212df2ae90",
+    "historical/assets/r_tibia.stl": "7c016de88550dab6bb33d3060ba7aa42b061ca78c5224b7d92a4c766f25ca15f",
+    "historical/assets/sacrum.stl": "927ddbb64e811b2b03ad64eddb570cd40c0493f5b8cd5213d8d15a4502bfde10",
+    "historical/human22_historical.xml": "97ea12fbc7e5dc407119cf826fe89cbf97941dc11a66e4aa6e3adf7887175c93",
+    "historical/original_baseline.xml": "aa922780cba8c9f3d1a39e55cb77d4204aa5473787d3d03eaf6778c2f7873d6c",
+    "historical_diagnostic_results.json": "ff71ae876f8247e9a3ef86b0722e488badbf73deb55cf20b954ea789f14af489",
+    "human22.xml": "9bb5848a5afb5b2c4ced5957f49e44bf571185484a6967ac222ce40f0af069b8",
+    "native_env.py": "6ef2f7a1d550a562a3b28d6ce90241a00fac0623bc9b5dc1dc524ee412aeaa57",
+    "parameters/tutorial.txt": "976e3b02014a110377bafd6481f349a2a7f5844b001fc8bdd65f539e705681dd",
+    "parameters/tutorial_prep.txt": "653399becca5ad92cc4bd6e945c78d52c0ebe6d134748af13ce53d208ebde619",
+    "parameters/walking_1_25ms.txt": "297cd18a72cf4ae6ee342ca074437e07d7510e361e9d0d661f8e9cc1ac7b9a0f",
+    "run_diagnostics.py": "e79c8909a07ac2d8e510d8d1743fcf325963fdcd533ad703381cc95cd7a746b0",
+    "vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vendor/param_layout.py": "5e5373c19a19fe1cd1a1d9734b0ae36b08b267f6829334a6b0d60b1d8dca8e87",
+    "vendor/reflex_ctrl.py": "83208f691a526b9ecfea55f730f6694ced2f30617a0014010088921b59e9e831",
+    "vendor/reflex_interface.py": "040938d39ccdee1cacd3b262007f1a1d75080663e263e3758a6d0801de159aeb"
+  }
+}

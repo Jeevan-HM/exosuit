@@ -1,0 +1,83 @@
+[
+  {
+    "time": 0.32000000000000023,
+    "fallen": true,
+    "distance_m": 0.3388287940592317,
+    "pelvis_height_m": 0.6370150276875238,
+    "pelvis_speed_m_s": 2.166854047692898,
+    "params": "native_backend/parameters/walking_1_25ms.txt",
+    "torque_nm": 0.0
+  },
+  {
+    "time": 0.2700000000000002,
+    "fallen": true,
+    "distance_m": 0.21170229738032578,
+    "pelvis_height_m": 0.7092821307244687,
+    "pelvis_speed_m_s": 0.9305254233129134,
+    "params": "native_backend/parameters/walking_1_25ms.txt",
+    "torque_nm": 8.0
+  },
+  {
+    "time": 0.8400000000000006,
+    "fallen": true,
+    "distance_m": 1.2275533490855641,
+    "pelvis_height_m": 0.8036385514281028,
+    "pelvis_speed_m_s": 1.9145486605636697,
+    "params": "native_backend/parameters/walking_1_25ms.txt",
+    "torque_nm": -8.0
+  },
+  {
+    "time": 1.0799999999999919,
+    "fallen": true,
+    "distance_m": 1.4709424285165364,
+    "pelvis_height_m": 0.643573229088109,
+    "pelvis_speed_m_s": 2.030313777849271,
+    "params": "native_backend/parameters/tutorial.txt",
+    "torque_nm": 0.0
+  },
+  {
+    "time": 1.3499999999999621,
+    "fallen": true,
+    "distance_m": 1.384539164785543,
+    "pelvis_height_m": 0.6471428462812089,
+    "pelvis_speed_m_s": 0.5095315345768308,
+    "params": "native_backend/parameters/tutorial.txt",
+    "torque_nm": 8.0
+  },
+  {
+    "time": 0.8200000000000006,
+    "fallen": true,
+    "distance_m": 1.330582710496609,
+    "pelvis_height_m": 0.9407846140363307,
+    "pelvis_speed_m_s": 1.8721744024103886,
+    "params": "native_backend/parameters/tutorial.txt",
+    "torque_nm": -8.0
+  },
+  {
+    "time": 1.169999999999982,
+    "fallen": true,
+    "distance_m": 1.538925971896326,
+    "pelvis_height_m": 0.6499117271633249,
+    "pelvis_speed_m_s": 0.8465668164980233,
+    "params": "myoassist/ctrl_optim/results/optim_results/tutorial_prep/myorfl_Kine_2D_1_25_2025Jul25_1827_None_BestLast.txt",
+    "torque_nm": 0.0
+  },
+  {
+    "time": 0.7700000000000006,
+    "fallen": true,
+    "distance_m": 0.9673002479101708,
+    "pelvis_height_m": 0.9786351508878449,
+    "pelvis_speed_m_s": 1.3989866569110638,
+    "params": "myoassist/ctrl_optim/results/optim_results/tutorial_prep/myorfl_Kine_2D_1_25_2025Jul25_1827_None_BestLast.txt",
+    "torque_nm": 8.0
+  },
+  {
+    "time": 0.9200000000000007,
+    "fallen": true,
+    "distance_m": 1.29782983727913,
+    "pelvis_height_m": 0.6435094770445372,
+    "pelvis_speed_m_s": 1.260555299797323,
+    "params": "myoassist/ctrl_optim/results/optim_results/tutorial_prep/myorfl_Kine_2D_1_25_2025Jul25_1827_None_BestLast.txt",
+    "torque_nm": -8.0
+  }
+]

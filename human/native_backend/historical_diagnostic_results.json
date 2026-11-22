@@ -1,0 +1,80 @@
+[
+  {
+    "time_s": 30.00000000001368,
+    "fallen": false,
+    "distance_m": 33.969071242592676,
+    "pelvis_height_m": 0.8886507128762232,
+    "forward_speed_m_s": 1.6663104104544009,
+    "params": "tutorial_prep.txt",
+    "torque_nm": 0.0,
+    "ground_contact_state_changes": 107,
+    "max_foot_load_n": 2769.4980150917663,
+    "min_activation": 0.01,
+    "max_activation": 0.999999999999999
+  },
+  {
+    "time_s": 1.7199999999999214,
+    "fallen": true,
+    "distance_m": 2.360485328589137,
+    "pelvis_height_m": 0.645121262860857,
+    "forward_speed_m_s": 1.1598019397261952,
+    "params": "tutorial_prep.txt",
+    "torque_nm": 8.0,
+    "ground_contact_state_changes": 10,
+    "max_foot_load_n": 2965.9432717072314,
+    "min_activation": 0.01,
+    "max_activation": 0.9999999999988636
+  },
+  {
+    "time_s": 30.00000000001368,
+    "fallen": false,
+    "distance_m": 37.366485426714114,
+    "pelvis_height_m": 0.8456818103112088,
+    "forward_speed_m_s": 1.1989129316755591,
+    "params": "tutorial_prep.txt",
+    "torque_nm": -8.0,
+    "ground_contact_state_changes": 111,
+    "max_foot_load_n": 2623.804900836344,
+    "min_activation": 0.01,
+    "max_activation": 0.999999999999999
+  },
+  {
+    "time_s": 30.00000000001368,
+    "fallen": false,
+    "distance_m": 37.78661622644207,
+    "pelvis_height_m": 0.8884132563227023,
+    "forward_speed_m_s": 0.7877589027303284,
+    "params": "tutorial.txt",
+    "torque_nm": 0.0,
+    "ground_contact_state_changes": 114,
+    "max_foot_load_n": 2446.1441210861676,
+    "min_activation": 0.01,
+    "max_activation": 0.999999999999999
+  },
+  {
+    "time_s": 5.020000000000011,
+    "fallen": true,
+    "distance_m": 6.086707949165942,
+    "pelvis_height_m": 0.6444640439396123,
+    "forward_speed_m_s": 0.7847530315871671,
+    "params": "tutorial.txt",
+    "torque_nm": 8.0,
+    "ground_contact_state_changes": 23,
+    "max_foot_load_n": 2549.931980296577,
+    "min_activation": 0.01,
+    "max_activation": 0.999999999999999
+  },
+  {
+    "time_s": 30.00000000001368,
+    "fallen": false,
+    "distance_m": 40.30750189099304,
+    "pelvis_height_m": 0.8817804228423669,
+    "forward_speed_m_s": 1.4326845877849996,
+    "params": "tutorial.txt",
+    "torque_nm": -8.0,
+    "ground_contact_state_changes": 102,
+    "max_foot_load_n": 2694.532089138802,
+    "min_activation": 0.01,
+    "max_activation": 0.999999999999999
+  }
+]
