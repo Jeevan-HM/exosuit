@@ -1,0 +1,9 @@
+{
+  "environment": "unconfigured",
+  "context_id": null,
+  "state_version": null,
+  "controller_mode": null,
+  "parameters": {},
+  "timing_order": [],
+  "instructions": "An engineer must populate a trusted runtime capability contract with confirmed channel meanings, units, writable parameters, patient/session-approved limits, and mode ownership. Do not copy synthetic training limits. No live controller bridge is included."
+}

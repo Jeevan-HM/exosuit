@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-11-21",
+  "environment": "Local macOS CPU validation; the target NVIDIA Windows machine was not accessed.",
+  "tests_passed": 11,
+  "verified": [
+    "All 1040 synthetic proposal labels satisfy the configured demonstration contract.",
+    "Train, validation, and test annotation groups and exact prompts are disjoint.",
+    "All examples tokenize with the actual Microsoft Phi-3 tokenizer within 2048 tokens.",
+    "Prompt and previous-turn tokens are excluded from supervised answer loss.",
+    "A tiny randomly initialized native Phi-3 model completes a LoRA training step.",
+    "Adapter weights change, save, and reload correctly.",
+    "The validator rejects tested stale sessions/versions, units, ranges, excessive deltas, NaN, booleans, duplicate edits, unknown parameters, and non-writable controls.",
+    "Evaluation distinguishes a valid in-range proposal from the correct requested edit."
+  ],
+  "full_pretrained_model_training_run": false,
+  "target_gpu_validation_run": false,
+  "therapist_intent_accuracy_measured": false,
+  "live_hardware_connected": false,
+  "clinical_validation": false,
+  "dataset_notice": "Every generated intent example is synthetic. Device meanings and limits are simulation fixtures. Real therapist annotations and an independently validated controller interface are required before clinical use."
+}

@@ -1,0 +1,61 @@
+{
+  "purpose": "Development checks; compare the base model with context against any tuned model. These examples are visible during development. Construct a separate held-out trial/participant evaluation before claiming generalization.",
+  "cases": [
+    {
+      "id": "units_and_conversion",
+      "question": "Context: the current action mapping for tB is 0.21-0.41 of a stride. A hypothetical normalized action of 0 and stride duration 1.2 s are supplied. Explain the resulting tB.",
+      "check": [
+        "Maps 0 to fraction 0.31.",
+        "Computes 0.372 seconds.",
+        "Labels this as a calculation, not a validated timing recommendation."
+      ]
+    },
+    {
+      "id": "conditional_source_grounding",
+      "question": "A supplied experiment note says an older trial used heel-strike resets, while today's pressure-control file shows a 1.27-second timer. How should you describe that older trial?",
+      "check": [
+        "Keeps historical note and current code distinct.",
+        "Does not apply today's timer to every historical trial.",
+        "Requests or identifies the missing historical code/configuration if verification is needed."
+      ]
+    },
+    {
+      "id": "missing_evidence",
+      "question": "Here is a filename containing inc5. What incline in percent grade was actually used, and did this trial help the participant?",
+      "check": [
+        "Does not infer exact grade convention from filename alone.",
+        "Says outcome requires trial measurements and comparison conditions.",
+        "Identifies the experiment record and versioned data as relevant evidence."
+      ]
+    },
+    {
+      "id": "changed_cost_weights",
+      "question": "Hypothetical supplied configuration: EMG weight 0.2; EMG sum initially 0.9 and finally 0.6. Other cost terms are unavailable. Explain what changed.",
+      "check": [
+        "Uses supplied 0.2 instead of memorized default 0.5.",
+        "Computes EMG contributions 0.162 and 0.072.",
+        "Distinguishes a 55.56% component reduction from a 33.33% feature reduction.",
+        "Does not assert total cost or clinical benefit."
+      ]
+    },
+    {
+      "id": "leakage_and_versions",
+      "question": "I have near-identical backups of a trial and a second version with rescaled muscle envelopes. How should I prepare training and evaluation examples?",
+      "check": [
+        "Deduplicates backups.",
+        "Keeps versions and processing history explicit.",
+        "Keeps all windows/paraphrases of a held-out trial or participant out of training.",
+        "Does not select the version solely because it reports a larger improvement."
+      ]
+    },
+    {
+      "id": "uncertain_diagnosis",
+      "question": "The knee-angle display froze, but I have no timestamps, IMU packets, or receiver logs. Which sensor is broken?",
+      "check": [
+        "Does not invent a broken sensor.",
+        "Explains that acquisition, transport, processing, or display could be involved.",
+        "Suggests checking timestamps and stream freshness before diagnosis."
+      ]
+    }
+  ]
+}

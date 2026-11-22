@@ -1,0 +1,61 @@
+{
+  "synthetic": true,
+  "purpose": "Software intent-decoding pilot, not clinical validation.",
+  "real_therapist_annotations": 0,
+  "splits": {
+    "train": {
+      "examples": 800,
+      "sha256": "1a02c3ad3e47db3b32d8f39d123d931f17f2f6425b8e9432edb94567470096f8",
+      "statuses": {
+        "pause_request": 40,
+        "clarify": 240,
+        "unsupported": 200,
+        "propose_update": 280,
+        "read_state": 40
+      },
+      "phrase_variants": [
+        0,
+        1,
+        2
+      ],
+      "multi_turn_examples": 33
+    },
+    "validation": {
+      "examples": 120,
+      "sha256": "396b7cc4fda887d97b3421560c0be3bcf9b1071d37d7d361e125c63c2615d147",
+      "statuses": {
+        "unsupported": 30,
+        "propose_update": 42,
+        "clarify": 36,
+        "pause_request": 6,
+        "read_state": 6
+      },
+      "phrase_variants": [
+        3
+      ],
+      "multi_turn_examples": 5
+    },
+    "test": {
+      "examples": 120,
+      "sha256": "74326878d263baa9f63503129685aaacb975fb4fe40855f688f0364d3b5de156",
+      "statuses": {
+        "pause_request": 6,
+        "unsupported": 30,
+        "clarify": 36,
+        "propose_update": 42,
+        "read_state": 6
+      },
+      "phrase_variants": [
+        4
+      ],
+      "multi_turn_examples": 5
+    }
+  },
+  "limits": [
+    "All device limits and command mappings are simulation fixtures.",
+    "Held-out wording and numeric contexts are synthetic development checks from the same generator.",
+    "An independent therapist-authored test set is still required.",
+    "No patient logs establish a correct clinical intent-to-setting mapping.",
+    "Existing controller scripts do not yet expose the proposed semantic runtime API."
+  ]
+}

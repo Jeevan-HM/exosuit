@@ -1,0 +1,160 @@
+PHI-3 FOR THERAPIST INTENT AND EXOSUIT PARAMETER PROPOSALS
+
+Target
+Translate a therapist's request plus the current trusted device context into a
+structured proposal. A separate application validates the proposal, displays the
+exact before/after settings, obtains therapist approval, rechecks current state,
+and applies an atomic change through a controller API. The language model never
+directly writes pressure commands or edits Python source code in a live session.
+
+The earlier train_seed.jsonl is an explanation/Q&A seed. For this command task,
+use intent_data instead. Mixing those free-text answers into this JSON-output
+training run would teach a conflicting response format.
+
+What is ready
+- 800 synthetic training examples, 120 synthetic validation examples, 120
+  synthetic development-test examples. They cover 20 command categories,
+  including clarification follow-ups and corrections to unapplied proposals.
+- A BF16 LoRA trainer using the model's actual chat template and answer-only loss.
+- Exact structured-decision evaluation, with JSON and contract-validity checks.
+- A pure validator for fields, units, limits, maximum per-change amount, writable
+  state, session/version binding, duplicate edits, and switching-point order.
+- No live controller bridge, approval service, or clinical limit configuration.
+
+All numeric envelopes, pressure-channel meanings, and approved steps in the
+synthetic fixtures are SOFTWARE DEMONSTRATIONS, not clinical recommendations.
+The synthetic splits use different wording and contexts from the same generator.
+They are useful for a software pilot, not independent clinical validation.
+
+Your machine
+The RTX PRO 6000 Blackwell normally has 96 GB VRAM. The host's 128 GB RAM is
+separate. Use nvidia-smi to confirm the actual card and driver. This recipe uses
+BF16 LoRA, not 4-bit quantization. Extra GPU capacity can improve throughput;
+correct therapist labels and capability definitions determine the target behavior.
+
+Windows setup (PowerShell, Python 3.12 installed)
+Copy this entire phi3_exosuit folder to the GPU PC and open PowerShell in it.
+The pilot data is already included; the 70 GB archive is not needed to run it.
+
+    nvidia-smi
+    py -3.12 -m venv .venv
+    .\.venv\Scripts\python.exe -m pip install --upgrade pip
+    .\.venv\Scripts\python.exe -m pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu130
+    .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+    .\.venv\Scripts\python.exe train.py --preflight-only
+
+The CUDA 13.0 wheel needs a compatible NVIDIA driver. If a managed workstation
+already has a working CUDA PyTorch environment, use that environment instead of
+replacing it, install the listed Python libraries, and run the preflight. The
+preflight executes a BF16 forward AND backward operation on the GPU. Installing
+a separate CUDA toolkit is not normally needed for these prebuilt wheels.
+No FlashAttention extension, bitsandbytes, or custom CUDA compilation is required.
+WSL2/Ubuntu can also run the scripts with python in place of the Windows path.
+
+Validate data before downloading the full model
+    .\.venv\Scripts\python.exe train.py --validate-only
+
+This downloads the small public tokenizer, verifies the conversation format,
+answer masking, token lengths, all labels, and split isolation. It loads no
+model weights. A full training run downloads the public Phi-3 weights once.
+Project data is not uploaded; training logging to external services is disabled.
+
+Run a pilot
+    .\.venv\Scripts\python.exe train.py --output runs/intent-pilot --batch-size 8 --gradient-accumulation 2
+
+Starting settings: microsoft/Phi-3-mini-4k-instruct, 2048 tokens, BF16,
+LoRA rank 16 / alpha 32 / dropout 0.05 on linear layers, learning rate 0.0001,
+two epochs, effective batch size 16. These are experiment starting values.
+If memory is tight, use batch-size 2 and gradient-accumulation 8. A one-step
+plumbing check is available with --max-steps 1 and a fresh --output directory.
+The trainer records package versions, base-model revision, data hashes, and
+GPU information. It saves adapters and tokenizer; the original base is preserved.
+
+Compare base vs tuned on validation
+    .\.venv\Scripts\python.exe evaluate.py --data intent_data/validation.jsonl --output evaluations/base-validation.jsonl
+    .\.venv\Scripts\python.exe evaluate.py --data intent_data/validation.jsonl --adapter runs/intent-pilot/adapter --output evaluations/tuned-validation.jsonl
+
+Generated outputs never execute changes. Each output has a .summary.json with
+JSON validity, configured-constraint validity, exact structured-decision accuracy,
+and results by command category. Exact decisions check status, parameter, numeric
+target, unit, context, version, and whether clarification was requested. Human
+review must also check the meaning and quality of each explanation/question.
+An in-range value can still be the WRONG interpretation; bounds alone are not
+an intent check. The evaluator separately counts those errors.
+
+Improve using validation, then use the development test once
+Try learning rates 0.00005 and 0.0001, ranks 16 and 32, and one to three epochs.
+Use a new output directory for each run. Judge command correctness by category,
+not only training/validation loss. Earlier checkpoint directories can also be
+loaded with evaluate.py. The adapter initially exported by train.py is chosen
+using validation loss; select your final candidate using validation decisions
+and therapist review. Keep test results out of model selection.
+
+    .\.venv\Scripts\python.exe evaluate.py --data intent_data/test.jsonl --adapter runs/intent-pilot/adapter --output evaluations/tuned-test.jsonl
+
+Build the REAL training set
+The workspace has source code, sensor/training logs, and processed experiments.
+Those explain the mechanics and provide realistic context. They do not provide
+the missing supervision: therapist request -> intended and approved setting edit.
+Do not infer an approved pressure increase from a patient's EMG or toe drag.
+
+For each real case collect:
+1. A de-identified therapist request, verbatim, including clarification turns.
+2. A trusted snapshot of mode, phase/side if supported, units, current values,
+   writable settings, allowed range, allowed step/change, session and version.
+3. The exact approved proposal or the correct clarification/unsupported outcome.
+4. A reviewer identifier, rationale, and any independent second-review decision.
+5. One case-family group_id for ALL paraphrases, dialogue variants, patient/trial
+   derivatives and repeated visits that must stay together for evaluation.
+
+As a practical initial collection target, obtain 500-2000 reviewed, diverse
+commands; actual needs depend on measured errors. Include explicit numbers,
+relative changes, units, clinical goals with missing details, conflicting requests,
+mode ownership, unsupported features, discomfort/stop requests, and noisy speech
+  if voice will be used. Expand the limited synthetic multi-turn patterns with
+  real clarification dialogues. Teach phrases such as 'one step' only after the
+therapists/engineer define their meaning. Do not invent a 'little' -> pressure dose.
+
+Store real records in the same JSONL structure as intent_data/train.jsonl, mark
+synthetic=false, include the trusted context and reviewed assistant JSON. Split
+real cases into train/validation/locked test BEFORE generating paraphrases.
+Hold out therapist wording/speakers and patient/trial groups appropriate to the
+claimed deployment population. A separate, independent therapist-authored test
+set is required; the generated 120-case test is not a substitute. Retain a
+manifest.json describing the origin and counts alongside each new dataset.
+
+Device integration required before any real setting change
+The existing pressure scripts use hard-coded amplitudes and receive timing
+arrays; they expose no therapist-command capability API. extension_pressure and
+flexion_pressure in the synthetic fixture are proposed semantic controls, not
+verified bindings to the current array channels. An engineer must confirm the
+mapping and add a versioned control interface with authoritative bounds and
+ownership between manual overrides and RL. Populate real_device_contract.template.json
+only from the approved device/session configuration. Never copy synthetic limits.
+
+The review screen should show the request, clinical intent, exact parameter,
+old value -> new value, unit, affected side/phase, and source state version.
+Keep the reviewed candidate server-side; bind approval to that exact candidate
+and session. Revalidate limits, ownership, freshness, and state version at apply
+time; invalidate approval if anything changes. Log before/after and the reviewer.
+Runtime hardware limits, interlocks, watchdogs, and cumulative rate limits remain
+independent of the model. Pause/emergency stop must have a direct path that does
+not wait for the language model or an approval round trip. This starter validator
+is not a complete authorization, runtime-safety, or clinical-validation service.
+
+Acceptance
+Agree on a finite test specification: exact requested edits and units, correct
+clarification, no edits for forbidden requests, and correct session/mode handling.
+Track ALL errors, especially valid-looking wrong edits. A possible engineering
+target is >=99% exact decisions on an independent representative command set and
+zero accepted critical violations in the tested cases, followed by bench/simulation
+review and supervised evaluation appropriate to the device. These are proposed
+project targets, not certification criteria or a guarantee of perfect behavior.
+
+References
+https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/
+https://pytorch.org/blog/pytorch-2-7/
+https://pytorch.org/get-started/previous-versions/
+https://huggingface.co/microsoft/Phi-3-mini-4k-instruct
+https://huggingface.co/docs/transformers/v4.57.3/en/main_classes/trainer
+https://huggingface.co/docs/peft/v0.18.0/package_reference/lora

@@ -1,0 +1,77 @@
+{
+  "snapshot_date": "2026-11-21",
+  "purpose": "Source snapshot for a small Phi-3 exosuit-assistant starter pack. No model training has been run. All source paths are relative to the workspace root.",
+  "training_examples": 20,
+  "development_checks": 6,
+  "sources": [
+    {
+      "path": "dropbox-code/New_Testing/run_protocol.py",
+      "sha256": "7cd3f28cea9cfd430d44c5900e8c529a7abe7d56f635dbc909499737a05b1713"
+    },
+    {
+      "path": "dropbox-code/New_Testing/multi_udp_v2.py",
+      "sha256": "e328e0535cb99534475c204eac134fc4187d67cf136e7080ee9dc54dc24d02f8"
+    },
+    {
+      "path": "dropbox-code/New_Testing/emg_novicon.py",
+      "sha256": "86492e25d16e558d21b08fea8dadfb60d8a53b34dca973c040b4ab170369606c"
+    },
+    {
+      "path": "dropbox-code/New_Testing/nogrf_gaittiming.py",
+      "sha256": "135939950ecd05004131802048aacc8b96016d583d6dcde1add10d53f0c3b656"
+    },
+    {
+      "path": "dropbox-code/New_Testing/Gaitestimator_v2.py",
+      "sha256": "66183a2795c4a4cf571d638986b604cb0a3813cc78bc32745cb4b27d49d8d5b1"
+    },
+    {
+      "path": "dropbox-code/New_Testing/main_RL_online.py",
+      "sha256": "649dabeaeac906607edfc59ce7ac94df6d0aa76fcbb84db9a0764d7b4e44bb32"
+    },
+    {
+      "path": "dropbox-code/New_Testing/TDR_SM.py",
+      "sha256": "88b070cd9281d7d7233d3d5aa5ef18428c02c51f64cd3b2de4bdb02e50e9baaf"
+    },
+    {
+      "path": "dropbox-code/New_Testing/nogrf_pressure_commands.py",
+      "sha256": "c23e1ed2643a9884dab1bcd76322229018f3793ffc6864fb5cc773293900c392"
+    },
+    {
+      "path": "dropbox-code/New_Testing/nogrf_heuristic_controller.py",
+      "sha256": "d323c395aed18dbb96ee797c4a548a713fa22a1bf2572d8012dac63157b54145"
+    },
+    {
+      "path": "dropbox-code/New_Testing/visualizer.py",
+      "sha256": "bed4dfa098f8899b435414ba79c712b4d9b9b2c219297886c0954fe4280b94b7"
+    },
+    {
+      "path": "dropbox-code/New_Testing/csv_to_hdf5.py",
+      "sha256": "f6e0749c6c0182d2f3ef39e95cdf302f37e97a9c7335c812105ea843b2eee733"
+    },
+    {
+      "path": "dropbox-code/New_Testing/process_raw_data.m",
+      "sha256": "765f2dfc5ac5bcc13fede4805aad419ec8b6bbea8bbcd98a07869de2eb509494"
+    },
+    {
+      "path": "dropbox-code/New_Testing/emg_processing.m",
+      "sha256": "19833fbaa46ebe7297a021c2d623317494c4e39669c703b9bb5d28e3b961ae1b"
+    },
+    {
+      "path": "dropbox-code/New_Testing/Offline_Processed_Data/Amir/build_all_metrics.m",
+      "sha256": "f2c24b5dc18f8ff3336f767289c01cd0952f05f3d7c8ac523835fd0c475b5e52"
+    },
+    {
+      "path": "dropbox-code/New_Testing/Offline_Processed_Data/aggregate_metrics.m",
+      "sha256": "c197ecccb1d31fa05f54920f0a3610c69e40e5fb8188198b34fd5f8594b6aa9d"
+    },
+    {
+      "path": "dropbox-code/New_Testing/Final_Offline_Processed_Data_V2/Rachitha/test.m",
+      "sha256": "fd02926d613edb809dbd356c4813adb6d6deb1f54c884e3b3004694b58d05dd5"
+    }
+  ],
+  "reference_documentation": [
+    "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
+    "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora",
+    "https://huggingface.co/docs/trl/main/en/sft_trainer"
+  ]
+}
