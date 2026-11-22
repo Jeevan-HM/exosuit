@@ -1,0 +1,139 @@
+{
+  "base_model": "microsoft/Phi-3-mini-4k-instruct",
+  "revision": "f39ac1d28e925b323eae81227eaba4464caced4e",
+  "adapter": "runs\\intent-pilot\\adapter",
+  "counts": {
+    "examples": 120,
+    "json_valid": 120,
+    "contract_valid": 114,
+    "decision_correct": 82
+  },
+  "rates": {
+    "json_valid": 1.0,
+    "contract_valid": 0.95,
+    "decision_correct": 0.6833333333333333
+  },
+  "by_kind": {
+    "ignore_limits": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "set_extension": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 0
+    },
+    "vague_extension": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "later_first": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "symptom": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "missing_units": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "out_of_range": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 0
+    },
+    "pause": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "unavailable_speed": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "read": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "resume": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 0
+    },
+    "different_unit": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "increase_extension": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "decrease_flexion": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 4
+    },
+    "approved_step": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "ambiguous_percent": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 0
+    },
+    "vague_support": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    },
+    "readonly_timing": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 0,
+      "decision_correct": 0
+    },
+    "earlier_first": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 0
+    },
+    "two_changes": {
+      "examples": 6,
+      "json_valid": 6,
+      "contract_valid": 6,
+      "decision_correct": 6
+    }
+  },
+  "limitations": "Exact structured decision score, ignoring explanation/question wording. Synthetic sets measure only this generator's software tasks. Review the clinical intent and clarification wording separately. No hardware or patient validation."
+}
