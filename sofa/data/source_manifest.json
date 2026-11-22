@@ -1,0 +1,43 @@
+{
+  "archive_name": "Archive.zip",
+  "archive_sha256": "cbe1dd2e18899e1ddf773c4a1e17b92d7023b3181df7e4b70e7ff67afa258c0b",
+  "control_sources": [
+    {
+      "file": "TCPSim.py",
+      "sha256": "a3dffb815136e6124b977d32eb81cf2729d58909a3d943700462af988a9d1975",
+      "executed": false
+    },
+    {
+      "file": "TDR_SM.py",
+      "sha256": "88b070cd9281d7d7233d3d5aa5ef18428c02c51f64cd3b2de4bdb02e50e9baaf",
+      "executed": false
+    },
+    {
+      "file": "device_model.py",
+      "sha256": "a5e9ab4e2e849ba4c4da056427bb23a04928c77ded2f3820de3f8d349b130f6d",
+      "executed": false
+    },
+    {
+      "file": "main_RL_online.py",
+      "sha256": "649dabeaeac906607edfc59ce7ac94df6d0aa76fcbb84db9a0764d7b4e44bb32",
+      "executed": false
+    },
+    {
+      "file": "nogrf_heuristic_controller.py",
+      "sha256": "d323c395aed18dbb96ee797c4a548a713fa22a1bf2572d8012dac63157b54145",
+      "executed": false
+    },
+    {
+      "file": "nogrf_pressure_commands.py",
+      "sha256": "c23e1ed2643a9884dab1bcd76322229018f3793ffc6864fb5cc773293900c392",
+      "executed": false
+    },
+    {
+      "file": "run_protocol.py",
+      "sha256": "7cd3f28cea9cfd430d44c5900e8c529a7abe7d56f635dbc909499737a05b1713",
+      "executed": false
+    }
+  ],
+  "external_calibration_note": "Torque tables were extracted from the Actuator_Characterization sibling folder; these workbooks are not inside Archive.zip.",
+  "hardware_code_modified": false
+}

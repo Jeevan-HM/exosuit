@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-22",
+  "python_tests_passed": 16,
+  "python_callback_checks_use_test_double": true,
+  "native_sofa_execution": "not_run",
+  "native_sofa_reason": "Sofa and SofaRuntime are unavailable in the authoring interpreter; runSofa was not found.",
+  "mesh": {
+    "vertices": 876,
+    "tetrahedra": 2592,
+    "cavity_triangles": 656,
+    "cavity_closed": true,
+    "all_tetrahedra_positive_volume": true,
+    "cavity_volume_m3": 0.0001512
+  },
+  "calibration": {
+    "angles": 7,
+    "pressures": 5,
+    "directions": 2,
+    "lookup_nodes_checked": 70,
+    "source_workbooks_modified": false
+  },
+  "model_checks": [
+    "PSI to Pa conversion",
+    "RL and heuristic phase boundaries",
+    "RL timing denormalization",
+    "pressure lag and venting",
+    "torque interpolation",
+    "channel mapping reversal",
+    "replay validation",
+    "8 ten-second reference trials",
+    "zero-load equilibrium"
+  ],
+  "scene_callback_checks": [
+    "editable PSI inputs",
+    "profile preset changes",
+    "invalid input vents",
+    "FEM traction PSI-to-Pa conversion"
+  ],
+  "limitations": [
+    "SOFA component loading not verified",
+    "Native FEM convergence not verified",
+    "Native rendering not verified",
+    "Channel physical mapping unconfirmed",
+    "FEM specimen is illustrative and separate from knee dynamics"
+  ]
+}

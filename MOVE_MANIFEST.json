@@ -1,0 +1,13 @@
+{
+  "reason": "Separate OpenSim, MuJoCo, SOFA and legacy browser simulations",
+  "moved": [
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/sofa",
+      "to": "/Users/g1/Developer/exosuite/sofa_simulation/sofa"
+    },
+    {
+      "from": "/Users/g1/Developer/exosuite/simulation/Exosuit_SOFA_PSI.zip",
+      "to": "/Users/g1/Developer/exosuite/sofa_simulation/Exosuit_SOFA_PSI.zip"
+    }
+  ]
+}

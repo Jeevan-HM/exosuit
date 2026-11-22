@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+logs/
+live_command.json
+.sim-command-*.json
+validation/*.csv
