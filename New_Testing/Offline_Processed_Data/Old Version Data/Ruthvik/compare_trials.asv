@@ -1,0 +1,251 @@
+%% compare_trials.m
+% Compare muscle activity across 3 processed gait cycle trials
+%
+% Features:
+%   - Load 3 processed trial .mat files
+%   - Apply MVC normalization to each trial's EMG
+%   - Compare muscle activity (VL, RF, BF, ST) across trials
+%   - Visualize mean envelopes side-by-side
+%   - Generate comparison statistics
+%
+% USAGE:
+%   1. Run script
+%   2. Select 3 .mat files (e.g., Processed_inc0_spd0p8_active_rl_trial1.mat)
+%   3. Envelopes loaded (already resampled to 1001 points)
+%   4. MVC normalization applied
+%   5. Comparison plots generated
+
+clear all; close all; clc;
+N_Tri
+fprintf('="*80\n');
+fprintf('TRIAL COMPARISON TOOL - Load 3 Trials\n');
+fprintf('="*80\n\n');
+
+%% ===== MVC VALUES FOR EACH TRIAL =====
+% Define trial-specific MVC values here
+% Format: mvc_trial{trial_number}.mvc_VL, .mvc_RF, .mvc_BF, .mvc_ST
+% If empty, will load from .mat file metadata
+
+% Trial 1 MVC values (set to [] to load from .mat file)
+mvc_trial{1}.mvc_VL = 2.8589158393545354e-05;  % Jeevan VL
+mvc_trial{1}.mvc_RF = 8.45895919587837e-05;   % Jeevan RF
+mvc_trial{1}.mvc_BF = 1.675776697178965e-05;  % Jeevan BF
+mvc_trial{1}.mvc_ST = 1.0e-05;                % Jeevan ST
+
+% Trial 2 MVC values (set to [] to load from .mat file)
+mvc_trial{2}.mvc_VL = 2.8589158393545354e-05;
+mvc_trial{2}.mvc_RF = 8.45895919587837e-05;
+mvc_trial{2}.mvc_BF = 1.675776697178965e-05;
+mvc_trial{2}.mvc_ST = 1.0e-05;
+
+% Trial 3 MVC values (set to [] to load from .mat file)
+mvc_trial{3}.mvc_VL = 2.8589158393545354e-05;
+mvc_trial{3}.mvc_RF = 8.45895919587837e-05;
+mvc_trial{3}.mvc_BF = 1.675776697178965e-05;
+mvc_trial{3}.mvc_ST = 1.0e-05;
+
+%% ===== STEP 1: SELECT 3 PROCESSED TRIAL MAT FILES =====
+
+trial_files = cell(3, 1);
+trial_names = {};
+mvc_values = {};
+
+for t = 1:3
+    fprintf('\nSelect Trial %d:\n', t);
+    [filename, filepath] = uigetfile('*.mat', ...
+        sprintf('Select processed trial file #%d', t), ...
+        './');
+    
+    if ~filename
+        error('Trial %d not selected. Exiting.', t);
+    end
+    
+    full_path = fullfile(filepath, filename);
+    trial_files{t} = full_path;
+    
+    % Extract trial info from filename
+    % Format: Processed_{condition}_{controller}_trial{num}.mat
+    name_parts = strsplit(filename(1:end-4), '_');  % Remove .mat and split
+    
+    % Reconstruct condition and controller from parts
+    % Typically: Processed_inc0_spd0p8_active_rl_trial1
+    if contains(filename, 'inc')
+        % Find 'inc' position
+        inc_pos = find(filename == 'i', 1);
+        condition_part = filename(inc_pos:inc_pos+7);  % e.g., inc0_spd0
+        if contains(filename(inc_pos:end), 'inc5')
+            condition_part = filename(inc_pos:inc_pos+8);  % inc5_spd0
+        end
+        
+        % Extract controller (between speed and 'trial')
+        controller_part = extractBetween(filename, 'spd\w+_', '_trial');
+        if isempty(controller_part)
+            controller_part = extractBetween(filename, 'spd\w+_', '_trial\d');
+        end
+        
+        % Simpler approach: manually extract from parts
+        if length(name_parts) >= 4
+            % Try to reconstruct from parts
+            cond = sprintf('%s_%s', name_parts{2}, name_parts{3});
+            ctrl = name_parts{4};
+        else
+            cond = 'unknown_condition';
+            ctrl = 'unknown_controller';
+        end
+    else
+        cond = 'unknown';
+        ctrl = 'unknown';
+    end
+    
+    fprintf('  File: %s\n', filename);
+    fprintf('  Condition: %s, Controller: %s\n', cond, ctrl);
+    trial_names{t} = sprintf('%s-%s', cond, ctrl);
+    
+    % Load to extract MVC values (if not already defined above)
+    temp_data = load(full_path, 'mvc_VL', 'mvc_RF', 'mvc_BF', 'mvc_ST');
+    
+    % Use defined MVC values if they exist, otherwise use loaded ones
+    if isfield(mvc_trial{t}, 'mvc_VL') && ~isempty(mvc_trial{t}.mvc_VL)
+        mvc_values{t} = mvc_trial{t};  % Use predefined values
+        fprintf('  Using predefined MVC values for Trial %d\n', t);
+    else
+        mvc_values{t} = temp_data;  % Load from .mat file
+        fprintf('  Using MVC values from .mat file for Trial %d\n', t);
+    end
+end
+
+%% ===== STEP 2: LOAD PROCESSED EMG CYCLES =====
+
+fprintf('\n\nLoading trial data...\n');
+
+trial_data = {};
+for t = 1:3
+    data = load(trial_files{t}, 'emg_cycles', 'knee_cycles', 'pgc_emg', 'pgc_knee', 'n_cycles');
+    trial_data{t} = data;
+    
+    fprintf('  Trial %d: %d gait cycles loaded\n', t, data.n_cycles);
+end
+
+%% ===== STEP 3: COMPUTE MEAN ENVELOPES AND APPLY MVC NORMALIZATION =====
+
+fprintf('\n\nComputing mean envelopes with MVC normalization...\n');
+
+means = struct();
+
+for t = 1:3
+    % Convert to matrices
+    VL_raw = cell2mat(trial_data{t}.emg_cycles.VL');  % 1001 x N_cycles
+    RF_raw = cell2mat(trial_data{t}.emg_cycles.RF');
+    BF_raw = cell2mat(trial_data{t}.emg_cycles.BF');
+    ST_raw = cell2mat(trial_data{t}.emg_cycles.ST');
+    
+    % Get MVC values for this trial
+    mvc = mvc_values{t};
+    
+    % Normalize to % MVC
+    VL_norm = VL_raw ./ mvc.mvc_VL * 100;
+    RF_norm = RF_raw ./ mvc.mvc_RF * 100;
+    BF_norm = BF_raw ./ mvc.mvc_BF * 100;
+    ST_norm = ST_raw ./ mvc.mvc_ST * 100;
+    
+    % Compute means and SDs
+    means(t).VL = mean(VL_norm, 2, 'omitnan');
+    means(t).VL_sd = std(VL_norm, 0, 2, 'omitnan');
+    means(t).RF = mean(RF_norm, 2, 'omitnan');
+    means(t).RF_sd = std(RF_norm, 0, 2, 'omitnan');
+    means(t).BF = mean(BF_norm, 2, 'omitnan');
+    means(t).BF_sd = std(BF_norm, 0, 2, 'omitnan');
+    means(t).ST = mean(ST_norm, 2, 'omitnan');
+    means(t).ST_sd = std(ST_norm, 0, 2, 'omitnan');
+    
+    fprintf('  Trial %d: VL mean=%.1f%% MVC, RF mean=%.1f%% MVC\n', ...
+        t, nanmax(means(t).VL), nanmax(means(t).RF));
+end
+
+%% ===== STEP 4: COMPARISON PLOTS (SIDE-BY-SIDE MUSCLES) =====
+
+figure('Name', 'Trial Comparison', 'Color', 'w', 'Position', [100 100 1600 700]);
+
+pgc = trial_data{1}.pgc_emg;  % Use first trial's gait cycle axis
+colors = {[0.85 0.33 0.10], [0.47 0.67 0.19], [0.30 0.75 0.93]};  % Three distinct colors
+
+muscles = {'VL', 'RF', 'BF', 'ST'};
+
+for m = 1:4
+    subplot(2, 2, m);
+    hold on;
+    
+    for t = 1:3
+        muscle_data = means(t).(muscles{m});
+        muscle_sd = means(t).(sprintf('%s_sd', muscles{m}));
+        
+        % Plot mean with filled SD band
+        fill([pgc; flipud(pgc)], ...
+             [muscle_data - muscle_sd; flipud(muscle_data + muscle_sd)], ...
+             colors{t}, 'FaceAlpha', 0.15, 'EdgeColor', 'none');
+        
+        % Plot mean line
+        plot(pgc, muscle_data, 'Color', colors{t}, 'LineWidth', 2.5, ...
+            'DisplayName', trial_names{t});
+    end
+    
+    xlabel('Gait Cycle (%)');
+    ylabel('% MVC');
+    title(muscles{m}, 'FontSize', 12, 'FontWeight', 'bold');
+    xlim([0 100]);
+    ylim([0 inf]);
+    grid on; box off;
+    legend('Location', 'best');
+end
+
+sgtitle(sprintf('Muscle Activity Comparison - 3 Trials (%% MVC)', ...
+    sprintf('%s vs %s vs %s', trial_names{1}, trial_names{2}, trial_names{3})));
+
+%% ===== STEP 5: GENERATE COMPARISON STATISTICS =====
+
+fprintf('\n\n');
+fprintf('="*80\n');
+fprintf('COMPARISON STATISTICS (Peak % MVC)\n');
+fprintf('="*80\n\n');
+
+for m = 1:4
+    fprintf('%s:\n', muscles{m});
+    for t = 1:3
+        muscle_data = means(t).(muscles{m});
+        peak = nanmax(muscle_data);
+        fprintf('  Trial %d (%s):  %.1f%% MVC\n', t, trial_names{t}, peak);
+    end
+    fprintf('\n');
+end
+
+%% ===== STEP 6: ACTIVATION PATTERN SUMMARY =====
+
+fprintf('="*80\n');
+fprintf('ACTIVATION TIMING (% gait cycle at peak activity)\n');
+fprintf('="*80\n\n');
+
+for m = 1:4
+    fprintf('%s:\n', muscles{m});
+    for t = 1:3
+        muscle_data = means(t).(muscles{m});
+        [~, peak_idx] = nanmax(muscle_data);
+        peak_time = pgc(peak_idx);
+        fprintf('  Trial %d (%s):  %.0f%% GC\n', t, trial_names{t}, peak_time);
+    end
+    fprintf('\n');
+end
+
+fprintf('="*80\n');
+fprintf('Comparison complete. Figure saved for visualization.\n');
+
+%% ===== UTILITY FUNCTION: Split string =====
+
+function parts = strsplit(str, delimiter)
+    % Simple strsplit implementation for older MATLAB versions
+    if verLessThan('matlab', '9.0')  % Before R2016a
+        parts = textscan(str, '%s', 'Delimiter', delimiter);
+        parts = parts{1}';
+    else
+        parts = split(str, delimiter);
+    end
+end

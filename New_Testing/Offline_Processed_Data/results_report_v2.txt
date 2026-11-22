@@ -1,0 +1,57 @@
+
+>>> COPY FROM HERE - DEEP MUSCLE-ACTIVITY REPORT (v2) >>>
+N=8 participants; 4 walking conditions; conditions {No-Exo, Inactive, Active}.
+Reductions are within-participant % change vs No-Exo (positive = less activity).
+Tests: Wilcoxon signed-rank vs 0; q = Benjamini-Hochberg FDR. alpha=0.05.
+
+--- LAYER 1: OVERALL ASSISTANCE (whole-cycle mean) ---
+Musc  Active%       dz      p      q responders
+VL     22.9+-9.0    2.14  0.008  0.016  8/8 *   sig
+RF     28.5+-29.8   0.80  0.078  0.078  7/8 n.s.
+BF     29.7+-16.8   1.48  0.008  0.016  8/8 *   sig
+ST     22.3+-17.7   1.05  0.039  0.052  7/8 n.s.
+Inactive (passive) whole-cycle % change vs No-Exo (negative = increase):
+  VL     -5.0%
+  RF     -6.5%
+  BF      5.4%
+  ST     -7.0%
+Active-control contribution (Active vs Inactive) %:
+  VL     20.9%
+  RF     29.6%
+  BF     21.9%
+  ST     21.9%
+
+--- LAYER 2: INTER- vs INTRA-SUBJECT (whole-cycle Active reduction) ---
+Musc   between-SD     intra-SD   responders
+VL          8.9        19.5          8/8
+RF         34.3        29.3          7/8
+BF         18.7        29.1          8/8
+ST         19.8        15.3          7/8
+(large between-SD => person-specific benefit; small => universal responder.)
+
+--- LAYER 3: CROSS-ZONE / ANTAGONIST (Active vs No-Exo, % reduction) ---
+Musc     Ext-zone    Flex-zone   (* = on-target zone)
+VL         25.4*       15.8 
+RF         29.7*       25.8 
+BF         27.3        31.2*
+ST         19.0        25.1*
+All 8 muscle x zone cells (Active vs No-Exo), FDR across 8 -- MATCHES FIGURE:
+  VL|ext     25.4%  p=0.008 q=0.021 *   sig (on-target)
+  VL|flex    15.8%  p=0.195 q=0.195 n.s. 
+  RF|ext     29.7%  p=0.078 q=0.089 n.s. (on-target)
+  RF|flex    25.8%  p=0.078 q=0.089 n.s. 
+  BF|ext     27.3%  p=0.008 q=0.021 *   sig 
+  BF|flex    31.2%  p=0.008 q=0.021 *   sig (on-target)
+  ST|ext     19.0%  p=0.078 q=0.089 n.s. 
+  ST|flex    25.1%  p=0.016 q=0.031 *   sig (on-target)
+Off-target (antagonist) cells, FDR across the 4 antagonist cells only:
+  VL(flex)    15.8%  p=0.195 q=0.195 n.s.
+  RF(flex)    25.8%  p=0.078 q=0.104 n.s.
+  BF(ext)     27.3%  p=0.008 q=0.031 *   sig
+  ST(ext)     19.0%  p=0.078 q=0.104 n.s.
+Passive (Inactive vs No-Exo) zone % change (negative = increase):
+  VL   Ext   -0.1  Flex  -17.8
+  RF   Ext   -3.8  Flex  -12.2
+  BF   Ext    3.6  Flex    5.4
+  ST   Ext   -8.5  Flex   -4.9
+<<< COPY TO HERE <<<

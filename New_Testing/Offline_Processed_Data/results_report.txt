@@ -1,0 +1,36 @@
+
+>>> COPY FROM HERE — RESULTS REPORT >>>
+STUDY: N = 8 subjects; 3 conditions (No-Exo, Exo-Inactive, Exo-Active);
+       4 walking conditions (grade 0%/10% x speed 0.8/1.2 m/s).
+SUBJECTS: Amir, Asha, Dez, Jivan, Mason, Par, Rachitha, Ruthvik
+DV: whole-cycle mean EMG (%MVC). SUPPORT DV: each muscle in its functional zone
+    (VL,RF = extension phase; BF,ST = flexion phase).
+TESTS: Wilcoxon signed-rank on per-subject % reductions, Benjamini-Hochberg FDR
+       across 4 muscles (q). Linear mixed models for generalization. alpha = 0.05.
+SIG CODES: *** q<.001, ** q<.01, * q<.05, n.s. = not significant.
+
+[TABLE A] Whole-cycle activity (%MVC), group mean +/- SD across subjects:
+Musc |         No-Exo |   Exo-Inactive |     Exo-Active
+VL   |   23.4 +- 10.9 |   24.0 +- 12.1 |   18.4 +- 9.8 
+RF   |   20.8 +- 15.4 |   23.2 +- 20.5 |   11.8 +- 6.6 
+BF   |   39.5 +- 26.3 |   37.5 +- 23.4 |   24.9 +- 11.0
+ST   |   27.7 +- 14.7 |   28.3 +- 15.4 |   20.9 +- 11.2
+
+[TABLE B] SUPPORT-ZONE % reduction vs No-Exo (pooled over walking conds):
+Musc | ACTIVE                       | INACTIVE                    
+     |   mean%    95%CI    dz q      |   mean%    95%CI    dz q     
+VL   |   25.4% +- 4.6  4.59 0.016 |   -0.1% +-31.8 -0.00 0.945
+RF   |   29.7% +-31.2  0.80 0.078 |   -3.8% +-18.7 -0.17 0.945
+BF   |   31.2% +-14.6  1.79 0.016 |    5.4% +-17.4  0.26 0.945
+ST   |   25.1% +-15.4  1.36 0.021 |   -4.9% +-22.2 -0.18 0.945
+
+[TABLE C] MIXED-EFFECTS MODEL per muscle (est in %MVC vs No-Exo; neg = lower):
+Musc | Active vs No-Exo       | Inactive vs No-Exo     | across walking conds
+VL   | est   -7.09 p=0.057 n.s. | est   -4.11 p=0.266 n.s. | CONSISTENT
+RF   | est  -10.89 p=0.104 n.s. | est   -1.77 p=0.791 n.s. | CONSISTENT
+BF   | est  -17.14 p=0.013 *   sig | est   -2.11 p=0.756 n.s. | CONSISTENT
+ST   | est   -6.05 p=0.158 n.s. | est   -0.96 p=0.822 n.s. | CONSISTENT
+
+Note: positive reduction% = exosuit lowered activity (support). q = FDR-corrected.
+<<< COPY TO HERE <<<
+

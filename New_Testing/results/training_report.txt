@@ -1,0 +1,42 @@
+
+>>> COPY FROM HERE - ONLINE TRAINING REPORT >>>
+N = 8 participants; 4 walking conditions (grade 0%/10% x speed 0.8/1.2 m/s).
+Init/Final = mean of the first/last 3 training samples (across the 2 rollouts).
+Kinematic errors use per-sample MAGNITUDE (RMS) so signed errors do not cancel.
+Reduction% = (Init-Final)/Init*100 on group means (positive = improvement).
+Stats: Wilcoxon signed-rank (Init vs Final) across participants; per-condition p
+       (q = FDR across the 4 conditions), plus a pooled test per metric (q across metrics).
+
+[Training cost (a.u.)]
+  Condition         Init(mean+/-SD) Final(mean+/-SD)     Red%       p       q
+  grade 0%, 0.8      0.898+/-0.178    0.620+/-0.151     31.0   0.016   0.021 *   sig
+  grade 0%, 1.2      1.019+/-0.140    0.799+/-0.180     21.6   0.023   0.023 *   sig
+  grade 10%, 0.8     0.861+/-0.085    0.619+/-0.114     28.0   0.008   0.016 *   sig
+  grade 10%, 1.2     1.013+/-0.221    0.668+/-0.118     34.0   0.008   0.016 *   sig
+  POOLED over conditions: 28.0% reduction, dz=3.10, p=0.008, q=0.016  *   sig
+
+[EMG effort (norm.)]
+  Condition         Init(mean+/-SD) Final(mean+/-SD)     Red%       p       q
+  grade 0%, 0.8      1.060+/-0.340    0.768+/-0.156     27.6   0.008   0.021 *   sig
+  grade 0%, 1.2      1.165+/-0.304    0.901+/-0.115     22.7   0.016   0.021 *   sig
+  grade 10%, 0.8     0.866+/-0.107    0.770+/-0.140     11.1   0.039   0.039 *   sig
+  grade 10%, 1.2     1.019+/-0.218    0.787+/-0.105     22.8   0.016   0.021 *   sig
+  POOLED over conditions: 20.6% reduction, dz=1.99, p=0.008, q=0.016  *   sig
+
+[Kinematic A error (rad, stance peak-flexion)]
+  Condition         Init(mean+/-SD) Final(mean+/-SD)     Red%       p       q
+  grade 0%, 0.8      0.070+/-0.046    0.068+/-0.045      3.2   0.844   0.844 n.s.
+  grade 0%, 1.2      0.094+/-0.055    0.103+/-0.069     -9.5   0.461   0.615 n.s.
+  grade 10%, 0.8     0.145+/-0.060    0.124+/-0.076     14.2   0.250   0.500 n.s.
+  grade 10%, 1.2     0.122+/-0.117    0.139+/-0.096    -14.0   0.055   0.219 n.s.
+  POOLED over conditions: -2.4% reduction, dz=-0.11, p=1.000, q=1.000  n.s.
+
+[Kinematic C error (rad, swing peak-flexion)]
+  Condition         Init(mean+/-SD) Final(mean+/-SD)     Red%       p       q
+  grade 0%, 0.8      0.102+/-0.064    0.076+/-0.053     25.2   0.078   0.312 n.s.
+  grade 0%, 1.2      0.140+/-0.073    0.136+/-0.076      3.3   0.945   0.945 n.s.
+  grade 10%, 0.8     0.114+/-0.053    0.113+/-0.064      0.9   0.945   0.945 n.s.
+  grade 10%, 1.2     0.110+/-0.037    0.090+/-0.047     18.5   0.547   0.945 n.s.
+  POOLED over conditions: 10.3% reduction, dz=0.45, p=0.461, q=0.615  n.s.
+
+<<< COPY TO HERE <<<

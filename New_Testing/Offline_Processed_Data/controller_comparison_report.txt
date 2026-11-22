@@ -1,0 +1,24 @@
+
+>>> COPY FROM HERE - CONTROLLER COMPARISON (heuristic vs RL) >>>
+Condition: inc0_spd1.2 (0% grade, 1.2 m/s). N=8 participants.
+Whole-cycle reduction vs No-Exo (%, positive = less activity); MVC-invariant.
+Stats: Wilcoxon signed-rank; q = Benjamini-Hochberg FDR (across 4 muscles). alpha=0.05.
+
+Musc | Heuristic vs No-Exo    | RL vs No-Exo           | RL vs Heuristic 
+     |   mean%    dz     q      |   mean%    dz     q      |   diff%     q
+VL   |    6.1  0.10 0.844 n.s. |   23.2  1.44 0.021 *    |   17.1 0.990 n.s.
+RF   |   11.8  0.19 0.844 n.s. |   41.8  1.19 0.016 *    |   30.0 0.594 n.s.
+BF   |   28.7  0.48 0.625 n.s. |   45.3  1.78 0.016 *    |   16.6 1.000 n.s.
+ST   |    9.9  0.38 0.625 n.s. |   15.3  0.59 0.195 n.s. |    5.5 0.990 n.s.
+
+Overall (avg of 4 muscles): Heuristic 14.1%, RL 31.4%; RL-vs-heuristic p=0.461 n.s.
+RL trial used per subject:
+  Amir       Processed_inc0_spd1.2_active_rl_trial2.mat
+  Asha       Processed_inc0_spd1.2_active_rl_trial2.mat
+  Dez        Processed_inc0_spd1.2_active_rl_trial1.mat
+  Jivan      Processed_inc0_spd1.2_active_rl_trial2.mat
+  Mason      Processed_inc0_spd1.2_active_rl_trial2.mat
+  Par        Processed_inc0_spd1.2_active_rl_trial1.mat
+  Rachitha   Processed_inc0_spd1.2_active_rl_trial1.mat
+  Ruthvik    Processed_inc0_spd1.2_active_rl_trial1.mat
+<<< COPY TO HERE <<<

@@ -1,0 +1,286 @@
+%% plot_angle_torque_characterization.m
+% Static torque vs knee angle characterization of the SIFA (flexion) and
+% SIEA (extension) actuators at several supply pressures.
+%
+% Input : Flexion_Angle_Char.xlsx, Extension_Angle_Char.xlsx (same folder)
+%         one sheet per angle ('0degrees' ... '90degrees'); row 1 = pressure
+%         header (psi), each column = load-cell samples at that pressure.
+% Output: mean and SD torque PER ACTUATOR (measured pair torque / 2),
+%         printed table, linear torque-pressure fits, crossover angle, and
+%         the paper figure (both actuators vs knee angle on one axis,
+%         IEEE single-column size). Set MAKE_EXTRA_FIGS = true for the
+%         alternative layouts (mirrored, 2x2 panels, torque vs pressure).
+%
+% Compatible with MATLAB R2020a (readcell, tiledlayout, exportgraphics).
+
+clear; close all; clc;
+
+%% ===== USER SETTINGS =====
+DATA_DIR   = fileparts(mfilename('fullpath'));
+if isempty(DATA_DIR), DATA_DIR = pwd; end
+FILE_FLEX  = 'Flexion_Angle_Char.xlsx';
+FILE_EXT   = 'Extension_Angle_Char.xlsx';
+
+ANGLES     = [0 15 30 45 60 75 90];   % deg, sheet names '<angle>degrees'
+PSI        = [0 5 10 15 20];          % pressures in the header row
+PLOT_PSI   = [5 10 15 20];            % pressures to plot (0 psi is the zero reference)
+N_PARALLEL = 1;                       % 1 = report pair torque as measured (matches optimization fig); 2 = per actuator
+WALK_ROM   = [0 60];                  % knee flexion range during level walking (deg)
+USE_KPA    = true;                    % label pressures in kPa (true) or psi (false)
+SAVE       = false;                   % save .fig/.png/.pdf into ./figs
+MAKE_EXTRA_FIGS = false;              % also draw mirrored / 2x2 / torque-vs-pressure layouts
+FIG1_W     = 8.8;                     % paper figure size (cm); 8.8 cm = IEEE single column
+FIG1_H     = 6.5;
+PSI2KPA    = 6.89476;
+
+% colours: flexion = blue, extension = orange; lighter = lower pressure
+BASE_F = [0.00 0.35 0.70];
+BASE_E = [0.80 0.30 0.05];
+FONT   = 'Times New Roman';  FS = 9;
+
+%% ===== LOAD, HALVE, AVERAGE =====
+[Mf, Sf, Nf] = load_char(fullfile(DATA_DIR, FILE_FLEX), ANGLES, PSI, N_PARALLEL);
+[Me, Se, Ne] = load_char(fullfile(DATA_DIR, FILE_EXT),  ANGLES, PSI, N_PARALLEL);
+
+jp   = arrayfun(@(p) find(PSI == p), PLOT_PSI);      % columns to plot
+nP   = numel(jp);
+Pkpa = PSI(jp) * PSI2KPA;
+if USE_KPA
+    plab = arrayfun(@(p) sprintf('%.0f kPa', p), Pkpa, 'UniformOutput', false);
+    Px = Pkpa; pxl = 'Pressure (kPa)';
+else
+    plab = arrayfun(@(p) sprintf('%d psi', p), PSI(jp), 'UniformOutput', false);
+    Px = PSI(jp); pxl = 'Pressure (psi)';
+end
+CF = shades(BASE_F, nP);  CE = shades(BASE_E, nP);  CG = shades([0.2 0.2 0.2], nP);
+
+%% ===== PRINT SUMMARY TABLE =====
+if N_PARALLEL == 1, fprintf('\nTorque of the ACTUATOR PAIR (N m), mean +/- SD  [n samples]\n');
+else,               fprintf('\nTorque PER ACTUATOR (N m), mean +/- SD  [n samples]\n'); end
+print_table('SIFA (flexion)',  ANGLES, PSI, Mf, Sf, Nf);
+print_table('SIEA (extension)', ANGLES, PSI, Me, Se, Ne);
+
+%% ===== LINEAR TORQUE-PRESSURE FITS (per angle) =====
+fprintf('\nLinear fit tau = k*P + b over %s (P in kPa)\n', strjoin(plab, ', '));
+fit_report('SIFA', ANGLES, Pkpa, Mf(:, jp));
+fit_report('SIEA', ANGLES, Pkpa, Me(:, jp));
+
+%% ===== CROSSOVER ANGLE (flexion torque = extension torque) =====
+fprintf('\nCrossover angle where SIFA and SIEA torques are equal:\n');
+for k = 1:nP
+    d  = Mf(:, jp(k)) - Me(:, jp(k));
+    i0 = find(sign(d(1:end-1)) ~= sign(d(2:end)), 1);
+    if isempty(i0), continue; end
+    xc = ANGLES(i0) + (ANGLES(i0+1) - ANGLES(i0)) * d(i0) / (d(i0) - d(i0+1));
+    tc = interp1(ANGLES, Mf(:, jp(k)), xc);
+    fprintf('  %-8s  %.1f deg  (%.2f N m)\n', plab{k}, xc, tc);
+end
+
+%% ===== FIG 1 (PAPER FIGURE): both actuators vs angle on one axis =====
+% SIFA = blue solid circles, SIEA = orange dashed squares, darker = higher
+% pressure. Legend shows pressure only (gray shades); actuators are labelled
+% directly next to their darkest curve. Grey band = walking range.
+f1 = figure('Color', 'w', 'Units', 'centimeters', 'Position', [2 2 FIG1_W FIG1_H]);
+ax = axes(f1); hold(ax, 'on');
+ymax = 1.32 * max([Mf(:) + Sf(:); Me(:) + Se(:)]);          % headroom for labels/legend
+patch(ax, WALK_ROM([1 2 2 1]), [0 0 ymax ymax], [0.92 0.92 0.92], ...
+      'EdgeColor', 'none', 'HandleVisibility', 'off');
+text(ax, mean(WALK_ROM), 0.03*ymax, 'walking range', 'HorizontalAlignment', 'center', ...
+     'VerticalAlignment', 'bottom', 'Color', [0.45 0.45 0.45], 'FontName', FONT, 'FontSize', FS-2);
+for k = 1:nP
+    errorbar(ax, ANGLES, Mf(:, jp(k)), Sf(:, jp(k)), '-o', 'Color', CF(k,:), ...
+        'MarkerFaceColor', CF(k,:), 'MarkerSize', 4, 'LineWidth', 1.3, 'CapSize', 3, ...
+        'HandleVisibility', 'off');
+    errorbar(ax, ANGLES, Me(:, jp(k)), Se(:, jp(k)), '--s', 'Color', CE(k,:), ...
+        'MarkerFaceColor', CE(k,:), 'MarkerSize', 4, 'LineWidth', 1.3, 'CapSize', 3, ...
+        'HandleVisibility', 'off');
+end
+style(ax, FONT, FS);
+xlim(ax, [-3 93]); ylim(ax, [0 ymax]); xticks(ax, ANGLES);
+if N_PARALLEL == 1, ylab = 'Torque (N\cdotm)'; else, ylab = 'Torque per actuator (N\cdotm)'; end
+xlabel(ax, 'Knee Angle (\circ)'); ylabel(ax, ylab);
+% direct actuator labels next to the darkest (highest-pressure) curve ends
+yF = Mf(1, jp(end)) + Sf(1, jp(end));      % SIFA peak at 0 deg
+yE = Me(end, jp(end));                     % SIEA peak at 90 deg
+text(ax, 0, yF + 0.06*ymax, 'SIFA', 'Color', CF(end,:), 'FontName', FONT, ...
+     'FontSize', FS-1, 'FontWeight', 'bold', 'HorizontalAlignment', 'left', 'VerticalAlignment', 'bottom');
+text(ax, 86, yE, 'SIEA (extension)', 'Color', CE(end,:), 'FontName', FONT, ...
+     'FontSize', FS-1, 'FontWeight', 'bold', 'HorizontalAlignment', 'right', 'VerticalAlignment', 'middle');
+% pressure legend (gray shades), one row across the top
+lg = legend(ax, gray_handles(ax, CG), plab, 'Location', 'north', 'NumColumns', nP, ...
+            'Box', 'off', 'FontName', FONT, 'FontSize', FS-2);
+lg.ItemTokenSize = [14 8];                  % shorter legend lines
+save_fig(f1, 'fig_angle_characterization', SAVE, DATA_DIR);
+
+if ~MAKE_EXTRA_FIGS
+    fprintf('\nDone (paper figure only; set MAKE_EXTRA_FIGS = true for the other layouts).\n');
+    return
+end
+
+%% ===== FIG 2: mirrored / signed (flexion +, extension -) =====
+f2 = figure('Color', 'w', 'Units', 'centimeters', 'Position', [12 2 9 8]);
+ax = axes(f2); hold(ax, 'on');
+lim = 1.12 * max([Mf(:); Me(:)]);
+shade_rom(ax, WALK_ROM, [-lim lim]);
+plot(ax, [-3 93], [0 0], 'k-', 'LineWidth', 0.6, 'HandleVisibility', 'off');
+for k = 1:nP
+    errorbar(ax, ANGLES,  Mf(:, jp(k)), Sf(:, jp(k)), '-o', 'Color', CF(k,:), ...
+        'MarkerFaceColor', CF(k,:), 'MarkerSize', 3.5, 'LineWidth', 1.4, 'CapSize', 3);
+    errorbar(ax, ANGLES, -Me(:, jp(k)), Se(:, jp(k)), '-s', 'Color', CE(k,:), ...
+        'MarkerFaceColor', CE(k,:), 'MarkerSize', 3.5, 'LineWidth', 1.4, 'CapSize', 3);
+end
+style(ax, FONT, FS); xlim(ax, [-3 93]); ylim(ax, [-lim lim]); xticks(ax, ANGLES);
+xlabel(ax, 'Knee flexion angle (\circ)'); ylabel(ax, 'Knee torque per actuator (N\cdotm)');
+text(ax, 90, 0.8*lim, 'Flexion (SIFA)', 'Color', CF(end,:), 'HorizontalAlignment', 'right', 'FontName', FONT, 'FontSize', FS-1);
+text(ax, 2, -0.85*lim, 'Extension (SIEA)', 'Color', CE(end,:), 'FontName', FONT, 'FontSize', FS-1);
+legend(ax, gray_handles(ax, CG), plab, 'Location', 'east', 'Box', 'off', 'FontName', FONT, 'FontSize', FS-2);
+save_fig(f2, 'fig2_mirrored', SAVE, DATA_DIR);
+
+%% ===== FIG 3: 2x2 panels (angle and pressure dependence) =====
+f3 = figure('Color', 'w', 'Units', 'centimeters', 'Position', [2 11 18 13]);
+tl = tiledlayout(f3, 2, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+set_ = {Mf, Sf, CF, 'SIFA (flexion)'; Me, Se, CE, 'SIEA (extension)'};
+CA = parula(numel(ANGLES) + 1);
+for c = 1:2
+    [M, S, C, name] = set_{c, :};
+    ax = nexttile(tl, c); hold(ax, 'on');
+    shade_rom(ax, WALK_ROM, [0 1.12*max(M(:))]);
+    h = gobjects(1, nP);
+    for k = 1:nP
+        h(k) = errorbar(ax, ANGLES, M(:, jp(k)), S(:, jp(k)), '-o', 'Color', C(k,:), ...
+            'MarkerFaceColor', C(k,:), 'MarkerSize', 3.5, 'LineWidth', 1.4, 'CapSize', 3);
+    end
+    style(ax, FONT, FS); xlim(ax, [-3 93]); xticks(ax, ANGLES);
+    xlabel(ax, 'Knee flexion angle (\circ)'); ylabel(ax, 'Torque (N\cdotm)');
+    title(ax, sprintf('(%s) %s', char('a' + c - 1), name), 'FontWeight', 'normal');
+    legend(ax, h, plab, 'Location', 'best', 'Box', 'off', 'FontSize', FS-2);
+
+    ax = nexttile(tl, c + 2); hold(ax, 'on');
+    h = gobjects(0); lab = {};
+    for i = 1:numel(ANGLES)
+        y = M(i, jp);  s = S(i, jp);
+        if all(y == 0), continue; end          % free-configuration angle (zero torque)
+        p  = polyfit(Px, y, 1);  r2 = rsq(y, polyval(p, Px));
+        errorbar(ax, Px, y, s, 'o', 'Color', CA(i,:), 'MarkerFaceColor', CA(i,:), ...
+                 'MarkerSize', 3.5, 'CapSize', 3, 'HandleVisibility', 'off');
+        h(end+1) = plot(ax, Px, polyval(p, Px), '-', 'Color', CA(i,:), 'LineWidth', 1.1); %#ok<SAGROW>
+        lab{end+1} = sprintf('%d\\circ (R^2 = %.2f)', ANGLES(i), r2); %#ok<SAGROW>
+    end
+    style(ax, FONT, FS); xlabel(ax, pxl); ylabel(ax, 'Torque (N\cdotm)');
+    title(ax, sprintf('(%s) %s', char('c' + c - 1), name), 'FontWeight', 'normal');
+    legend(ax, h, lab, 'Location', 'northwest', 'NumColumns', 2, 'Box', 'off', 'FontSize', FS-3);
+end
+save_fig(f3, 'fig3_panels', SAVE, DATA_DIR);
+
+%% ===== FIG 4: torque vs pressure only (supplementary) =====
+f4 = figure('Color', 'w', 'Units', 'centimeters', 'Position', [21 11 18 7]);
+tl = tiledlayout(f4, 1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+for c = 1:2
+    [M, S, ~, name] = set_{c, :};
+    ax = nexttile(tl); hold(ax, 'on');
+    h = gobjects(0); lab = {};
+    for i = 1:numel(ANGLES)
+        y = M(i, jp); s = S(i, jp);
+        if all(y == 0), continue; end
+        p = polyfit(Px, y, 1);
+        errorbar(ax, Px, y, s, 'o', 'Color', CA(i,:), 'MarkerFaceColor', CA(i,:), ...
+                 'MarkerSize', 3.5, 'CapSize', 3, 'HandleVisibility', 'off');
+        h(end+1) = plot(ax, Px, polyval(p, Px), '-', 'Color', CA(i,:), 'LineWidth', 1.1); %#ok<SAGROW>
+        lab{end+1} = sprintf('%d\\circ', ANGLES(i)); %#ok<SAGROW>
+    end
+    style(ax, FONT, FS); xlabel(ax, pxl); ylabel(ax, 'Torque (N\cdotm)');
+    title(ax, name, 'FontWeight', 'normal');
+    legend(ax, h, lab, 'Location', 'northwest', 'Box', 'off', 'FontSize', FS-2);
+end
+save_fig(f4, 'fig4_torque_vs_pressure', SAVE, DATA_DIR);
+
+fprintf('\nDone.\n');
+
+%% ======================= helper functions =======================
+function [M, S, N] = load_char(file, angles, psi, npar)
+    % mean / SD / n of torque per actuator for every angle x pressure
+    M = nan(numel(angles), numel(psi));  S = M;  N = zeros(size(M));
+    for i = 1:numel(angles)
+        C   = readcell(file, 'Sheet', sprintf('%ddegrees', angles(i)));
+        hdr = cell2num(C(1, 2:end));
+        X   = cell2num(C(2:end, 2:end)) / npar;
+        for j = 1:numel(psi)
+            col = find(hdr == psi(j), 1);
+            if isempty(col), continue; end
+            x = X(:, col);  x = x(~isnan(x));
+            if isempty(x) && psi(j) == 0, x = 0; end   % empty 0-psi column = zero reference
+            M(i, j) = mean(x);  S(i, j) = std(x);  N(i, j) = numel(x);
+        end
+    end
+end
+
+function X = cell2num(C)
+    X = nan(size(C));
+    for k = 1:numel(C)
+        v = C{k};
+        if isnumeric(v) && isscalar(v), X(k) = double(v); end
+    end
+end
+
+function print_table(name, angles, psi, M, S, N)
+    fprintf('\n%s\n%8s', name, 'angle');
+    for j = 1:numel(psi), fprintf('%18s', sprintf('%d psi', psi(j))); end
+    fprintf('\n');
+    for i = 1:numel(angles)
+        fprintf('%7d%s', angles(i), char(176));
+        for j = 1:numel(psi)
+            fprintf('%10.2f +/- %4.2f', M(i, j), S(i, j));
+        end
+        fprintf('   [n = %s]\n', strjoin(string(N(i, :)), ','));
+    end
+end
+
+function fit_report(name, angles, P, M)
+    for i = 1:numel(angles)
+        y = M(i, :);
+        if all(y == 0), fprintf('  %s %2d deg: zero torque (free configuration)\n', name, angles(i)); continue; end
+        p = polyfit(P, y, 1);
+        fprintf('  %s %2d deg: k = %.4f N m/kPa, b = %5.2f N m, R^2 = %.3f\n', ...
+                name, angles(i), p(1), p(2), rsq(y, polyval(p, P)));
+    end
+end
+
+function r2 = rsq(y, yhat)
+    r2 = 1 - sum((y - yhat).^2) / sum((y - mean(y)).^2);
+end
+
+function C = shades(base, n)
+    w = linspace(0.35, 1, n)';
+    C = 1 - (1 - base) .* w;
+end
+
+function shade_rom(ax, rom, yl)
+    patch(ax, [rom(1) rom(2) rom(2) rom(1)], [yl(1) yl(1) yl(2) yl(2)], [0.92 0.92 0.92], ...
+          'EdgeColor', 'none', 'HandleVisibility', 'off');
+    text(ax, mean(rom), yl(2), 'walking range', 'HorizontalAlignment', 'center', ...
+         'VerticalAlignment', 'top', 'Color', [0.45 0.45 0.45], 'FontSize', 7);
+end
+
+function h = gray_handles(ax, CG)
+    % dummy lines so the legend shows pressure (shade) only, not actuator
+    h = gobjects(1, size(CG, 1));
+    for k = 1:size(CG, 1)
+        h(k) = plot(ax, nan, nan, '-', 'Color', CG(k,:), 'LineWidth', 1.6);
+    end
+end
+
+function style(ax, font, fs)
+    set(ax, 'FontName', font, 'FontSize', fs, 'Box', 'off', 'TickDir', 'out', 'LineWidth', 0.8);
+end
+
+function save_fig(h, name, do_save, dir0)
+    if ~do_save, return; end
+    out = fullfile(dir0, 'figs');  if ~exist(out, 'dir'), mkdir(out); end
+    savefig(h, fullfile(out, [name '.fig']));
+    try
+        exportgraphics(h, fullfile(out, [name '.png']), 'Resolution', 600);
+        exportgraphics(h, fullfile(out, [name '.pdf']), 'ContentType', 'vector');
+    catch
+        print(h, fullfile(out, [name '.png']), '-dpng', '-r600');
+    end
+end
